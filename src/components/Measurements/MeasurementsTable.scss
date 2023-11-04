@@ -1,0 +1,84 @@
+@import "../../assets/global.scss";
+
+.measurement__form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.measurement__view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+
+  &__img__wrapper {
+    margin-inline: auto;
+  }
+
+  &__img {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 0.25rem;
+  }
+
+  &--grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    column-gap: 4rem;
+    padding: 0 2rem;
+
+    & span {
+      font-weight: 600;
+      color: $color-primary-dark-2;
+    }
+  }
+}
+
+.overlay__measurements {
+  display: grid !important;
+  grid-template-columns: 0.4fr 1fr;
+  padding: 7rem 3rem 6rem;
+  column-gap: 3rem !important;
+  row-gap: 9rem !important;
+  position: relative;
+  z-index: 0;
+  background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.7),
+      rgba(57, 179, 133, 0.4)
+    ),
+    url("../..//assets/img/auth-layout.jpg");
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  &__chart {
+    grid-column: 1/-1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4rem;
+  }
+}
+
+.chart {
+  grid-column: 1/-1;
+  width: 52%;
+  max-width: 818px;
+  padding: 2rem;
+  background-color: $color-white;
+  border-radius: 0.25rem;
+
+  &__form {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    margin-bottom: 1rem;
+  }
+}
+
+.no__content.measurements {
+  background-color: $color-white;
+}

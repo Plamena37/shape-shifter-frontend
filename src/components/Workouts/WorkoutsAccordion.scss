@@ -1,0 +1,51 @@
+@import "../../assets/global.scss";
+
+.workout__form__nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &--icon {
+    cursor: pointer;
+    color: $color-primary;
+  }
+}
+
+.exercise__name {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
+  &--no__content {
+    color: $color-grey-dark-2;
+  }
+}
+
+.workouts__container {
+  & .form {
+    width: 90%;
+  }
+
+  & .no__content {
+    width: 90%;
+  }
+}
+
+.workout__list {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1.2rem;
+
+  &__item {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    align-items: center;
+    gap: 2rem;
+    border-bottom: 1px solid $color-logo;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}

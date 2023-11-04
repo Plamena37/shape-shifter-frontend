@@ -1,0 +1,89 @@
+@import "../../assets/global.scss";
+
+.dashboard__layout {
+  background-image: $gradient-primary;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 3rem;
+  row-gap: 5rem;
+  padding: 4.5rem 6rem;
+}
+
+.common {
+  border-radius: 0.25rem;
+  box-shadow: 1px 5px 16px 2px rgba(0, 0, 0, 0.1);
+  background-color: $color-primary-light-1;
+}
+
+.dashboard {
+  width: 30%;
+  box-shadow: 0 3rem 6rem rgba($color-black, 0.1);
+  border-radius: 3px;
+  font-size: 1rem;
+
+  &__shape {
+    width: 100%;
+    height: 17rem;
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+    border-radius: 0.25rem;
+  }
+
+  & img {
+    height: 100%;
+    object-fit: contain;
+    transform: translateX(0) scale(1);
+    backface-visibility: hidden;
+    transition: all 0.5s;
+  }
+
+  &:hover img {
+    transform: scale(1.2);
+    filter: blur(3px) brightness(80%);
+  }
+
+  &__caption {
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    text-align: center;
+    opacity: 0;
+    transition: all 0.5s;
+    backface-visibility: hidden;
+
+    &--link:link,
+    &--link:visited {
+      text-decoration: none;
+      color: $color-white;
+      padding: 1rem;
+      background-color: $color-primary;
+      border-radius: 0.25rem;
+    }
+  }
+
+  &:hover &__caption {
+    opacity: 1;
+    transform: translateY(-10rem);
+  }
+}
+
+.measurements__caption--link:hover .measurements__shape > img,
+.measurements__caption--link:active .measurements__shape > img {
+  transform: scale(1.2);
+  filter: blur(3px) brightness(80%);
+}
+
+.exercises {
+  width: 30%;
+  background-color: $color-primary-light-1;
+}
+
+.workouts {
+  background-color: $color-primary-light-1;
+}
+
+.exerciseTypes {
+  grid-column: 1/-1;
+  background-color: $color-primary-light-1;
+}

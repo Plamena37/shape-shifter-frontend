@@ -1,0 +1,32 @@
+@import "../../assets/global.scss";
+
+.users__dashboard {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+
+  & h4 {
+    margin: 0 0 1rem 0;
+    color: $color-primary-dark-2;
+  }
+}
+
+.table__head {
+  font-weight: 600 !important;
+}
+
+.dashboard {
+  font-size: 0.8rem !important;
+}
+
+.change--role,
+.delete--user {
+  width: 70% !important;
+}
+
+.delete--user,
+.btn--delete {
+  color: $color-danger !important;
+}

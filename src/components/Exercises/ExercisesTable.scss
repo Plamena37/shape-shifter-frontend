@@ -1,0 +1,9 @@
+@import "../../assets/global.scss";
+
+.exercises__container {
+  width: 50%;
+
+  & .no__content {
+    width: 90%;
+  }
+}

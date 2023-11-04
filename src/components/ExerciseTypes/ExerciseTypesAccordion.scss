@@ -1,0 +1,13 @@
+@import "../../assets/global.scss";
+
+.filter {
+  margin-bottom: 1rem;
+  &__wrapper {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  &__btn {
+    color: $color-white !important;
+  }
+}
