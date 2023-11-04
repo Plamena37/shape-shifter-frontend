@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import {
   Accordion,
   AccordionDetails,
@@ -10,7 +9,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { SnackbarKey, closeSnackbar, enqueueSnackbar } from "notistack";
 import { v4 as uuid } from "uuid";
 import { format } from "date-fns";
-import { AppDispatch } from "../../app/store";
+import { useAppDispatch } from "../../app/store";
 import { getExerciseTypeById } from "../../features/exerciseTypeSlice";
 import {
   createExercise,
@@ -28,6 +27,8 @@ type WorkoutItemProps = {
 };
 
 const WorkoutsItem = ({ workout, isFilteredData }: WorkoutItemProps) => {
+  const dispatch = useAppDispatch();
+
   const [open, setOpen] = useState(false);
 
   // Array with all exercise type names of a single exercise
@@ -42,8 +43,6 @@ const WorkoutsItem = ({ workout, isFilteredData }: WorkoutItemProps) => {
   const [exerciseFromDuplicate, setExerciseFromDuplicate] = useState<
     Exercise[]
   >([]);
-
-  const dispatch = useDispatch<AppDispatch>();
 
   const today = format(new Date(), "yyyy-MM-dd");
 

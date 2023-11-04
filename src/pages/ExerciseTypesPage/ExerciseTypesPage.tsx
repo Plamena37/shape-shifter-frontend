@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import {
   Button,
   ExerciseTypesAccordion,
   ExerciseTypesForm,
 } from "../../components";
-import { AppDispatch, RootState } from "../../app/store";
+import { RootState, useAppDispatch } from "../../app/store";
 import { getUserById } from "../../features/userSlice";
 import { getCurrentUserIdAndEmail } from "../../utils/common-functions";
 import { User } from "../../utils/common-interfaces";
@@ -13,13 +13,13 @@ import { ROLE } from "../../utils/common-enums";
 import "../../assets/global.scss";
 
 const ExerciseTypesPage = () => {
+  const dispatch = useAppDispatch();
+
   const [userInfo, setUserInfo] = useState({
     email: "",
     id: "",
   });
   const [open, setOpen] = useState(false);
-
-  const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
     const res = getCurrentUserIdAndEmail();

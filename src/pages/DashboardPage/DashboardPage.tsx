@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { DashboardTable } from "../../components";
 import { getUserById } from "../../features/userSlice";
-import { AppDispatch, RootState } from "../../app/store";
+import { RootState, useAppDispatch } from "../../app/store";
 import { User } from "../../utils/common-interfaces";
 import { getCurrentUserIdAndEmail } from "../../utils/common-functions";
 import { ROLE, ROUTES } from "../../utils/common-enums";
@@ -15,7 +15,7 @@ import workoutImg from "../../assets/img/workout.png";
 import "./DashboardPage.scss";
 
 const DashboardPage = () => {
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
 
   const [userInfo, setUserInfo] = useState({
     email: "",

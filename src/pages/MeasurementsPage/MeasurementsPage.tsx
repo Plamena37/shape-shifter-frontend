@@ -5,22 +5,22 @@ import {
   MeasurementsTable,
   TextField,
 } from "../../components";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { format } from "date-fns";
-import { AppDispatch, RootState } from "../../app/store";
+import { RootState, useAppDispatch } from "../../app/store";
 import { getAllMeasurements } from "../../features/measurementSlice";
 import MeasurementsChart from "../../components/Measurements/components/MeasurementsChart";
 import "../../assets/global.scss";
 import "../../components/Measurements/MeasurementsTable.scss";
 
 const MeasurementsPage = () => {
+  const dispatch = useAppDispatch();
+
   const [open, setOpen] = useState(false);
   const [date, setDate] = useState({
     startDate: "",
     endDate: "",
   });
-
-  const dispatch = useDispatch<AppDispatch>();
 
   const measurements = useSelector(
     (state: RootState) => state.measurement.measurements

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import {
   Paper,
   Table,
@@ -12,7 +12,7 @@ import {
   TableRow,
 } from "@mui/material";
 import { v4 as uuid } from "uuid";
-import { AppDispatch, RootState } from "../../app/store";
+import { RootState, useAppDispatch } from "../../app/store";
 import { getAllMeasurements } from "../../features/measurementSlice";
 import MeasurementsItem from "./MeasurementsItem";
 import { PaginationActions } from "..";
@@ -33,10 +33,10 @@ const measurementCellData: {
 ];
 
 const MeasurementsTable = () => {
+  const dispatch = useAppDispatch();
+
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
-
-  const dispatch = useDispatch<AppDispatch>();
 
   const allMeasurements = useSelector(
     (state: RootState) => state.measurement.measurements

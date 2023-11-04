@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 import {
   Box,
   Dialog,
@@ -25,7 +24,7 @@ import { ROLE } from "../../utils/common-enums";
 import { User } from "../../utils/common-interfaces";
 import { fiveYearsBeforeToday } from "../../utils/common-functions";
 import { updateUserById } from "../../features/userSlice";
-import { AppDispatch } from "../../app/store";
+import { useAppDispatch } from "../../app/store";
 import { TextField, Button } from "../UI";
 import "./Profile.scss";
 
@@ -36,6 +35,8 @@ type DialogProps = {
 };
 
 const ProfileDialog = ({ currUser, isOpen, handleClose }: DialogProps) => {
+  const dispatch = useAppDispatch();
+
   const [user, setUser] = useState({
     ...currUser,
     dateOfBirth: format(new Date(currUser.dateOfBirth), "yyyy-MM-dd"),
@@ -49,8 +50,6 @@ const ProfileDialog = ({ currUser, isOpen, handleClose }: DialogProps) => {
     dateOfBirth: false,
     height: false,
   });
-
-  const dispatch = useDispatch<AppDispatch>();
 
   const handleValidate = (fieldName: string, fieldValue: string) => {
     if (fieldName !== "role") {

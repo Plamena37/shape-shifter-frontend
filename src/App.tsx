@@ -1,6 +1,5 @@
 import { lazy } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
-import { useSelector } from "react-redux";
 import { createTheme } from "@mui/material";
 import { ThemeProvider } from "@emotion/react";
 import { SnackbarProvider } from "notistack";
@@ -15,7 +14,8 @@ import {
 } from "./pages";
 import { SuspenseLayout, NavigationLayout } from "./components";
 import { ROUTES } from "./utils/common-enums";
-import { RootState } from "./app/store";
+import { useAppSelector } from "./app/store";
+import { selectIsUserLoggedIn } from "./features/auth/authSelector";
 import "./assets/global.scss";
 
 const Signup = lazy(() => import("./components/Auth/Signup"));
@@ -30,7 +30,7 @@ const theme = createTheme({
 });
 
 function App() {
-  const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
+  const isLoggedIn = useAppSelector(selectIsUserLoggedIn);
 
   return (
     <ThemeProvider theme={theme}>

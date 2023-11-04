@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import { IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { closeSnackbar, useSnackbar } from "notistack";
@@ -11,11 +10,15 @@ import {
 } from "../../utils/common-auth";
 import { TextField, Button } from "../UI";
 import { ROUTES } from "../../utils/common-enums";
-import { login } from "../../features/authSlice";
-import { AppDispatch } from "../../app/store";
+import { login } from "../../features/auth/authSlice";
+import { useAppDispatch } from "../../app/store";
 import "./Auth.scss";
 
 const Login = () => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const { enqueueSnackbar } = useSnackbar();
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -25,10 +28,6 @@ const Login = () => {
     email: false,
     password: false,
   });
-
-  const navigate = useNavigate();
-  const { enqueueSnackbar } = useSnackbar();
-  const dispatch = useDispatch<AppDispatch>();
 
   const handleValidate = (fieldName: string, fieldValue: string) => {
     setFieldErrors({

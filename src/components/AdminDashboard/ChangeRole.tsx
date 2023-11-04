@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 import { closeSnackbar, enqueueSnackbar } from "notistack";
 import {
   Dialog,
@@ -17,7 +16,7 @@ import {
 import CloseIcon from "@mui/icons-material/Close";
 import { User } from "../../utils/common-interfaces";
 import { ROLE } from "../../utils/common-enums";
-import { AppDispatch } from "../../app/store";
+import { useAppDispatch } from "../../app/store";
 import { updateRole } from "../../features/userSlice";
 import { Button } from "../UI";
 
@@ -28,9 +27,9 @@ type ChangeRoleProps = {
 };
 
 const ChangeRole = ({ open, user, toggleDialog }: ChangeRoleProps) => {
-  const [userRole, setUserRole] = useState<ROLE>(user.role ?? ROLE.USER);
+  const dispatch = useAppDispatch();
 
-  const dispatch = useDispatch<AppDispatch>();
+  const [userRole, setUserRole] = useState<ROLE>(user.role ?? ROLE.USER);
 
   const handleChange = (
     event:

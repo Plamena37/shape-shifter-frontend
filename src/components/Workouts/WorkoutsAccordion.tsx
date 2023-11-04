@@ -1,20 +1,20 @@
 import { useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { AccordionDetails, TablePagination } from "@mui/material";
-import { AppDispatch, RootState } from "../../app/store";
+import { RootState, useAppDispatch } from "../../app/store";
 import { getAllWorkouts, searchWorkouts } from "../../features/workoutSlice";
 import WorkoutsItem from "./WorkoutsItem";
 import { Button, PaginationActions, TextField } from "..";
 
 const WorkoutsAccordion = () => {
+  const dispatch = useAppDispatch();
+
   const [filteredWorkouts, setFilteredWorkouts] = useState([]);
 
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
   const [isFilteredData, setIsFilteredData] = useState(false);
-
-  const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
     dispatch(getAllWorkouts());

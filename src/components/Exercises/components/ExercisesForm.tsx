@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import {
   Box,
   DialogActions,
@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { closeSnackbar, enqueueSnackbar } from "notistack";
-import { AppDispatch, RootState } from "../../../app/store";
+import { RootState, useAppDispatch } from "../../../app/store";
 import {
   createExercise,
   getExerciseById,
@@ -46,6 +46,8 @@ const ExercisesForm = ({
   setExerciseIds,
   setExerciseTypeId,
 }: FormProps) => {
+  const dispatch = useAppDispatch();
+
   const [createExerciseData, setCreateExerciseData] = useState<Exercise>({
     exerciseType: "",
     series: 0,
@@ -66,8 +68,6 @@ const ExercisesForm = ({
     time: false,
     distance: false,
   });
-
-  const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
     dispatch(getAllExerciseTypes());

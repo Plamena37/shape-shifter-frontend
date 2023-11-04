@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import {
   Paper,
   Table,
@@ -12,7 +12,7 @@ import {
   TableRow,
 } from "@mui/material";
 import { v4 as uuid } from "uuid";
-import { AppDispatch, RootState } from "../../app/store";
+import { RootState, useAppDispatch } from "../../app/store";
 import ExercisesItem from "./ExercisesItem";
 import { getAllExercises } from "../../features/exerciseSlice";
 import { PaginationActions } from "..";
@@ -32,10 +32,10 @@ const exerciseCellData: {
 ];
 
 const ExercisesTable = () => {
+  const dispatch = useAppDispatch();
+
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
-
-  const dispatch = useDispatch<AppDispatch>();
 
   const allExercises = useSelector(
     (state: RootState) => state.exercise.exercises

@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 import {
   Box,
   Chip,
@@ -16,7 +15,7 @@ import {
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { closeSnackbar, enqueueSnackbar } from "notistack";
-import { AppDispatch } from "../../../app/store";
+import { useAppDispatch } from "../../../app/store";
 import { ExerciseType } from "../../../utils/common-interfaces";
 import { pushErrorsInArray, validations } from "../../../utils/common-auth";
 import { EXERCISETYPE } from "../../../utils/common-enums";
@@ -83,11 +82,10 @@ const ExerciseTypesForm = ({
   });
 
   const theme = useTheme();
+  const dispatch = useAppDispatch();
 
   const exerciseType =
     actionType === "create" ? createExerciseTypeData : editExerciseTypeData;
-
-  const dispatch = useDispatch<AppDispatch>();
 
   const handleChange = (
     event:

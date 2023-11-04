@@ -1,20 +1,20 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
 import logo from "../../assets/img/logo-main.png";
 import { ROUTES } from "../../utils/common-enums";
-import { RootState } from "../../app/store";
-import { AppDispatch } from "../../app/store";
-import { logout } from "../../features/authSlice";
+import { useAppDispatch, useAppSelector } from "../../app/store";
+import { logout } from "../../features/auth/authSlice";
+import { selectIsUserLoggedIn } from "../../features/auth/authSelector";
 import "./Navigation.scss";
 
 const Navigation = () => {
-  const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
-
   const navigate = useNavigate();
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
+
+  const isLoggedIn = useAppSelector(selectIsUserLoggedIn);
 
   const handleLogout = () => {
     dispatch(logout());
+    localStorage.removeItem("token");
   };
 
   const handleLogin = () => {

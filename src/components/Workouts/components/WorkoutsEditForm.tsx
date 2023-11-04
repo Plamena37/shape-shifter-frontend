@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import { Box, DialogActions, IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { SnackbarKey, closeSnackbar, enqueueSnackbar } from "notistack";
 import { v4 as uuid } from "uuid";
 import { format } from "date-fns";
-import { AppDispatch } from "../../../app/store";
+import { useAppDispatch } from "../../../app/store";
 import {
   deleteExercise,
   getExerciseById,
@@ -39,6 +38,8 @@ const WorkoutsEditForm = ({
   actionType,
   workout,
 }: FormProps) => {
+  const dispatch = useAppDispatch();
+
   const [editWorkout, setEditWorkout] = useState({
     ...workout,
   });
@@ -54,8 +55,6 @@ const WorkoutsEditForm = ({
   const [exerciseId, setExerciseId] = useState("");
 
   const today = format(new Date(), "yyyy-MM-dd");
-
-  const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
     const fetchExerciseTypes = async () => {

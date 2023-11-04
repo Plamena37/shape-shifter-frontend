@@ -1,10 +1,9 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 import { SnackbarKey, closeSnackbar, enqueueSnackbar } from "notistack";
 import { TableCell, TableRow } from "@mui/material";
 import { format } from "date-fns";
 import { User } from "../../utils/common-interfaces";
-import { AppDispatch } from "../../app/store";
+import { useAppDispatch } from "../../app/store";
 import { deleteUser } from "../../features/userSlice";
 import ChangeRole from "./ChangeRole";
 import { Button } from "../UI";
@@ -15,12 +14,12 @@ type DashboardItemProps = {
 };
 
 const DashboardItem = ({ user }: DashboardItemProps) => {
+  const dispatch = useAppDispatch();
+
   const [open, setOpen] = useState(false);
 
   const dateOfBirth =
     user.dateOfBirth && format(new Date(user?.dateOfBirth), "yyyy-MM-dd");
-
-  const dispatch = useDispatch<AppDispatch>();
 
   const toggleDialog = () => {
     setOpen(!open);

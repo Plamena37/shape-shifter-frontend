@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 import { Box, DialogActions, IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import axios from "axios";
@@ -7,7 +6,7 @@ import { closeSnackbar, enqueueSnackbar } from "notistack";
 import { format } from "date-fns";
 import { Dialog } from "../..";
 import { EditMeasurement, Measurement } from "../../../utils/common-interfaces";
-import { AppDispatch } from "../../../app/store";
+import { useAppDispatch } from "../../../app/store";
 import {
   createMeasurement,
   getAllMeasurements,
@@ -32,6 +31,8 @@ const MeasurementsForm = ({
   actionType,
   measurementData,
 }: MeasurementsFormProps) => {
+  const dispatch = useAppDispatch();
+
   const [createMeasurementData, setCreateMeasurementData] =
     useState<Measurement>({
       photoUrl: "",
@@ -61,8 +62,6 @@ const MeasurementsForm = ({
     actionType === "create" ? createMeasurementData : editMeasurementData;
 
   const today = format(new Date(), "yyyy-MM-dd");
-
-  const dispatch = useDispatch<AppDispatch>();
 
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>

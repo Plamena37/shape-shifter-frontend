@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import { TableCell, TableRow } from "@mui/material";
 import { v4 as uuid } from "uuid";
 import { Exercise } from "../../utils/common-interfaces";
 import { getExerciseTypeById } from "../../features/exerciseTypeSlice";
-import { AppDispatch } from "../../app/store";
+import { useAppDispatch } from "../../app/store";
 
 type ExerciseDataItem = {
   value: keyof Exercise;
@@ -24,9 +23,9 @@ type ExerciseItemProps = {
 };
 
 const ExercisesItem = ({ exercise }: ExerciseItemProps) => {
-  const [exerciseTypeName, setExerciseTypeName] = useState("");
+  const dispatch = useAppDispatch();
 
-  const dispatch = useDispatch<AppDispatch>();
+  const [exerciseTypeName, setExerciseTypeName] = useState("");
 
   useEffect(() => {
     const getExerciseTypeName = async () => {

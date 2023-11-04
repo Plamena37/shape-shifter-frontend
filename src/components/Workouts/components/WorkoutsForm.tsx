@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import { Box, DialogActions, IconButton } from "@mui/material";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import CloseIcon from "@mui/icons-material/Close";
 import { closeSnackbar, enqueueSnackbar } from "notistack";
 import { v4 as uuid } from "uuid";
 import { format } from "date-fns";
-import { AppDispatch } from "../../../app/store";
+import { useAppDispatch } from "../../../app/store";
 import {
   createWorkout,
   getAllWorkouts,
@@ -34,6 +33,8 @@ const WorkoutsForm = ({
   actionType,
   workoutData,
 }: FormProps) => {
+  const dispatch = useAppDispatch();
+
   const [createWorkoutData, setCreateWorkoutData] = useState<Workout>({
     exercises: [],
     date: "",
@@ -56,8 +57,6 @@ const WorkoutsForm = ({
   const [exerciseTypeId, setExerciseTypeId] = useState("");
 
   const today = format(new Date(), "yyyy-MM-dd");
-
-  const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
     dispatch(getAllWorkouts());

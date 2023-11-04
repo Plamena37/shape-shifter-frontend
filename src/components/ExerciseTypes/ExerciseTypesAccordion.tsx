@@ -1,15 +1,17 @@
 import { useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { AccordionDetails, TablePagination } from "@mui/material";
 import {
   filterExerciseTypes,
   getAllExerciseTypes,
 } from "../../features/exerciseTypeSlice";
-import { AppDispatch, RootState } from "../../app/store";
+import { RootState, useAppDispatch } from "../../app/store";
 import { Button, ExerciseTypeItem, PaginationActions, TextField } from "..";
 import "./ExerciseTypesAccordion.scss";
 
 const ExerciseTypesAccordion = () => {
+  const dispatch = useAppDispatch();
+
   const [filteredExerciseTypes, setFilteredExerciseTypes] = useState([]);
 
   const filterNameRef = useRef<HTMLInputElement | null>(null);
@@ -17,8 +19,6 @@ const ExerciseTypesAccordion = () => {
 
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
-
-  const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
     dispatch(getAllExerciseTypes());

@@ -1,10 +1,9 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 import { TableCell, TableRow } from "@mui/material";
 import { SnackbarKey, closeSnackbar, enqueueSnackbar } from "notistack";
 import { v4 as uuid } from "uuid";
 import { Measurement } from "../../utils/common-interfaces";
-import { AppDispatch } from "../../app/store";
+import { useAppDispatch } from "../../app/store";
 import { Button } from "../UI";
 import { MeasurementsForm } from "..";
 import { deleteMeasurement } from "../../features/measurementSlice";
@@ -38,10 +37,10 @@ type MeasurementItemProps = {
 };
 
 const MeasurementsItem = ({ measurement }: MeasurementItemProps) => {
+  const dispatch = useAppDispatch();
+
   const [openView, setOpenView] = useState(false);
   const [open, setOpen] = useState(false);
-
-  const dispatch = useDispatch<AppDispatch>();
 
   const toggleDialogView = () => {
     setOpenView(!openView);

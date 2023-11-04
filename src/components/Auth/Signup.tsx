@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import {
   InputLabel,
   MenuItem,
@@ -19,11 +18,14 @@ import {
 import { TextField, Button } from "../UI";
 import { ROUTES } from "../../utils/common-enums";
 import { fiveYearsBeforeToday } from "../../utils/common-functions";
-import { signup } from "../../features/authSlice";
-import { AppDispatch } from "../../app/store";
+import { signup } from "../../features/auth/authSlice";
+import { useAppDispatch } from "../../app/store";
 import "./Auth.scss";
 
 const Signup = () => {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -43,10 +45,6 @@ const Signup = () => {
     dateOfBirth: false,
     height: false,
   });
-
-  const navigate = useNavigate();
-
-  const dispatch = useDispatch<AppDispatch>();
 
   const handleValidate = (fieldName: string, fieldValue: string) => {
     if (fieldName !== "confirmPassword") {

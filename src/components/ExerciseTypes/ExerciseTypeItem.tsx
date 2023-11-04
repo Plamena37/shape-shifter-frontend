@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import {
   Accordion,
   AccordionDetails,
@@ -9,7 +9,7 @@ import {
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { SnackbarKey, closeSnackbar, enqueueSnackbar } from "notistack";
 import { v4 as uuid } from "uuid";
-import { AppDispatch, RootState } from "../../app/store";
+import { RootState, useAppDispatch } from "../../app/store";
 import { Button } from "../UI";
 import { ExerciseTypesForm } from "..";
 import { deleteExerciseType } from "../../features/exerciseTypeSlice";
@@ -21,9 +21,9 @@ type ExerciseTypeItemProps = {
 };
 
 const ExerciseTypeItem = ({ exerciseType }: ExerciseTypeItemProps) => {
-  const [open, setOpen] = useState(false);
+  const dispatch = useAppDispatch();
 
-  const dispatch = useDispatch<AppDispatch>();
+  const [open, setOpen] = useState(false);
 
   const user: User | undefined = useSelector(
     (state: RootState) => state.user.user

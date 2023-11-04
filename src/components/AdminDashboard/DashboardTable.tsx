@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import {
   Paper,
   Table,
@@ -11,17 +11,17 @@ import {
   TablePagination,
   TableRow,
 } from "@mui/material";
-import { AppDispatch, RootState } from "../../app/store";
+import { RootState, useAppDispatch } from "../../app/store";
 import { getAllUsers } from "../../features/userSlice";
 import { DashboardItem } from "..";
 import PaginationActions from "../UI/PaginationActions";
 import "./Dashboard.scss";
 
 const DashboardTable = () => {
+  const dispatch = useAppDispatch();
+
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
-
-  const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
     dispatch(getAllUsers()).unwrap();
