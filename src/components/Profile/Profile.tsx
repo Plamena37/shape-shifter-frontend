@@ -24,9 +24,6 @@ const Profile = () => {
     <div className="profile">
       <div className="profile--message">
         <h2>Hello {user.name}</h2>
-        <p className="profile--message--p">
-          Personal Information <AccountCircleIcon className="icon" />
-        </p>
       </div>
 
       <section className="profile__info">
