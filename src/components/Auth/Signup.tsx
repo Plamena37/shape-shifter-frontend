@@ -15,7 +15,7 @@ import {
   validationConditions,
   validations,
 } from "../../utils/auth.validation";
-import { TextField, Button } from "../UI";
+import { TextField, Button } from "../shared";
 import { ROUTES } from "../../utils/enums";
 import { fiveYearsBeforeToday } from "../../utils/functions";
 import { signup } from "../../features/auth/authSlice";

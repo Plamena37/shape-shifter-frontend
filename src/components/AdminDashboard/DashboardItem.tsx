@@ -6,7 +6,7 @@ import { User } from "../../utils/interfaces";
 import { useAppDispatch } from "../../app/store";
 import { deleteUser } from "../../features/userSlice";
 import ChangeRole from "./ChangeRole";
-import { Button } from "../UI";
+import { Button } from "../shared";
 import "./Dashboard.scss";
 
 type DashboardItemProps = {

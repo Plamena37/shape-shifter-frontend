@@ -1,6 +1,6 @@
 import { DialogActions } from "@mui/material";
 import { v4 as uuid } from "uuid";
-import { Button, CloudinaryImage } from "../UI";
+import { Button, CloudinaryImage } from "../shared";
 import { Dialog } from "..";
 import { Measurement } from "../../utils/interfaces";
 

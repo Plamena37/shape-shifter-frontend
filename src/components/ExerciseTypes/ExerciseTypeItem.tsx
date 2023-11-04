@@ -10,7 +10,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { SnackbarKey, closeSnackbar, enqueueSnackbar } from "notistack";
 import { v4 as uuid } from "uuid";
 import { RootState, useAppDispatch } from "../../app/store";
-import { Button } from "../UI";
+import { Button } from "../shared";
 import { ExerciseTypesForm } from "..";
 import {
   deleteExerciseType,

@@ -14,7 +14,7 @@ import {
 import { RootState, useAppDispatch } from "../../app/store";
 import { getAllUsers } from "../../features/userSlice";
 import { DashboardItem } from "..";
-import PaginationActions from "../UI/PaginationActions";
+import PaginationActions from "../shared/PaginationActions";
 import "./Dashboard.scss";
 
 const DashboardTable = () => {

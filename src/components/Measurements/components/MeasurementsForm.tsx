@@ -13,7 +13,7 @@ import {
   updateMeasurementById,
 } from "../../../features/measurementSlice";
 import { pushErrorsInArray, validations } from "../../../utils/auth.validation";
-import { Button, TextField } from "../../UI";
+import { Button, TextField } from "../../shared";
 import "../MeasurementsTable.scss";
 
 type MeasurementsFormProps = {

@@ -25,7 +25,7 @@ import { User } from "../../utils/interfaces";
 import { fiveYearsBeforeToday } from "../../utils/functions";
 import { updateUserById } from "../../features/userSlice";
 import { useAppDispatch } from "../../app/store";
-import { TextField, Button } from "../UI";
+import { TextField, Button } from "../shared";
 import "./Profile.scss";
 
 type DialogProps = {

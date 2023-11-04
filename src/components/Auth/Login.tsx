@@ -8,7 +8,7 @@ import {
   validationConditions,
   validations,
 } from "../../utils/auth.validation";
-import { TextField, Button } from "../UI";
+import { TextField, Button } from "../shared";
 import { ROUTES } from "../../utils/enums";
 import { login } from "../../features/auth/authSlice";
 import { useAppDispatch } from "../../app/store";

@@ -24,7 +24,7 @@ import {
   getAllExerciseTypes,
   updateExerciseTypeById,
 } from "../../../features/exerciseTypes/exerciseTypeSlice";
-import { Button, TextField } from "../../UI";
+import { Button, TextField } from "../../shared";
 import { Dialog } from "../..";
 
 const ITEM_HEIGHT = 48;

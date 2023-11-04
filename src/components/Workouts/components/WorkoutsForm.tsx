@@ -15,7 +15,7 @@ import { getExerciseTypeById } from "../../../features/exerciseTypes/exerciseTyp
 import { getExerciseById } from "../../../features/exerciseSlice";
 import { Workout } from "../../../utils/interfaces";
 import { Dialog, ExercisesForm } from "../..";
-import { Button, TextField } from "../../UI";
+import { Button, TextField } from "../../shared";
 import "../WorkoutsAccordion.scss";
 
 type FormProps = {

@@ -21,7 +21,7 @@ import {
 import { getAllExerciseTypes } from "../../../features/exerciseTypes/exerciseTypeSlice";
 import { Exercise } from "../../../utils/interfaces";
 import { pushErrorsInArray, validations } from "../../../utils/auth.validation";
-import { Button, TextField } from "../../UI";
+import { Button, TextField } from "../../shared";
 import { Dialog } from "../..";
 import "../ExercisesTable.scss";
 

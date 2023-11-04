@@ -6,7 +6,7 @@ import { RootState } from "../../app/store";
 import { User } from "../../utils/interfaces";
 import ProfileDialog from "./ProfileDialog";
 import ProfileExcerpt from "./ProfileExcerpt";
-import { Button } from "../UI";
+import { Button } from "../shared";
 import "./Profile.scss";
 
 const Profile = () => {

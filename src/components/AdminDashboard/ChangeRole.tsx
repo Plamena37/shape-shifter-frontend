@@ -18,7 +18,7 @@ import { User } from "../../utils/interfaces";
 import { ROLE } from "../../utils/enums";
 import { useAppDispatch } from "../../app/store";
 import { updateRole } from "../../features/userSlice";
-import { Button } from "../UI";
+import { Button } from "../shared";
 
 type ChangeRoleProps = {
   open: boolean;

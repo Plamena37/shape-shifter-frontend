@@ -4,7 +4,7 @@ import { SnackbarKey, closeSnackbar, enqueueSnackbar } from "notistack";
 import { v4 as uuid } from "uuid";
 import { Measurement } from "../../utils/interfaces";
 import { useAppDispatch } from "../../app/store";
-import { Button } from "../UI";
+import { Button } from "../shared";
 import { MeasurementsForm } from "..";
 import { deleteMeasurement } from "../../features/measurementSlice";
 import ViewMeasurement from "./ViewMeasurement";

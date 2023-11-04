@@ -19,7 +19,7 @@ import {
 import { createWorkout, deleteWorkout } from "../../features/workoutSlice";
 import { Exercise, ExerciseType, Workout } from "../../utils/interfaces";
 import { WorkoutsEditForm } from "..";
-import { Button } from "../UI";
+import { Button } from "../shared";
 
 type WorkoutItemProps = {
   workout: Workout;
