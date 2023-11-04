@@ -15,7 +15,7 @@ import {
 import { SuspenseLayout, NavigationLayout } from "./components";
 import { ROUTES } from "./utils/common-enums";
 import { useAppSelector } from "./app/store";
-import { selectIsUserLoggedIn } from "./features/auth/authSelector";
+import { selectIsUserLoggedIn } from "./features/auth/authSelectors";
 import "./assets/global.scss";
 
 const Signup = lazy(() => import("./components/Auth/Signup"));
@@ -25,6 +25,31 @@ const theme = createTheme({
   palette: {
     primary: {
       main: "#55c57a",
+    },
+  },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {},
+      },
+      variants: [
+        {
+          props: {
+            variant: "contained",
+          },
+          style: {
+            "&:disabled": {
+              backgroundColor: "#9d9d9d",
+              color: "#fff",
+            },
+            "&:hover": {
+              backgroundColor: "#3b8955",
+            },
+            backgroundColor: "#55c57a",
+            color: "#fff",
+          },
+        },
+      ],
     },
   },
 });
