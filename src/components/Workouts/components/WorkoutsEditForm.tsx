@@ -9,7 +9,7 @@ import {
   deleteExercise,
   getExerciseById,
 } from "../../../features/exerciseSlice";
-import { getExerciseTypeById } from "../../../features/exerciseTypeSlice";
+import { getExerciseTypeById } from "../../../features/exerciseTypes/exerciseTypeSlice";
 import {
   getAllWorkouts,
   updateWorkoutById,

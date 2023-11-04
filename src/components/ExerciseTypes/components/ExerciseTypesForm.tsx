@@ -23,7 +23,7 @@ import {
   createExerciseType,
   getAllExerciseTypes,
   updateExerciseTypeById,
-} from "../../../features/exerciseTypeSlice";
+} from "../../../features/exerciseTypes/exerciseTypeSlice";
 import { Button, TextField } from "../../UI";
 import { Dialog } from "../..";
 
@@ -66,6 +66,9 @@ const ExerciseTypesForm = ({
   actionType,
   exerciseTypeData,
 }: FormProps) => {
+  const theme = useTheme();
+  const dispatch = useAppDispatch();
+
   const [createExerciseTypeData, setCreateExerciseTypeData] =
     useState<ExerciseType>({
       name: "",
@@ -80,9 +83,6 @@ const ExerciseTypesForm = ({
     name: false,
     muscleGroups: false,
   });
-
-  const theme = useTheme();
-  const dispatch = useAppDispatch();
 
   const exerciseType =
     actionType === "create" ? createExerciseTypeData : editExerciseTypeData;

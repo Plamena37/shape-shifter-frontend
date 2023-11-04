@@ -10,7 +10,7 @@ import { SnackbarKey, closeSnackbar, enqueueSnackbar } from "notistack";
 import { v4 as uuid } from "uuid";
 import { format } from "date-fns";
 import { useAppDispatch } from "../../app/store";
-import { getExerciseTypeById } from "../../features/exerciseTypeSlice";
+import { getExerciseTypeById } from "../../features/exerciseTypes/exerciseTypeSlice";
 import {
   createExercise,
   deleteExercise,

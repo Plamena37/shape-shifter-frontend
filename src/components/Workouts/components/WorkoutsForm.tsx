@@ -11,7 +11,7 @@ import {
   getAllWorkouts,
   updateWorkoutById,
 } from "../../../features/workoutSlice";
-import { getExerciseTypeById } from "../../../features/exerciseTypeSlice";
+import { getExerciseTypeById } from "../../../features/exerciseTypes/exerciseTypeSlice";
 import { getExerciseById } from "../../../features/exerciseSlice";
 import { Workout } from "../../../utils/common-interfaces";
 import { Dialog, ExercisesForm } from "../..";

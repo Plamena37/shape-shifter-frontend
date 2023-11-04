@@ -12,7 +12,10 @@ import { v4 as uuid } from "uuid";
 import { RootState, useAppDispatch } from "../../app/store";
 import { Button } from "../UI";
 import { ExerciseTypesForm } from "..";
-import { deleteExerciseType } from "../../features/exerciseTypeSlice";
+import {
+  deleteExerciseType,
+  getAllExerciseTypes,
+} from "../../features/exerciseTypes/exerciseTypeSlice";
 import { ExerciseType, User } from "../../utils/common-interfaces";
 import { ROLE } from "../../utils/common-enums";
 
@@ -40,8 +43,9 @@ const ExerciseTypeItem = ({ exerciseType }: ExerciseTypeItemProps) => {
           color="secondary"
           size="small"
           btnVariant="text"
-          onClick={() => {
-            dispatch(deleteExerciseType(exerciseType._id!));
+          onClick={async () => {
+            await dispatch(deleteExerciseType(exerciseType._id!));
+            dispatch(getAllExerciseTypes());
             closeSnackbar(key);
           }}
         >
@@ -75,6 +79,7 @@ const ExerciseTypeItem = ({ exerciseType }: ExerciseTypeItemProps) => {
           backgroundColor: "#f5f5f5",
           width: "41vw",
           height: "100%",
+          boxShadow: "none",
         }}
       >
         <AccordionSummary
