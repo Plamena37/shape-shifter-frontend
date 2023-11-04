@@ -71,7 +71,11 @@ const MeasurementsPage = () => {
       <section className="wrapper  overlay__measurements">
         <nav className="wrapper__nav measurements">
           <h2>My measurements</h2>
-          <Button btnStyle="wrapper__btn" onClick={toggleDialog}>
+          <Button
+            btnStyle="action__btn"
+            onClick={toggleDialog}
+            btnVariant="outlined"
+          >
             New measurement
           </Button>
         </nav>

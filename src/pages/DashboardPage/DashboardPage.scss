@@ -3,10 +3,10 @@
 .dashboard__layout {
   background: linear-gradient(
       to bottom,
-      rgba(255, 255, 255, 0.7),
-      rgba(57, 179, 133, 0.4)
+      rgba(255, 255, 255, 0.2),
+      rgba(57, 179, 133, 0.2)
     ),
-    url("../..//assets/img/auth-layout.jpg");
+    url("../../assets/img/background.png");
   background-position: bottom;
   background-repeat: no-repeat;
   background-size: cover;
@@ -31,7 +31,7 @@
   font-size: 1rem;
 
   &.box {
-    box-shadow: 5px 9px 19px 8px rgba(45, 45, 45, 0.4);
+    box-shadow: 5px 9px 19px 8px rgba(45, 45, 45, 0.2);
   }
 
   &__shape {

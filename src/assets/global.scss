@@ -6,6 +6,13 @@ $color-primary-dark-1: #28b485;
 $color-primary-dark-2: #1c3b23;
 $color-primary-dark-3: #132718;
 
+$color-primary: #32a184;
+$color-primary-light-1: #eef9f2;
+$color-primary-light: #2eb47b;
+$color-primary-light-2: #84c7b5;
+$color-primary-dark-1: #0ca866;
+$color-primary-dark-2: #318974;
+
 $color-secondary: #306d7e;
 
 $color-grey-light-1: #f9f7f6;
@@ -21,7 +28,7 @@ $color-black: #000;
 
 $color-danger: #ff0000;
 
-$gradient-primary: linear-gradient(to top left, #39b385, #9be15d);
+$gradient-primary: linear-gradient(to top left, #32a184, #318974);
 
 // FONT VARIABLES
 $font: "Poppins", sans-serif;
@@ -67,4 +74,13 @@ body {
   height: 43vh;
   border-radius: 0.25rem;
   margin-bottom: 0;
+}
+
+.action__btn {
+  font-size: 0.9rem !important;
+  padding: 0.8rem 1.4rem !important;
+}
+
+.btn__snackbar {
+  color: #f1f1f1 !important;
 }

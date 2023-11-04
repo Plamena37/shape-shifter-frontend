@@ -54,7 +54,7 @@ const MeasurementsItem = ({ measurement }: MeasurementItemProps) => {
     const action = (key: SnackbarKey) => (
       <>
         <Button
-          color="secondary"
+          btnStyle="btn__snackbar"
           size="small"
           btnVariant="text"
           onClick={() => {
@@ -65,7 +65,7 @@ const MeasurementsItem = ({ measurement }: MeasurementItemProps) => {
           YES
         </Button>
         <Button
-          color="secondary"
+          btnStyle="btn__snackbar"
           size="small"
           btnVariant="text"
           onClick={() => {

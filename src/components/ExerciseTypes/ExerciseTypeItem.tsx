@@ -40,7 +40,7 @@ const ExerciseTypeItem = ({ exerciseType }: ExerciseTypeItemProps) => {
     const action = (key: SnackbarKey) => (
       <>
         <Button
-          color="secondary"
+          btnStyle="btn__snackbar"
           size="small"
           btnVariant="text"
           onClick={async () => {
@@ -52,7 +52,7 @@ const ExerciseTypeItem = ({ exerciseType }: ExerciseTypeItemProps) => {
           YES
         </Button>
         <Button
-          color="secondary"
+          btnStyle="btn__snackbar"
           size="small"
           btnVariant="text"
           onClick={() => {

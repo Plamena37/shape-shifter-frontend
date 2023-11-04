@@ -1,8 +1,8 @@
 import { lazy } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
-import { createTheme } from "@mui/material";
+import { createTheme, styled } from "@mui/material";
 import { ThemeProvider } from "@emotion/react";
-import { SnackbarProvider } from "notistack";
+import { SnackbarProvider, MaterialDesignContent } from "notistack";
 import {
   AuthPage,
   ProfilePage,
@@ -21,16 +21,24 @@ import "./assets/global.scss";
 const Signup = lazy(() => import("./components/Auth/Signup"));
 const Login = lazy(() => import("./components/Auth/Login"));
 
+const StyledMaterialDesignContent = styled(MaterialDesignContent)(() => ({
+  "&.notistack-MuiContent-success": {
+    backgroundColor: "#2eb47b",
+  },
+}));
+
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#55c57a",
+      main: "#32a184",
     },
   },
   components: {
     MuiButton: {
       styleOverrides: {
-        root: {},
+        root: {
+          color: "#318974",
+        },
       },
       variants: [
         {
@@ -43,10 +51,22 @@ const theme = createTheme({
               color: "#fff",
             },
             "&:hover": {
-              backgroundColor: "#3b8955",
+              backgroundColor: "#318974",
             },
-            backgroundColor: "#55c57a",
+            backgroundColor: "#32a184",
             color: "#fff",
+          },
+        },
+        {
+          props: {
+            variant: "outlined",
+          },
+          style: {
+            "&:hover": {
+              backgroundColor: "#f3f3f3",
+            },
+            backgroundColor: "#fff",
+            color: "#318974",
           },
         },
       ],
@@ -59,7 +79,13 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <SnackbarProvider maxSnack={3}>
+      <SnackbarProvider
+        maxSnack={3}
+        Components={{
+          success: StyledMaterialDesignContent,
+          error: StyledMaterialDesignContent,
+        }}
+      >
         <Routes>
           <Route
             path={ROUTES.SIGNUP}

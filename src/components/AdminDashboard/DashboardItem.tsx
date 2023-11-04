@@ -29,7 +29,7 @@ const DashboardItem = ({ user }: DashboardItemProps) => {
     const action = (key: SnackbarKey) => (
       <>
         <Button
-          color="secondary"
+          btnStyle="btn__snackbar"
           size="small"
           btnVariant="text"
           onClick={() => {
@@ -40,7 +40,7 @@ const DashboardItem = ({ user }: DashboardItemProps) => {
           YES
         </Button>
         <Button
-          color="secondary"
+          btnStyle="btn__snackbar"
           size="small"
           btnVariant="text"
           onClick={() => {

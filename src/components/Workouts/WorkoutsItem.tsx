@@ -108,7 +108,7 @@ const WorkoutsItem = ({ workout, isFilteredData }: WorkoutItemProps) => {
     const action = (key: SnackbarKey) => (
       <>
         <Button
-          color="secondary"
+          btnStyle="btn__snackbar"
           size="small"
           btnVariant="text"
           onClick={() => {
@@ -124,7 +124,7 @@ const WorkoutsItem = ({ workout, isFilteredData }: WorkoutItemProps) => {
           YES
         </Button>
         <Button
-          color="secondary"
+          btnStyle="btn__snackbar"
           size="small"
           btnVariant="text"
           onClick={() => {

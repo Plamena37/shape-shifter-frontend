@@ -46,11 +46,11 @@
   z-index: 0;
   background: linear-gradient(
       to bottom,
-      rgba(255, 255, 255, 0.7),
-      rgba(57, 179, 133, 0.4)
+      rgba(255, 255, 255, 0.2),
+      rgba(57, 179, 133, 0.2)
     ),
-    url("../..//assets/img/auth-layout.jpg");
-  background-position: top;
+    url("../../assets/img/background.png");
+  background-position: bottom;
   background-repeat: no-repeat;
   background-size: cover;
 
