@@ -1,5 +1,5 @@
 import type { SerializedError } from "@reduxjs/toolkit";
-import { ExerciseType } from "../utils/common-interfaces";
+import { ExerciseType } from "../utils/interfaces";
 
 export type InitialState = {
   error: SerializedError | null;

@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { API_BASE_URL } from "../../utils/common-constants";
-import { LoginUser, SignupUser } from "../../utils/common-interfaces";
-import { isAxiosError } from "../../utils/common-functions";
-import { UsersSliceActionTypePrefix } from "../../utils/common-enums";
+import { API_BASE_URL } from "../../utils/constants";
+import { LoginUser, SignupUser } from "../../utils/interfaces";
+import { isAxiosError } from "../../utils/functions";
+import { UsersSliceActionTypePrefix } from "../../utils/enums";
 import axios from "axios";
 import { AuthInitialState } from "../slice.types";
 

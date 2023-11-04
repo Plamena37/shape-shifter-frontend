@@ -14,7 +14,7 @@ import {
   getAllWorkouts,
   updateWorkoutById,
 } from "../../../features/workoutSlice";
-import { Workout } from "../../../utils/common-interfaces";
+import { Workout } from "../../../utils/interfaces";
 import { Button, Dialog, ExercisesForm, TextField, WorkoutsForm } from "../..";
 import "../WorkoutsAccordion.scss";
 

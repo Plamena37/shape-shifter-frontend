@@ -13,7 +13,7 @@ import {
   WorkoutsPage,
 } from "./pages";
 import { SuspenseLayout, NavigationLayout } from "./components";
-import { ROUTES } from "./utils/common-enums";
+import { ROUTES } from "./utils/enums";
 import { useAppSelector } from "./app/store";
 import { selectIsUserLoggedIn } from "./features/auth/authSelectors";
 import "./assets/global.scss";

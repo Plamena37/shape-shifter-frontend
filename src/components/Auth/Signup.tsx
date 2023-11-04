@@ -14,10 +14,10 @@ import {
   pushErrorsInArray,
   validationConditions,
   validations,
-} from "../../utils/common-auth";
+} from "../../utils/auth.validation";
 import { TextField, Button } from "../UI";
-import { ROUTES } from "../../utils/common-enums";
-import { fiveYearsBeforeToday } from "../../utils/common-functions";
+import { ROUTES } from "../../utils/enums";
+import { fiveYearsBeforeToday } from "../../utils/functions";
 import { signup } from "../../features/auth/authSlice";
 import { useAppDispatch } from "../../app/store";
 import "./Auth.scss";

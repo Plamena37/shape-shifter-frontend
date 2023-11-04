@@ -13,7 +13,7 @@ import {
 } from "../../../features/workoutSlice";
 import { getExerciseTypeById } from "../../../features/exerciseTypes/exerciseTypeSlice";
 import { getExerciseById } from "../../../features/exerciseSlice";
-import { Workout } from "../../../utils/common-interfaces";
+import { Workout } from "../../../utils/interfaces";
 import { Dialog, ExercisesForm } from "../..";
 import { Button, TextField } from "../../UI";
 import "../WorkoutsAccordion.scss";

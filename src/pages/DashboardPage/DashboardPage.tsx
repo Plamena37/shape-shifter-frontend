@@ -4,9 +4,9 @@ import { useSelector } from "react-redux";
 import { DashboardTable } from "../../components";
 import { getUserById } from "../../features/userSlice";
 import { RootState, useAppDispatch } from "../../app/store";
-import { User } from "../../utils/common-interfaces";
-import { getCurrentUserIdAndEmail } from "../../utils/common-functions";
-import { ROLE, ROUTES } from "../../utils/common-enums";
+import { User } from "../../utils/interfaces";
+import { getCurrentUserIdAndEmail } from "../../utils/functions";
+import { ROLE, ROUTES } from "../../utils/enums";
 import measurementsImg from "../../assets/img/measurements.png";
 import exerciseTypesImg from "../../assets/img/exerciseType.png";
 import exercisesImg from "../../assets/img/exercise.png";
@@ -45,7 +45,7 @@ const DashboardPage = () => {
     <section className="dashboard__layout">
       {user.role === ROLE.ADMIN && <DashboardTable />}
 
-      <div className="dashboard common">
+      <div className="dashboard common box">
         <figure className="dashboard__shape">
           <img src={measurementsImg} alt="Measurement image" />
           <figcaption className="dashboard__caption">
@@ -56,7 +56,7 @@ const DashboardPage = () => {
         </figure>
       </div>
 
-      <div className="dashboard common">
+      <div className="dashboard common box">
         <figure className="dashboard__shape">
           <img src={exerciseTypesImg} alt="Exercise Types image" />
           <figcaption className="dashboard__caption">
@@ -70,7 +70,7 @@ const DashboardPage = () => {
         </figure>
       </div>
 
-      <div className="dashboard common">
+      <div className="dashboard common box">
         <figure className="dashboard__shape">
           <img src={exercisesImg} alt="Exercise image" />
           <figcaption className="dashboard__caption">
@@ -81,7 +81,7 @@ const DashboardPage = () => {
         </figure>
       </div>
 
-      <div className="dashboard common">
+      <div className="dashboard common box">
         <figure className="dashboard__shape">
           <img src={chartImg} alt="Measurements Chart image" />
           <figcaption className="dashboard__caption">
@@ -92,7 +92,7 @@ const DashboardPage = () => {
         </figure>
       </div>
 
-      <div className="dashboard common">
+      <div className="dashboard common box">
         <figure className="dashboard__shape">
           <img src={workoutImg} alt="Workouts image" />
           <figcaption className="dashboard__caption">

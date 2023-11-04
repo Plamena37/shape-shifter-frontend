@@ -5,14 +5,14 @@ import axios from "axios";
 import { closeSnackbar, enqueueSnackbar } from "notistack";
 import { format } from "date-fns";
 import { Dialog } from "../..";
-import { EditMeasurement, Measurement } from "../../../utils/common-interfaces";
+import { EditMeasurement, Measurement } from "../../../utils/interfaces";
 import { useAppDispatch } from "../../../app/store";
 import {
   createMeasurement,
   getAllMeasurements,
   updateMeasurementById,
 } from "../../../features/measurementSlice";
-import { pushErrorsInArray, validations } from "../../../utils/common-auth";
+import { pushErrorsInArray, validations } from "../../../utils/auth.validation";
 import { Button, TextField } from "../../UI";
 import "../MeasurementsTable.scss";
 

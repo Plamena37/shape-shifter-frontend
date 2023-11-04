@@ -2,7 +2,7 @@ import { TextField as MuiTextField, TextFieldVariants } from "@mui/material";
 import {
   TextFieldInputProps,
   TextFieldLabelProps,
-} from "../../utils/common-interfaces";
+} from "../../utils/interfaces";
 
 type TextFieldProps = {
   id: string;

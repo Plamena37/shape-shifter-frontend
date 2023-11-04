@@ -2,7 +2,7 @@ import { DialogActions } from "@mui/material";
 import { v4 as uuid } from "uuid";
 import { Button, CloudinaryImage } from "../UI";
 import { Dialog } from "..";
-import { Measurement } from "../../utils/common-interfaces";
+import { Measurement } from "../../utils/interfaces";
 
 const viewMeasurementData: {
   title: string;

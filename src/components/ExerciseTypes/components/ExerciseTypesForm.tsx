@@ -16,9 +16,9 @@ import {
 import CloseIcon from "@mui/icons-material/Close";
 import { closeSnackbar, enqueueSnackbar } from "notistack";
 import { useAppDispatch } from "../../../app/store";
-import { ExerciseType } from "../../../utils/common-interfaces";
-import { pushErrorsInArray, validations } from "../../../utils/common-auth";
-import { EXERCISETYPE } from "../../../utils/common-enums";
+import { ExerciseType } from "../../../utils/interfaces";
+import { pushErrorsInArray, validations } from "../../../utils/auth.validation";
+import { EXERCISETYPE } from "../../../utils/enums";
 import {
   createExerciseType,
   getAllExerciseTypes,

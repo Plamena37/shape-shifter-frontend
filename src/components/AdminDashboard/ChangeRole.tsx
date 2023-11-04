@@ -14,8 +14,8 @@ import {
   SelectChangeEvent,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import { User } from "../../utils/common-interfaces";
-import { ROLE } from "../../utils/common-enums";
+import { User } from "../../utils/interfaces";
+import { ROLE } from "../../utils/enums";
 import { useAppDispatch } from "../../app/store";
 import { updateRole } from "../../features/userSlice";
 import { Button } from "../UI";

@@ -16,8 +16,8 @@ import {
   deleteExerciseType,
   getAllExerciseTypes,
 } from "../../features/exerciseTypes/exerciseTypeSlice";
-import { ExerciseType, User } from "../../utils/common-interfaces";
-import { ROLE } from "../../utils/common-enums";
+import { ExerciseType, User } from "../../utils/interfaces";
+import { ROLE } from "../../utils/enums";
 
 type ExerciseTypeItemProps = {
   exerciseType: ExerciseType;

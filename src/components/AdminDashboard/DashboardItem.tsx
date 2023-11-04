@@ -2,7 +2,7 @@ import { useState } from "react";
 import { SnackbarKey, closeSnackbar, enqueueSnackbar } from "notistack";
 import { TableCell, TableRow } from "@mui/material";
 import { format } from "date-fns";
-import { User } from "../../utils/common-interfaces";
+import { User } from "../../utils/interfaces";
 import { useAppDispatch } from "../../app/store";
 import { deleteUser } from "../../features/userSlice";
 import ChangeRole from "./ChangeRole";

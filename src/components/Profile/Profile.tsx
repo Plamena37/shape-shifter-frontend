@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { format } from "date-fns";
 import { RootState } from "../../app/store";
-import { User } from "../../utils/common-interfaces";
+import { User } from "../../utils/interfaces";
 import ProfileDialog from "./ProfileDialog";
 import ProfileExcerpt from "./ProfileExcerpt";
 import { Button } from "../UI";

@@ -19,10 +19,10 @@ import {
   pushErrorsInArray,
   validationConditions,
   validations,
-} from "../../utils/common-auth";
-import { ROLE } from "../../utils/common-enums";
-import { User } from "../../utils/common-interfaces";
-import { fiveYearsBeforeToday } from "../../utils/common-functions";
+} from "../../utils/auth.validation";
+import { ROLE } from "../../utils/enums";
+import { User } from "../../utils/interfaces";
+import { fiveYearsBeforeToday } from "../../utils/functions";
 import { updateUserById } from "../../features/userSlice";
 import { useAppDispatch } from "../../app/store";
 import { TextField, Button } from "../UI";

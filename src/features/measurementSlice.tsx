@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { api } from "../utils/axios-interceptor";
-import { API_BASE_URL } from "../utils/common-constants";
-import { isAxiosError } from "../utils/common-functions";
-import { EditMeasurement, Measurement } from "../utils/common-interfaces";
+import { api } from "../utils/axios.config";
+import { API_BASE_URL } from "../utils/constants";
+import { isAxiosError } from "../utils/functions";
+import { EditMeasurement, Measurement } from "../utils/interfaces";
 
 type errMessage = {
   message: string;

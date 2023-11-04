@@ -2,7 +2,7 @@ import { useState } from "react";
 import { TableCell, TableRow } from "@mui/material";
 import { SnackbarKey, closeSnackbar, enqueueSnackbar } from "notistack";
 import { v4 as uuid } from "uuid";
-import { Measurement } from "../../utils/common-interfaces";
+import { Measurement } from "../../utils/interfaces";
 import { useAppDispatch } from "../../app/store";
 import { Button } from "../UI";
 import { MeasurementsForm } from "..";

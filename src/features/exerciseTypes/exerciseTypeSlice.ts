@@ -1,10 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { isAxiosError } from "axios";
-import { api } from "../../utils/axios-interceptor";
-import { EditExerciseType, ExerciseType } from "../../utils/common-interfaces";
-import { API_BASE_URL } from "../../utils/common-constants";
+import { api } from "../../utils/axios.config";
+import { EditExerciseType, ExerciseType } from "../../utils/interfaces";
+import { API_BASE_URL } from "../../utils/constants";
 import { ExerciseTypesInitialState } from "../slice.types";
-import { ExerciseTypesSliceActionTypePrefix } from "../../utils/common-enums";
+import { ExerciseTypesSliceActionTypePrefix } from "../../utils/enums";
 
 const {
   EXERCISE_TYPES_CREATE,

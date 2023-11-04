@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/img/logo-main.png";
-import { ROUTES } from "../../utils/common-enums";
+import { ROUTES } from "../../utils/enums";
 import { useAppDispatch, useAppSelector } from "../../app/store";
 import { logout } from "../../features/auth/authSlice";
 import { selectIsUserLoggedIn } from "../../features/auth/authSelectors";

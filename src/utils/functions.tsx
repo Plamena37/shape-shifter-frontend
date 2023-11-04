@@ -1,6 +1,6 @@
 import axios, { AxiosError } from "axios";
 import { format, subYears } from "date-fns";
-import { DecodedToken } from "./common-interfaces";
+import { DecodedToken } from "./interfaces";
 import jwt_decode from "jwt-decode";
 
 export function isAxiosError<ResponseType>(

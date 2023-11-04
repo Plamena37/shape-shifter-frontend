@@ -1,13 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { isAxiosError } from "axios";
-import { api } from "../utils/axios-interceptor";
+import { api } from "../utils/axios.config";
 import {
   EditWorkout,
   ExerciseType,
   Measurement,
   Workout,
-} from "../utils/common-interfaces";
-import { API_BASE_URL } from "../utils/common-constants";
+} from "../utils/interfaces";
+import { API_BASE_URL } from "../utils/constants";
 
 type errMessage = {
   message: string;

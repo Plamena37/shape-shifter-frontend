@@ -19,8 +19,8 @@ import {
   updateExerciseById,
 } from "../../../features/exerciseSlice";
 import { getAllExerciseTypes } from "../../../features/exerciseTypes/exerciseTypeSlice";
-import { Exercise } from "../../../utils/common-interfaces";
-import { pushErrorsInArray, validations } from "../../../utils/common-auth";
+import { Exercise } from "../../../utils/interfaces";
+import { pushErrorsInArray, validations } from "../../../utils/auth.validation";
 import { Button, TextField } from "../../UI";
 import { Dialog } from "../..";
 import "../ExercisesTable.scss";

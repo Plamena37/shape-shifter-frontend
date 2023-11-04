@@ -1,9 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { api } from "../utils/axios-interceptor";
-import { API_BASE_URL } from "../utils/common-constants";
-import { User } from "../utils/common-interfaces";
-import { isAxiosError } from "../utils/common-functions";
-import { ROLE } from "../utils/common-enums";
+import { api } from "../utils/axios.config";
+import { API_BASE_URL } from "../utils/constants";
+import { User } from "../utils/interfaces";
+import { isAxiosError } from "../utils/functions";
+import { ROLE } from "../utils/enums";
 
 type errMessage = {
   message: string;

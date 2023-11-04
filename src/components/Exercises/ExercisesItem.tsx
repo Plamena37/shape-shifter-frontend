@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { TableCell, TableRow } from "@mui/material";
 import { v4 as uuid } from "uuid";
-import { Exercise } from "../../utils/common-interfaces";
+import { Exercise } from "../../utils/interfaces";
 import { getExerciseTypeById } from "../../features/exerciseTypes/exerciseTypeSlice";
 import { useAppDispatch } from "../../app/store";
 

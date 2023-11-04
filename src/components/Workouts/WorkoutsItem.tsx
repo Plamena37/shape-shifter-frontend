@@ -17,7 +17,7 @@ import {
   getExerciseById,
 } from "../../features/exerciseSlice";
 import { createWorkout, deleteWorkout } from "../../features/workoutSlice";
-import { Exercise, ExerciseType, Workout } from "../../utils/common-interfaces";
+import { Exercise, ExerciseType, Workout } from "../../utils/interfaces";
 import { WorkoutsEditForm } from "..";
 import { Button } from "../UI";
 

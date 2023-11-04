@@ -7,9 +7,9 @@ import {
   pushErrorsInArray,
   validationConditions,
   validations,
-} from "../../utils/common-auth";
+} from "../../utils/auth.validation";
 import { TextField, Button } from "../UI";
-import { ROUTES } from "../../utils/common-enums";
+import { ROUTES } from "../../utils/enums";
 import { login } from "../../features/auth/authSlice";
 import { useAppDispatch } from "../../app/store";
 import "./Auth.scss";

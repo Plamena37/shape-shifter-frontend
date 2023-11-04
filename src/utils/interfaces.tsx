@@ -1,4 +1,4 @@
-import { GENDER, ROLE } from "./common-enums";
+import { GENDER, ROLE } from "./enums";
 
 export interface User {
   _id?: string;

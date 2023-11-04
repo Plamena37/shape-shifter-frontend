@@ -4,7 +4,7 @@ import {
   ErrorsInArrayLogin,
   ErrorsInArrayMeasurements,
   ErrorsInArraySignup,
-} from "./common-interfaces";
+} from "./interfaces";
 
 export const validationConditions: { [key: string]: RegExp } = {
   name: /^.{2,}$/,

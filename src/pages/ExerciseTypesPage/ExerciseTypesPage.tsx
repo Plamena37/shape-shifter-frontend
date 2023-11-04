@@ -7,9 +7,9 @@ import {
 } from "../../components";
 import { RootState, useAppDispatch } from "../../app/store";
 import { getUserById } from "../../features/userSlice";
-import { getCurrentUserIdAndEmail } from "../../utils/common-functions";
-import { User } from "../../utils/common-interfaces";
-import { ROLE } from "../../utils/common-enums";
+import { getCurrentUserIdAndEmail } from "../../utils/functions";
+import { User } from "../../utils/interfaces";
+import { ROLE } from "../../utils/enums";
 import "../../assets/global.scss";
 
 const ExerciseTypesPage = () => {

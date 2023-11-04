@@ -8,7 +8,7 @@ import {
   Legend,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
-import { Measurement } from "../../../utils/common-interfaces";
+import { Measurement } from "../../../utils/interfaces";
 import "../MeasurementsTable.scss";
 
 type MeasurementsChartProps = {
