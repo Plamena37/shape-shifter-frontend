@@ -2,8 +2,11 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { API_BASE_URL } from "../../utils/common-constants";
 import { LoginUser, SignupUser } from "../../utils/common-interfaces";
 import { isAxiosError } from "../../utils/common-functions";
+import { UsersSliceActionTypePrefix } from "../../utils/common-enums";
 import axios from "axios";
 import { AuthInitialState } from "../slice.types";
+
+const { USERS_CREATE, USERS_LOGIN } = UsersSliceActionTypePrefix;
 
 type errMessage = {
   message: string;
@@ -11,13 +14,13 @@ type errMessage = {
 
 const initialState: AuthInitialState = {
   error: null,
-  isLoading: false,
-  isSuccess: false,
+  loadingType: null,
+  successType: null,
   isLoggedIn: Boolean(localStorage.getItem("token")),
 };
 
 export const signup = createAsyncThunk(
-  "users/signup",
+  USERS_CREATE,
   async (formData: SignupUser) => {
     try {
       const response = await axios.post(`${API_BASE_URL}/users`, formData);
@@ -33,13 +36,12 @@ export const signup = createAsyncThunk(
 );
 
 export const login = createAsyncThunk(
-  "users/login",
+  USERS_LOGIN,
   async (formData: LoginUser) => {
     try {
-      const response = await axios.post("/auth", formData);
+      const response = await axios.post(`${API_BASE_URL}/auth`, formData);
       return response.data;
     } catch (error: unknown) {
-      console.log(error);
       if (isAxiosError<errMessage>(error)) {
         throw new Error(
           error.response?.data?.message ?? "Invalid credentials."
@@ -61,26 +63,38 @@ const authSlice = createSlice({
     checkIsLoggedIn(state) {
       state.isLoggedIn = Boolean(localStorage.getItem("token"));
     },
+    clearSuccessType: (state) => {
+      state.successType = null;
+    },
+    clearError: (state) => {
+      state.error = null;
+    },
   },
   extraReducers(builder) {
     builder
       .addCase(login.pending, (state) => {
-        state.isLoading = true;
         state.isLoggedIn = false;
+        state.loadingType = USERS_LOGIN;
         state.error = null;
+        state.successType = null;
       })
       .addCase(login.fulfilled, (state, action) => {
         const token = action.payload.token;
-        state.isLoggedIn = true;
         localStorage.setItem("token", token);
+        state.isLoggedIn = true;
+        state.loadingType = null;
+        state.successType = USERS_LOGIN;
       })
       .addCase(login.rejected, (state, action) => {
+        state.loadingType = null;
+        state.successType = null;
         state.isLoggedIn = false;
         state.error = action.payload ?? action?.error;
       });
   },
 });
 
-export const { logout } = authSlice.actions;
+export const { logout, checkIsLoggedIn, clearSuccessType, clearError } =
+  authSlice.actions;
 
 export default authSlice.reducer;

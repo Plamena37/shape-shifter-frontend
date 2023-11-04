@@ -3,7 +3,7 @@ import logo from "../../assets/img/logo-main.png";
 import { ROUTES } from "../../utils/common-enums";
 import { useAppDispatch, useAppSelector } from "../../app/store";
 import { logout } from "../../features/auth/authSlice";
-import { selectIsUserLoggedIn } from "../../features/auth/authSelector";
+import { selectIsUserLoggedIn } from "../../features/auth/authSelectors";
 import "./Navigation.scss";
 
 const Navigation = () => {
