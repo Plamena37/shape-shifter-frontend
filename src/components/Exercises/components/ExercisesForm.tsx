@@ -195,7 +195,8 @@ const ExercisesForm = ({
             onChange={(event) => handleChange(event)}
             required
           >
-            {allExerciseTypes.length > 0 &&
+            {allExerciseTypes &&
+              allExerciseTypes.length > 0 &&
               allExerciseTypes.map((el) => (
                 <MenuItem key={el._id} value={el._id}>
                   {el.name}

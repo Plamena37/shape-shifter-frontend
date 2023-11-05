@@ -48,13 +48,6 @@ const ExercisesTable = () => {
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - allExercises.length) : 0;
 
-  const handleChangePage = (
-    event: React.MouseEvent<HTMLButtonElement> | null,
-    newPage: number
-  ) => {
-    setPage(newPage);
-  };
-
   const handleChangeRowsPerPage = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -104,7 +97,9 @@ const ExercisesTable = () => {
                     },
                     native: true,
                   }}
-                  onPageChange={handleChangePage}
+                  onPageChange={(_, page) => {
+                    setPage(page);
+                  }}
                   onRowsPerPageChange={handleChangeRowsPerPage}
                   ActionsComponent={PaginationActions}
                 />

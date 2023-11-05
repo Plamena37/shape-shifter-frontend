@@ -52,12 +52,12 @@ const ExerciseTypesAccordion = () => {
     );
   }
 
-  const handleChangePage = (
-    event: React.MouseEvent<HTMLButtonElement> | null,
-    newPage: number
-  ) => {
-    setPage(newPage);
-  };
+  // const handleChangePage = (
+  //   event: React.MouseEvent<HTMLButtonElement> | null,
+  //   newPage: number
+  // ) => {
+  //   setPage(newPage);
+  // };
 
   const displayedExerciseTypes = filterCheck
     ? filteredExerciseTypes.slice(
@@ -157,14 +157,16 @@ const ExerciseTypesAccordion = () => {
       )}
 
       <TablePagination
-        rowsPerPageOptions={[5, 8]}
+        rowsPerPageOptions={[5]}
         component="div"
         count={
           filterCheck ? filteredExerciseTypes.length : allExerciseTypes!.length
         }
         rowsPerPage={rowsPerPage}
         page={page}
-        onPageChange={handleChangePage}
+        onPageChange={(_, page) => {
+          setPage(page);
+        }}
         onRowsPerPageChange={handleChangeRowsPerPage}
         ActionsComponent={PaginationActions}
         sx={{

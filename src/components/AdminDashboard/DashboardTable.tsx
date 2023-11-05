@@ -32,13 +32,6 @@ const DashboardTable = () => {
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - allUsers.length) : 0;
 
-  const handleChangePage = (
-    event: React.MouseEvent<HTMLButtonElement> | null,
-    newPage: number
-  ) => {
-    setPage(newPage);
-  };
-
   const handleChangeRowsPerPage = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -109,7 +102,9 @@ const DashboardTable = () => {
                   },
                   native: true,
                 }}
-                onPageChange={handleChangePage}
+                onPageChange={(_, page) => {
+                  setPage(page);
+                }}
                 onRowsPerPageChange={handleChangeRowsPerPage}
                 ActionsComponent={PaginationActions}
               />

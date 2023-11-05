@@ -57,13 +57,6 @@ const WorkoutsAccordion = () => {
       )
     : allWorkouts.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
 
-  const handleChangePage = (
-    event: React.MouseEvent<HTMLButtonElement> | null,
-    newPage: number
-  ) => {
-    setPage(newPage);
-  };
-
   const handleChangeRowsPerPage = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -204,7 +197,9 @@ const WorkoutsAccordion = () => {
         count={filterCheck ? filteredWorkouts.length : allWorkouts.length}
         rowsPerPage={rowsPerPage}
         page={page}
-        onPageChange={handleChangePage}
+        onPageChange={(_, page) => {
+          setPage(page);
+        }}
         onRowsPerPageChange={handleChangeRowsPerPage}
         ActionsComponent={PaginationActions}
       />

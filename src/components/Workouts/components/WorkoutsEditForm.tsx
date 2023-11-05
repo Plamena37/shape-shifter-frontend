@@ -22,7 +22,6 @@ type FormProps = {
   open: boolean;
   toggleDialog: () => void;
   title: string;
-  actionType: "edit";
   workout: Workout;
 };
 
@@ -35,7 +34,6 @@ const WorkoutsEditForm = ({
   open,
   toggleDialog,
   title,
-  actionType,
   workout,
 }: FormProps) => {
   const dispatch = useAppDispatch();
@@ -97,7 +95,7 @@ const WorkoutsEditForm = ({
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    const { name, value } = event.target;
+    const { value } = event.target;
 
     setEditWorkout((prev) => ({
       ...prev,

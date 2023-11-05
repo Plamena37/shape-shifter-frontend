@@ -132,7 +132,7 @@ const MeasurementsForm = ({
 
       const imageUrl = response.data.secure_url;
 
-      const updatedMeasurementData: EditMeasurement = {
+      const updatedMeasurementData: EditMeasurement | any = {
         ...measurement,
         photoUrl: (imageUrl as string) || "",
       };

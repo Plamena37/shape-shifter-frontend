@@ -51,13 +51,6 @@ const MeasurementsTable = () => {
       ? Math.max(0, (1 + page) * rowsPerPage - allMeasurements.length)
       : 0;
 
-  const handleChangePage = (
-    event: React.MouseEvent<HTMLButtonElement> | null,
-    newPage: number
-  ) => {
-    setPage(newPage);
-  };
-
   const handleChangeRowsPerPage = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -99,7 +92,7 @@ const MeasurementsTable = () => {
             <TableFooter className="table__footer">
               <TableRow>
                 <TablePagination
-                  rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
+                  rowsPerPageOptions={[5]}
                   colSpan={8}
                   count={allMeasurements.length}
                   rowsPerPage={rowsPerPage}
@@ -110,7 +103,9 @@ const MeasurementsTable = () => {
                     },
                     native: true,
                   }}
-                  onPageChange={handleChangePage}
+                  onPageChange={(_, page) => {
+                    setPage(page);
+                  }}
                   onRowsPerPageChange={handleChangeRowsPerPage}
                   ActionsComponent={PaginationActions}
                 />

@@ -17,7 +17,7 @@ import {
   getExerciseById,
 } from "../../features/exerciseSlice";
 import { createWorkout, deleteWorkout } from "../../features/workoutSlice";
-import { Exercise, ExerciseType, Workout } from "../../utils/interfaces";
+import { ExerciseType, Workout } from "../../utils/interfaces";
 import { WorkoutsEditForm } from "..";
 import { Button } from "../shared";
 
@@ -40,9 +40,9 @@ const WorkoutsItem = ({ workout, isFilteredData }: WorkoutItemProps) => {
   );
 
   // Array with all exercises in a workout
-  const [exerciseFromDuplicate, setExerciseFromDuplicate] = useState<
-    Exercise[]
-  >([]);
+  // const [exerciseFromDuplicate, setExerciseFromDuplicate] = useState<
+  //   Exercise[]
+  // >([]);
 
   const today = format(new Date(), "yyyy-MM-dd");
 
@@ -77,7 +77,7 @@ const WorkoutsItem = ({ workout, isFilteredData }: WorkoutItemProps) => {
   const handleDuplicateWorkout = async (workout: Workout) => {
     for (const exerciseId of workout.exercises) {
       const exercise = await dispatch(getExerciseById(exerciseId)).unwrap();
-      setExerciseFromDuplicate((prev) => [...prev, exercise]);
+      // setExerciseFromDuplicate((prev) => [...prev, exercise]);
 
       let newExercise: any;
 
@@ -216,7 +216,6 @@ const WorkoutsItem = ({ workout, isFilteredData }: WorkoutItemProps) => {
           open={open}
           toggleDialog={toggleDialog}
           title="Edit workout"
-          actionType="edit"
           workout={workout}
         />
       )}

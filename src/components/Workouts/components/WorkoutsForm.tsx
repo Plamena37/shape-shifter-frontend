@@ -91,12 +91,12 @@ const WorkoutsForm = ({
     }
   }, [exerciseTypeId, dispatch]);
 
-  const workout = actionType === "create" ? createWorkoutData : editWorkoutData;
+  // const workout = actionType === "create" ? createWorkoutData : editWorkoutData;
 
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    const { name, value } = event.target;
+    const { value } = event.target;
 
     setCreateWorkoutData((prev) => ({
       ...prev,
