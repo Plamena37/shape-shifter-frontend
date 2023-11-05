@@ -139,7 +139,7 @@ const WorkoutsEditForm = ({
     const action = (key: SnackbarKey) => (
       <>
         <Button
-          color="secondary"
+          btnStyle="btn__snackbar"
           size="small"
           btnVariant="text"
           onClick={() => {
@@ -161,7 +161,7 @@ const WorkoutsEditForm = ({
           YES
         </Button>
         <Button
-          color="secondary"
+          btnStyle="btn__snackbar"
           size="small"
           btnVariant="text"
           onClick={() => {
