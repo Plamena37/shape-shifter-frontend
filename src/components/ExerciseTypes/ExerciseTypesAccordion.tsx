@@ -1,22 +1,32 @@
 import { useEffect, useRef, useState } from "react";
-import { AccordionDetails, TablePagination } from "@mui/material";
+import { AccordionDetails, Box, TablePagination } from "@mui/material";
 import {
   clearFilteredExerciseTypes,
   filterExerciseTypes,
   getAllExerciseTypes,
 } from "../../features/exerciseTypes/exerciseTypesSlice";
 import { useAppDispatch, useAppSelector } from "../../app/store";
-import { Button, ExerciseTypeItem, PaginationActions, TextField } from "..";
+import {
+  Button,
+  ExerciseTypeItem,
+  LoadingSpinner,
+  PaginationActions,
+  TextField,
+} from "..";
 import "./ExerciseTypesAccordion.scss";
 import {
   selectExerciseTypes,
+  selectExerciseTypesIsLoading,
   selectFilteredExerciseType,
 } from "../../features/exerciseTypes/exerciseTypesSelectors";
+import { ExerciseTypesSliceActionTypePrefix } from "../../utils/enums";
 
 const ExerciseTypesAccordion = () => {
   const dispatch = useAppDispatch();
   const allExerciseTypes = useAppSelector(selectExerciseTypes);
   const filteredExerciseTypes = useAppSelector(selectFilteredExerciseType);
+  const isLoading = useAppSelector(selectExerciseTypesIsLoading);
+  const { EXERCISE_TYPES_GET_ALL } = ExerciseTypesSliceActionTypePrefix;
 
   const filterNameRef = useRef<HTMLInputElement | null>(null);
   const filterMuscleRef = useRef<HTMLInputElement | null>(null);
@@ -131,22 +141,35 @@ const ExerciseTypesAccordion = () => {
         </div>
       </form>
 
-      {displayedExerciseTypes.length > 0 &&
+      {isLoading === EXERCISE_TYPES_GET_ALL ? (
+        <Box
+          sx={{
+            alignItems: "center",
+            display: "flex",
+            justifyContent: "center",
+            backgroundColor: "#f5f5f5",
+            padding: "7rem",
+          }}
+        >
+          <LoadingSpinner />
+        </Box>
+      ) : displayedExerciseTypes.length > 0 ? (
         displayedExerciseTypes.map((el) => (
           <ExerciseTypeItem key={el._id} exerciseType={el} />
-        ))}
+        ))
+      ) : (
+        displayedExerciseTypes.length === 0 && (
+          <p className="no__content">No exercise types found!</p>
+        )
+      )}
 
-      {displayedExerciseTypes.length > 0 && emptyRows > 0 && (
+      {!isLoading && displayedExerciseTypes.length > 0 && emptyRows > 0 && (
         <AccordionDetails
           sx={{
             backgroundColor: "#f5f5f5",
           }}
           style={{ height: 49 * emptyRows }}
         ></AccordionDetails>
-      )}
-
-      {displayedExerciseTypes.length === 0 && (
-        <p className="no__content">No exercise types found!</p>
       )}
 
       <TablePagination

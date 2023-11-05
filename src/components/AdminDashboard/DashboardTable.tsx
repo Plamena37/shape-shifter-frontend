@@ -10,16 +10,25 @@ import {
   TablePagination,
   TableRow,
 } from "@mui/material";
+import { UsersSliceActionTypePrefix } from "../../utils/enums";
 import { useAppDispatch, useAppSelector } from "../../app/store";
 import { getAllUsers } from "../../features/users/userSlice";
-import { selectUsers } from "../../features/users/usersSelectors";
-import { DashboardItem } from "..";
+import {
+  selectUserIsLoading,
+  selectUsers,
+} from "../../features/users/usersSelectors";
+import { DashboardItem, LoadingSpinner } from "..";
 import PaginationActions from "../shared/PaginationActions";
 import "./Dashboard.scss";
 
 const DashboardTable = () => {
   const dispatch = useAppDispatch();
   const allUsers = useAppSelector(selectUsers);
+  const isUsersLoading = useAppSelector(selectUserIsLoading);
+
+  const { USERS_GET_ALL } = UsersSliceActionTypePrefix;
+
+  const isLoading = isUsersLoading === USERS_GET_ALL;
 
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
@@ -71,15 +80,21 @@ const DashboardTable = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {(rowsPerPage > 0
-              ? allUsers!.slice(
-                  page * rowsPerPage,
-                  page * rowsPerPage + rowsPerPage
-                )
-              : allUsers!
-            ).map((user) => (
-              <DashboardItem key={user._id} user={user} />
-            ))}
+            {isLoading ? (
+              <TableRow>
+                <TableCell colSpan={8} align="center">
+                  <LoadingSpinner />
+                </TableCell>
+              </TableRow>
+            ) : (
+              (rowsPerPage > 0
+                ? allUsers!.slice(
+                    page * rowsPerPage,
+                    page * rowsPerPage + rowsPerPage
+                  )
+                : allUsers!
+              ).map((user) => <DashboardItem key={user._id} user={user} />)
+            )}
             {emptyRows > 0 && (
               <TableRow style={{ height: 66.9 * emptyRows }}>
                 <TableCell colSpan={6} />

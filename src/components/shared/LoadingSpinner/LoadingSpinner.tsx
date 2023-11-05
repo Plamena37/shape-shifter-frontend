@@ -1,11 +1,7 @@
 import "./LoadingSpinner.scss";
 
 const LoadingSpinner = () => {
-  return (
-    <div className="spinner__container">
-      <div className="spinner"></div>
-    </div>
-  );
+  return <div className="spinner"></div>;
 };
 
 export default LoadingSpinner;
