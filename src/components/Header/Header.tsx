@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import logo from "../../assets/img/logo-main.png";
+import logo from "../../assets/img/logo.png";
 import { ROUTES } from "../../utils/enums";
 import { useAppDispatch, useAppSelector } from "../../app/store";
 import { logout } from "../../features/auth/authSlice";
