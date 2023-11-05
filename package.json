@@ -21,6 +21,7 @@
     "axios": "^1.4.0",
     "chart.js": "^4.3.0",
     "date-fns": "^2.30.0",
+    "dotenv": "^16.3.1",
     "jwt-decode": "^3.1.2",
     "moment": "^2.29.4",
     "notistack": "^3.0.1",
