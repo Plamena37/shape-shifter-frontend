@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
 import {
   Accordion,
   AccordionDetails,
@@ -9,15 +8,15 @@ import {
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { SnackbarKey, closeSnackbar, enqueueSnackbar } from "notistack";
 import { v4 as uuid } from "uuid";
-import { RootState, useAppDispatch } from "../../app/store";
+import { useAppDispatch, useAppSelector } from "../../app/store";
 import { Button } from "../shared";
 import { ExerciseTypesForm } from "..";
 import {
   deleteExerciseType,
   getAllExerciseTypes,
-} from "../../features/exerciseTypes/exerciseTypeSlice";
-import { ExerciseType, User } from "../../utils/interfaces";
-import { ROLE } from "../../utils/enums";
+} from "../../features/exerciseTypes/exerciseTypesSlice";
+import { ExerciseType } from "../../utils/interfaces";
+import { selectIsCurrentUserAdmin } from "../../features/profile/profileSelectors";
 
 type ExerciseTypeItemProps = {
   exerciseType: ExerciseType;
@@ -25,12 +24,9 @@ type ExerciseTypeItemProps = {
 
 const ExerciseTypeItem = ({ exerciseType }: ExerciseTypeItemProps) => {
   const dispatch = useAppDispatch();
+  const isUserAdmin = useAppSelector(selectIsCurrentUserAdmin);
 
   const [open, setOpen] = useState(false);
-
-  const user: User | undefined = useSelector(
-    (state: RootState) => state.user.user
-  );
 
   const toggleDialog = () => {
     setOpen(!open);
@@ -96,7 +92,7 @@ const ExerciseTypeItem = ({ exerciseType }: ExerciseTypeItemProps) => {
             }}
           >
             {exerciseType.name}
-            {user.role === ROLE.ADMIN && (
+            {isUserAdmin && (
               <div style={{ marginLeft: "auto" }}>
                 <Button btnVariant="text" onClick={toggleDialog}>
                   Edit

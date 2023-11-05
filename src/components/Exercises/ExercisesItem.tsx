@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { TableCell, TableRow } from "@mui/material";
 import { v4 as uuid } from "uuid";
 import { Exercise } from "../../utils/interfaces";
-import { getExerciseTypeById } from "../../features/exerciseTypes/exerciseTypeSlice";
+import { getExerciseTypeById } from "../../features/exerciseTypes/exerciseTypesSlice";
 import { useAppDispatch } from "../../app/store";
 
 type ExerciseDataItem = {

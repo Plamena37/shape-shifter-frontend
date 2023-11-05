@@ -4,7 +4,7 @@ import { TableCell, TableRow } from "@mui/material";
 import { format } from "date-fns";
 import { User } from "../../utils/interfaces";
 import { useAppDispatch } from "../../app/store";
-import { deleteUser } from "../../features/userSlice";
+import { deleteUser, getAllUsers } from "../../features/users/userSlice";
 import ChangeRole from "./ChangeRole";
 import { Button } from "../shared";
 import "./Dashboard.scss";
@@ -32,8 +32,9 @@ const DashboardItem = ({ user }: DashboardItemProps) => {
           btnStyle="btn__snackbar"
           size="small"
           btnVariant="text"
-          onClick={() => {
-            dispatch(deleteUser(user._id!));
+          onClick={async () => {
+            await dispatch(deleteUser(user._id!));
+            dispatch(getAllUsers());
             closeSnackbar(key);
           }}
         >

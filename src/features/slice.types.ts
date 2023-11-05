@@ -16,6 +16,11 @@ export type ProfileInitialState = InitialState & {
   isUserAdmin: boolean;
 };
 
+export type UsersInitialState = InitialState & {
+  users: User[] | null;
+  user: User | null;
+};
+
 export type ExerciseTypesInitialState = InitialState & {
   exerciseTypes: ExerciseType[] | null;
   exerciseType: ExerciseType | null;

@@ -4,7 +4,7 @@ import {
   clearFilteredExerciseTypes,
   filterExerciseTypes,
   getAllExerciseTypes,
-} from "../../features/exerciseTypes/exerciseTypeSlice";
+} from "../../features/exerciseTypes/exerciseTypesSlice";
 import { useAppDispatch, useAppSelector } from "../../app/store";
 import { Button, ExerciseTypeItem, PaginationActions, TextField } from "..";
 import "./ExerciseTypesAccordion.scss";
@@ -51,13 +51,6 @@ const ExerciseTypesAccordion = () => {
         (filterCheck ? filteredExerciseTypes.length : allExerciseTypes!.length)
     );
   }
-
-  // const handleChangePage = (
-  //   event: React.MouseEvent<HTMLButtonElement> | null,
-  //   newPage: number
-  // ) => {
-  //   setPage(newPage);
-  // };
 
   const displayedExerciseTypes = filterCheck
     ? filteredExerciseTypes.slice(

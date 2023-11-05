@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import {
   Paper,
   Table,
@@ -11,14 +10,16 @@ import {
   TablePagination,
   TableRow,
 } from "@mui/material";
-import { RootState, useAppDispatch } from "../../app/store";
-import { getAllUsers } from "../../features/userSlice";
+import { useAppDispatch, useAppSelector } from "../../app/store";
+import { getAllUsers } from "../../features/users/userSlice";
+import { selectUsers } from "../../features/users/usersSelectors";
 import { DashboardItem } from "..";
 import PaginationActions from "../shared/PaginationActions";
 import "./Dashboard.scss";
 
 const DashboardTable = () => {
   const dispatch = useAppDispatch();
+  const allUsers = useAppSelector(selectUsers);
 
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
@@ -27,10 +28,8 @@ const DashboardTable = () => {
     dispatch(getAllUsers()).unwrap();
   }, []);
 
-  const allUsers = useSelector((state: RootState) => state.user.users);
-
   const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - allUsers.length) : 0;
+    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - allUsers!.length) : 0;
 
   const handleChangeRowsPerPage = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -73,11 +72,11 @@ const DashboardTable = () => {
           </TableHead>
           <TableBody>
             {(rowsPerPage > 0
-              ? allUsers.slice(
+              ? allUsers!.slice(
                   page * rowsPerPage,
                   page * rowsPerPage + rowsPerPage
                 )
-              : allUsers
+              : allUsers!
             ).map((user) => (
               <DashboardItem key={user._id} user={user} />
             ))}
@@ -93,7 +92,7 @@ const DashboardTable = () => {
               <TablePagination
                 rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
                 colSpan={8}
-                count={allUsers.length}
+                count={allUsers!.length}
                 rowsPerPage={rowsPerPage}
                 page={page}
                 SelectProps={{

@@ -17,7 +17,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import { User } from "../../utils/interfaces";
 import { ROLE } from "../../utils/enums";
 import { useAppDispatch } from "../../app/store";
-import { updateRole } from "../../features/userSlice";
+import { getAllUsers, updateRole } from "../../features/users/userSlice";
 import { Button } from "../shared";
 
 type ChangeRoleProps = {
@@ -45,6 +45,7 @@ const ChangeRole = ({ open, user, toggleDialog }: ChangeRoleProps) => {
     if (user._id) {
       try {
         await dispatch(updateRole({ userId: user._id, userRole })).unwrap();
+        dispatch(getAllUsers());
 
         enqueueSnackbar("Success!", {
           preventDuplicate: true,

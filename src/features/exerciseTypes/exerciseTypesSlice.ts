@@ -214,7 +214,6 @@ const exerciseTypeSlice = createSlice({
         state.loadingType = null;
         state.error = action.payload ?? "An error occured!";
       })
-
       .addCase(deleteExerciseType.pending, (state) => {
         state.loadingType = EXERCISE_TYPES_DELETE;
         state.error = null;
@@ -227,7 +226,6 @@ const exerciseTypeSlice = createSlice({
         state.loadingType = null;
         state.error = action.payload ?? "An error occured!";
       })
-
       .addCase(filterExerciseTypes.fulfilled, (state, action) => {
         state.filteredExerciseTypes = action.payload;
       });

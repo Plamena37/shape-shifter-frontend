@@ -23,7 +23,7 @@ import {
   createExerciseType,
   getAllExerciseTypes,
   updateExerciseTypeById,
-} from "../../../features/exerciseTypes/exerciseTypeSlice";
+} from "../../../features/exerciseTypes/exerciseTypesSlice";
 import { Button, TextField } from "../../shared";
 import { Dialog } from "../..";
 

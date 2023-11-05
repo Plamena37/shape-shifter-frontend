@@ -18,7 +18,7 @@ import {
   getExerciseById,
   updateExerciseById,
 } from "../../../features/exerciseSlice";
-import { getAllExerciseTypes } from "../../../features/exerciseTypes/exerciseTypeSlice";
+import { getAllExerciseTypes } from "../../../features/exerciseTypes/exerciseTypesSlice";
 import { Exercise } from "../../../utils/interfaces";
 import { pushErrorsInArray, validations } from "../../../utils/auth.validation";
 import { Button, TextField } from "../../shared";

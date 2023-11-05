@@ -23,7 +23,7 @@ import {
 import { ROLE } from "../../utils/enums";
 import { User } from "../../utils/interfaces";
 import { fiveYearsBeforeToday } from "../../utils/functions";
-import { updateUserById } from "../../features/userSlice";
+import { updateUserById } from "../../features/users/userSlice";
 import { useAppDispatch } from "../../app/store";
 import { TextField, Button } from "../shared";
 import "./Profile.scss";

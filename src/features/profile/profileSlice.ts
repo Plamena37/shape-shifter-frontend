@@ -15,7 +15,7 @@ const initialState: ProfileInitialState = {
 };
 
 export const getCurrentUser = createAsyncThunk(
-  "users/getUserById",
+  USERS_GET_ONE,
   async (userId: string) => {
     const response = await api.get(`${API_BASE_URL}/users/${userId}`);
     return response.data;
