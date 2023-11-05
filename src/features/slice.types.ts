@@ -1,5 +1,5 @@
 import type { SerializedError } from "@reduxjs/toolkit";
-import { ExerciseType } from "../utils/interfaces";
+import { ExerciseType, User } from "../utils/interfaces";
 
 export type InitialState = {
   error: SerializedError | null;
@@ -9,6 +9,11 @@ export type InitialState = {
 
 export type AuthInitialState = InitialState & {
   isLoggedIn: boolean;
+};
+
+export type ProfileInitialState = InitialState & {
+  currentUser: User | null;
+  isUserAdmin: boolean;
 };
 
 export type ExerciseTypesInitialState = InitialState & {

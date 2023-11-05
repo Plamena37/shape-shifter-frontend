@@ -23,6 +23,7 @@ type TextFieldProps = {
   defaultValue?: string;
   disabled?: boolean;
   placeholder?: string;
+  className?: string;
 };
 
 const TextField = ({
@@ -42,6 +43,7 @@ const TextField = ({
   defaultValue,
   disabled,
   placeholder,
+  className,
 }: TextFieldProps) => {
   return (
     <MuiTextField
@@ -61,6 +63,7 @@ const TextField = ({
       defaultValue={defaultValue}
       disabled={disabled}
       placeholder={placeholder}
+      className={className}
     />
   );
 };

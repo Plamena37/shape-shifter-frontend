@@ -14,7 +14,11 @@ const WorkoutsPage = () => {
         <nav className="wrapper__nav">
           <h2>Workouts</h2>
 
-          <Button btnStyle="wrapper__btn" onClick={toggleDialog}>
+          <Button
+            btnStyle="action__btn"
+            btnVariant="outlined"
+            onClick={toggleDialog}
+          >
             New workout
           </Button>
         </nav>

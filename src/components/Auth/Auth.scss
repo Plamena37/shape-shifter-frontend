@@ -4,19 +4,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: calc(100vh);
   width: 100%;
   position: relative;
   z-index: 0;
-  background: linear-gradient(
-      to bottom,
-      rgba(255, 255, 255, 0.7),
-      rgba(57, 179, 133, 0.4)
-    ),
-    url("../..//assets/img/auth-layout.jpg");
-  background-position: top;
-  background-repeat: no-repeat;
-  background-size: cover;
 
   &__section {
     position: relative;
@@ -92,7 +83,7 @@
     &--active {
       font-size: 1.5rem;
       font-weight: 600;
-      color: $color-primary-dark-3;
+      color: $color-grey-dark-3;
     }
   }
 

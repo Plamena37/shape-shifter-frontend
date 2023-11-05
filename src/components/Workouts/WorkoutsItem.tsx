@@ -155,6 +155,7 @@ const WorkoutsItem = ({ workout, isFilteredData }: WorkoutItemProps) => {
           backgroundColor: "#f5f5f5",
           width: "90%",
           height: "100%",
+          boxShadow: "none",
         }}
       >
         <AccordionSummary

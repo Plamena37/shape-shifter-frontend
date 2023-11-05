@@ -3,22 +3,14 @@
 .overlay--profile {
   display: flex;
   justify-content: center;
+  align-items: center;
   height: calc(100vh - 4rem);
-  background: linear-gradient(
-      to bottom,
-      rgba(255, 255, 255, 0.2),
-      rgba(57, 179, 133, 0.2)
-    ),
-    url("../../assets/img/background.png");
-  background-position: bottom;
-  background-repeat: no-repeat;
-  background-size: cover;
 
   &__section {
     position: relative;
     margin-block: 2rem;
-    padding: 0.5rem 0.5rem 0.7rem;
-    width: 55vw;
+    padding: 2rem 5rem;
+    height: 60%;
     background-color: rgba(255, 255, 255, 0.75);
     z-index: 1;
     border-radius: 0.3rem;
@@ -71,19 +63,20 @@
   }
 
   &__info {
-    margin-bottom: 0.5rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    column-gap: 3rem;
+    justify-items: left;
+    margin-bottom: 1.5rem;
 
     &__wrapper {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      align-items: center;
-      justify-content: center;
-      margin-bottom: -0.1rem;
+      display: flex;
     }
 
     &__heading {
-      color: $color-grey-dark-3;
-      font-weight: 500;
+      color: $color-black;
+      font-weight: 600;
     }
 
     &__data {

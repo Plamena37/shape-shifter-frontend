@@ -2,6 +2,7 @@ export enum ROUTES {
   INDEX = "/",
   LOGIN = "/login",
   SIGNUP = "/signup",
+  DASHBOARD = "/dashboard",
   MEASUREMENTS = "/measurements",
   EXERCISE_TYPES = "/exercise-types",
   EXERCISES = "/exercises",

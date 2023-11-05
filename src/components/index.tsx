@@ -4,7 +4,6 @@ export { default as Button } from "./shared/Button";
 export { default as TextField } from "./shared/TextField";
 export { default as SuspenseLayout } from "./shared/SuspenseLayout";
 export { default as LoadingSpinner } from "./shared/LoadingSpinner/LoadingSpinner";
-export { default as NavigationLayout } from "./shared/NavigationLayout";
 export { default as Dialog } from "./shared/Dialog";
 export { default as PaginationActions } from "./shared/PaginationActions";
 export { default as CloudinaryImage } from "./shared/CloudinaryImage";

@@ -132,6 +132,7 @@ const WorkoutsAccordion = () => {
             inputRef={filterWorkoutDateRef}
             InputLabelProps={{ shrink: true }}
             required={false}
+            className="filter__textfields"
           />
 
           <TextField
@@ -141,6 +142,7 @@ const WorkoutsAccordion = () => {
             inputRef={filterExerciseTypeNameRef}
             InputLabelProps={{ shrink: true }}
             required={false}
+            className="filter__textfields"
           />
 
           <TextField
@@ -150,11 +152,16 @@ const WorkoutsAccordion = () => {
             inputRef={filterMuscleGroupRef}
             InputLabelProps={{ shrink: true }}
             required={false}
+            className="filter__textfields"
           />
-          <Button btnType="submit" btnStyle="filter__btn">
+          <Button btnType="submit" btnStyle="filter__btn" btnVariant="outlined">
             Search
           </Button>
-          <Button onClick={handleReset} btnStyle="filter__btn">
+          <Button
+            onClick={handleReset}
+            btnStyle="filter__btn"
+            btnVariant="outlined"
+          >
             Clear
           </Button>
         </div>
@@ -190,6 +197,7 @@ const WorkoutsAccordion = () => {
           width: "90%",
           paddingInlineStart: "0",
           paddingInlineEnd: "0",
+          backgroundColor: "#f5f5f5",
         }}
         rowsPerPageOptions={[5]}
         component="div"

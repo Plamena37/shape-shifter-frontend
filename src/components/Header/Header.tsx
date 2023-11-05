@@ -4,16 +4,20 @@ import { ROUTES } from "../../utils/enums";
 import { useAppDispatch, useAppSelector } from "../../app/store";
 import { logout } from "../../features/auth/authSlice";
 import { selectIsUserLoggedIn } from "../../features/auth/authSelectors";
-import "./Navigation.scss";
+import { clearCurrentUser } from "../../features/profile/profileSlice";
+import { selectIsCurrentUserAdmin } from "../../features/profile/profileSelectors";
+import "./Header.scss";
 
 const Navigation = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const isLoggedIn = useAppSelector(selectIsUserLoggedIn);
+  const isUserAdmin = useAppSelector(selectIsCurrentUserAdmin);
 
   const handleLogout = () => {
     dispatch(logout());
+    dispatch(clearCurrentUser());
     localStorage.removeItem("token");
   };
 
@@ -37,6 +41,11 @@ const Navigation = () => {
         <li className="nav__list__link">
           <Link to={ROUTES.INDEX}>Home</Link>
         </li>
+        {isUserAdmin && (
+          <li className="nav__list__link">
+            <Link to={ROUTES.DASHBOARD}>Dashboard</Link>
+          </li>
+        )}
         <li className="nav__list__link">
           <Link to={ROUTES.MEASUREMENTS}>Measurements</Link>
         </li>
@@ -49,11 +58,9 @@ const Navigation = () => {
         <li className="nav__list__link">
           <Link to={ROUTES.WORKOUTS}>Workouts</Link>
         </li>
-        {isLoggedIn && (
-          <li className="nav__list__link">
-            <Link to={ROUTES.PROFILE}>Profile</Link>
-          </li>
-        )}
+        <li className="nav__list__link">
+          <Link to={ROUTES.PROFILE}>Profile</Link>
+        </li>
         <li className="nav__list__link">{authLink}</li>
       </ul>
     </div>

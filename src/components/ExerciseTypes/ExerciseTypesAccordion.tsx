@@ -114,6 +114,7 @@ const ExerciseTypesAccordion = () => {
             label="Search by name"
             inputRef={filterNameRef}
             required={false}
+            className="filter__textfields"
           />
 
           <TextField
@@ -122,11 +123,16 @@ const ExerciseTypesAccordion = () => {
             label="Search by muscle"
             inputRef={filterMuscleRef}
             required={false}
+            className="filter__textfields"
           />
-          <Button btnType="submit" btnStyle="filter__btn">
+          <Button btnType="submit" btnStyle="filter__btn" btnVariant="outlined">
             Search
           </Button>
-          <Button onClick={handleReset} btnStyle="filter__btn">
+          <Button
+            onClick={handleReset}
+            btnStyle="filter__btn"
+            btnVariant="outlined"
+          >
             Clear
           </Button>
         </div>
@@ -146,6 +152,10 @@ const ExerciseTypesAccordion = () => {
         ></AccordionDetails>
       )}
 
+      {displayedExerciseTypes.length === 0 && (
+        <p className="no__content">No exercise types found!</p>
+      )}
+
       <TablePagination
         rowsPerPageOptions={[5, 8]}
         component="div"
@@ -161,10 +171,6 @@ const ExerciseTypesAccordion = () => {
           backgroundColor: "#f5f5f5",
         }}
       />
-
-      {displayedExerciseTypes.length === 0 && (
-        <p className="no__content">No exercise type found!</p>
-      )}
     </div>
   );
 };

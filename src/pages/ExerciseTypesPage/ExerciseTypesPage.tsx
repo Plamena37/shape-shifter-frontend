@@ -1,44 +1,18 @@
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useState } from "react";
+
 import {
   Button,
   ExerciseTypesAccordion,
   ExerciseTypesForm,
 } from "../../components";
-import { RootState, useAppDispatch } from "../../app/store";
-import { getUserById } from "../../features/userSlice";
-import { getCurrentUserIdAndEmail } from "../../utils/functions";
-import { User } from "../../utils/interfaces";
-import { ROLE } from "../../utils/enums";
+import { useAppSelector } from "../../app/store";
+import { selectIsCurrentUserAdmin } from "../../features/profile/profileSelectors";
 import "../../assets/global.scss";
 
 const ExerciseTypesPage = () => {
-  const dispatch = useAppDispatch();
-
-  const [userInfo, setUserInfo] = useState({
-    email: "",
-    id: "",
-  });
   const [open, setOpen] = useState(false);
 
-  useEffect(() => {
-    const res = getCurrentUserIdAndEmail();
-
-    setUserInfo({
-      email: res!.email,
-      id: res!.id,
-    });
-  }, []);
-
-  const user: User | undefined = useSelector(
-    (state: RootState) => state.user.user
-  );
-
-  useEffect(() => {
-    if (userInfo.id) {
-      dispatch(getUserById(userInfo.id));
-    }
-  }, [userInfo]);
+  const isUserAdmin = useAppSelector(selectIsCurrentUserAdmin);
 
   const toggleDialog = () => {
     setOpen(!open);
@@ -49,8 +23,12 @@ const ExerciseTypesPage = () => {
       <section className="wrapper overlay">
         <nav className="wrapper__nav">
           <h2>Exercise types</h2>
-          {user.role === ROLE.ADMIN && (
-            <Button btnStyle="wrapper__btn" onClick={toggleDialog}>
+          {isUserAdmin && (
+            <Button
+              btnStyle="action__btn"
+              btnVariant="outlined"
+              onClick={toggleDialog}
+            >
               New exercise type
             </Button>
           )}
