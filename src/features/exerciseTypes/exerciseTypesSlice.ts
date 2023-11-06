@@ -216,6 +216,7 @@ const exerciseTypeSlice = createSlice({
       })
       .addCase(deleteExerciseType.pending, (state) => {
         state.loadingType = EXERCISE_TYPES_DELETE;
+        state.successType = null;
         state.error = null;
       })
       .addCase(deleteExerciseType.fulfilled, (state) => {

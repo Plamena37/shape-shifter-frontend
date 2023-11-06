@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import {
   Paper,
   Table,
@@ -12,10 +11,14 @@ import {
   TableRow,
 } from "@mui/material";
 import { v4 as uuid } from "uuid";
-import { RootState, useAppDispatch } from "../../app/store";
-import { getAllMeasurements } from "../../features/measurementSlice";
+import { useAppDispatch, useAppSelector } from "../../app/store";
+import { getAllMeasurements } from "../../features/measurements/measurementsSlice";
 import MeasurementsItem from "./MeasurementsItem";
-import { PaginationActions } from "..";
+import { LoadingSpinner, PaginationActions } from "..";
+import {
+  selectMeasurements,
+  selectMeasurementsIsLoading,
+} from "../../features/measurements/measurementsSelectors";
 import "./MeasurementsTable.scss";
 
 const measurementCellData: {
@@ -34,13 +37,11 @@ const measurementCellData: {
 
 const MeasurementsTable = () => {
   const dispatch = useAppDispatch();
+  const allMeasurements = useAppSelector(selectMeasurements);
+  const isLoading = useAppSelector(selectMeasurementsIsLoading);
 
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
-
-  const allMeasurements = useSelector(
-    (state: RootState) => state.measurement.measurements
-  );
 
   useEffect(() => {
     dispatch(getAllMeasurements());
@@ -48,7 +49,7 @@ const MeasurementsTable = () => {
 
   const emptyRows =
     page > 0
-      ? Math.max(0, (1 + page) * rowsPerPage - allMeasurements.length)
+      ? Math.max(0, (1 + page) * rowsPerPage - allMeasurements!.length)
       : 0;
 
   const handleChangeRowsPerPage = (
@@ -60,7 +61,7 @@ const MeasurementsTable = () => {
 
   return (
     <div>
-      {allMeasurements.length > 0 && (
+      {allMeasurements!.length > 0 && (
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
@@ -73,18 +74,51 @@ const MeasurementsTable = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {allMeasurements
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((measurement) => (
+              {isLoading ? (
+                <TableRow>
+                  <TableCell
+                    colSpan={9}
+                    sx={{
+                      padding: "7.8rem",
+                    }}
+                    align="center"
+                  >
+                    <LoadingSpinner />
+                  </TableCell>
+                </TableRow>
+              ) : (
+                (rowsPerPage > 0
+                  ? allMeasurements!.slice(
+                      page * rowsPerPage,
+                      page * rowsPerPage + rowsPerPage
+                    )
+                  : allMeasurements!
+                ).map((measurement) => (
                   <MeasurementsItem
                     key={measurement._id}
                     measurement={measurement}
                   />
-                ))}
+                ))
+              )}
 
-              {emptyRows > 0 && (
+              {!isLoading && emptyRows > 0 && (
                 <TableRow style={{ height: 66.9 * emptyRows }}>
                   <TableCell colSpan={6} />
+                </TableRow>
+              )}
+              {!isLoading && allMeasurements!.length === 0 && (
+                <TableRow>
+                  <TableCell
+                    colSpan={9}
+                    sx={{
+                      padding: "7.8rem",
+                    }}
+                    align="center"
+                  >
+                    <p className="no__content full__width">
+                      No measurements found!
+                    </p>
+                  </TableCell>
                 </TableRow>
               )}
             </TableBody>
@@ -94,7 +128,7 @@ const MeasurementsTable = () => {
                 <TablePagination
                   rowsPerPageOptions={[5]}
                   colSpan={8}
-                  count={allMeasurements.length}
+                  count={allMeasurements!.length}
                   rowsPerPage={rowsPerPage}
                   page={page}
                   SelectProps={{
@@ -113,9 +147,6 @@ const MeasurementsTable = () => {
             </TableFooter>
           </Table>
         </TableContainer>
-      )}
-      {allMeasurements.length === 0 && (
-        <p className="no__content">No measurements found!</p>
       )}
     </div>
   );

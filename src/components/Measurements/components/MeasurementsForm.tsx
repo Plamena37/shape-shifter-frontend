@@ -11,7 +11,7 @@ import {
   createMeasurement,
   getAllMeasurements,
   updateMeasurementById,
-} from "../../../features/measurementSlice";
+} from "../../../features/measurements/measurementsSlice";
 import { pushErrorsInArray, validations } from "../../../utils/auth.validation";
 import { Button, TextField } from "../../shared";
 import "../MeasurementsTable.scss";
@@ -156,7 +156,9 @@ const MeasurementsForm = ({
       toggleDialog();
       dispatch(getAllMeasurements());
     } catch (error: Error | any) {
-      enqueueSnackbar(`${error.message}`, {
+      const errMessage = error.response.data.error.message;
+
+      enqueueSnackbar(`${errMessage || error.message}`, {
         preventDuplicate: true,
         variant: "error",
         autoHideDuration: 10000,

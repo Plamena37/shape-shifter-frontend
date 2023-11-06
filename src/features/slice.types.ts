@@ -21,6 +21,11 @@ export type UsersInitialState = InitialState & {
   user: User | null;
 };
 
+export type MeasurementsInitialState = InitialState & {
+  measurements: Measurement[] | null;
+  measurement: Measurement | null;
+};
+
 export type ExerciseTypesInitialState = InitialState & {
   exerciseTypes: ExerciseType[] | null;
   exerciseType: ExerciseType | null;

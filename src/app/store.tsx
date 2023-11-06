@@ -7,7 +7,7 @@ import {
 import authReducer from "../features/auth/authSlice";
 import profileReducer from "../features/profile/profileSlice";
 import userReducer from "../features/users/userSlice";
-import measurementReducer from "../features/measurementSlice";
+import measurementReducer from "../features/measurements/measurementsSlice";
 import exerciseTypeReducer from "../features/exerciseTypes/exerciseTypesSlice";
 import exerciseReducer from "../features/exerciseSlice";
 import workoutReducer from "../features/workouts/workoutSlice";

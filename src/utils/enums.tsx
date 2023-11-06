@@ -49,6 +49,14 @@ export enum UsersSliceActionTypePrefix {
   USERS_DELETE = "users/deleteUser",
 }
 
+export enum MeasurementsSliceActionTypePrefix {
+  MEASUREMENTS_CREATE = "measurements/createMeasurement",
+  MEASUREMENTS_GET_ALL = "measurements/getAllMeasurements",
+  MEASUREMENTS_GET_ONE = "measurements/getMeasurementById",
+  MEASUREMENTS_UPDATE = "measurements/updateMeasurementById",
+  MEASUREMENTS_DELETE = "measurements/deleteMeasurement",
+}
+
 export enum ExerciseTypesSliceActionTypePrefix {
   EXERCISE_TYPES_CREATE = "exerciseTypes/createExerciseType",
   EXERCISE_TYPES_GET_ALL = "exerciseTypes/getAllExerciseTypes",

@@ -5,26 +5,23 @@ import {
   MeasurementsTable,
   TextField,
 } from "../../components";
-import { useSelector } from "react-redux";
 import { format } from "date-fns";
-import { RootState, useAppDispatch } from "../../app/store";
-import { getAllMeasurements } from "../../features/measurementSlice";
+import { useAppDispatch, useAppSelector } from "../../app/store";
+import { getAllMeasurements } from "../../features/measurements/measurementsSlice";
 import MeasurementsChart from "../../components/Measurements/components/MeasurementsChart";
-import "../../assets/global.scss";
 import "../../components/Measurements/MeasurementsTable.scss";
+import { selectMeasurements } from "../../features/measurements/measurementsSelectors";
+import "../../assets/global.scss";
 
 const MeasurementsPage = () => {
   const dispatch = useAppDispatch();
+  const measurements = useAppSelector(selectMeasurements);
 
   const [open, setOpen] = useState(false);
   const [date, setDate] = useState({
     startDate: "",
     endDate: "",
   });
-
-  const measurements = useSelector(
-    (state: RootState) => state.measurement.measurements
-  );
 
   const today = format(new Date(), "yyyy-MM-dd");
 
@@ -33,10 +30,10 @@ const MeasurementsPage = () => {
   }, []);
 
   useEffect(() => {
-    measurements.length > 0 &&
+    measurements!.length > 0 &&
       setDate({
-        startDate: String(measurements[0].date),
-        endDate: String(measurements[measurements.length - 1].date),
+        startDate: String(measurements![0].date),
+        endDate: String(measurements![measurements!.length - 1].date),
       });
   }, [measurements]);
 
@@ -57,8 +54,8 @@ const MeasurementsPage = () => {
 
   const handleReset = () => {
     setDate({
-      startDate: String(measurements[0].date),
-      endDate: String(measurements[measurements.length - 1].date),
+      startDate: String(measurements![0].date),
+      endDate: String(measurements![measurements!.length - 1].date),
     });
   };
 
@@ -112,7 +109,7 @@ const MeasurementsPage = () => {
             </form>
 
             <MeasurementsChart
-              measurements={measurements}
+              measurements={measurements!}
               startDate={date.startDate as string}
               endDate={date.endDate as string}
             />

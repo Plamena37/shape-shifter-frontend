@@ -6,7 +6,10 @@ import { Measurement } from "../../utils/interfaces";
 import { useAppDispatch } from "../../app/store";
 import { Button } from "../shared";
 import { MeasurementsForm } from "..";
-import { deleteMeasurement } from "../../features/measurementSlice";
+import {
+  deleteMeasurement,
+  getAllMeasurements,
+} from "../../features/measurements/measurementsSlice";
 import ViewMeasurement from "./ViewMeasurement";
 
 const measurementData: {
@@ -57,8 +60,9 @@ const MeasurementsItem = ({ measurement }: MeasurementItemProps) => {
           btnStyle="btn__snackbar"
           size="small"
           btnVariant="text"
-          onClick={() => {
-            dispatch(deleteMeasurement(measurement._id!));
+          onClick={async () => {
+            await dispatch(deleteMeasurement(measurement._id!));
+            dispatch(getAllMeasurements());
             closeSnackbar(key);
           }}
         >

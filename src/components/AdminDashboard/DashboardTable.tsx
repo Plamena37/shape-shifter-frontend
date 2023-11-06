@@ -82,7 +82,13 @@ const DashboardTable = () => {
           <TableBody>
             {isLoading ? (
               <TableRow>
-                <TableCell colSpan={8} align="center">
+                <TableCell
+                  colSpan={8}
+                  sx={{
+                    padding: "7.8rem",
+                  }}
+                  align="center"
+                >
                   <LoadingSpinner />
                 </TableCell>
               </TableRow>
