@@ -20,6 +20,7 @@ import {
 import { DashboardItem, LoadingSpinner } from "..";
 import PaginationActions from "../shared/PaginationActions";
 import { calcEmptyRows } from "../../utils/functions";
+import { User } from "../../utils/interfaces";
 import "./Dashboard.scss";
 
 const DashboardTable = () => {
@@ -52,86 +53,94 @@ const DashboardTable = () => {
       <h4>Admin's Dashboard</h4>
 
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell className="table__head">Name</TableCell>
-              <TableCell align="left" className="table__head">
-                Email
-              </TableCell>
-              <TableCell align="left" className="table__head">
-                Gender
-              </TableCell>
-              <TableCell align="left" className="table__head">
-                Role
-              </TableCell>
-              <TableCell align="left" className="table__head">
-                Height
-              </TableCell>
-              <TableCell align="left" className="table__head">
-                Date of birth
-              </TableCell>
-              <TableCell align="left" className="table__head">
-                Change role
-              </TableCell>
-              <TableCell align="left" className="table__head">
-                Delete user
-              </TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {isLoading ? (
+        {allUsers!.length !== 0 && (
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableHead>
               <TableRow>
-                <TableCell
-                  colSpan={8}
-                  sx={{
-                    padding: "7.8rem",
-                  }}
-                  align="center"
-                >
-                  <LoadingSpinner />
+                <TableCell className="table__head">Name</TableCell>
+                <TableCell align="left" className="table__head">
+                  Email
+                </TableCell>
+                <TableCell align="left" className="table__head">
+                  Gender
+                </TableCell>
+                <TableCell align="left" className="table__head">
+                  Role
+                </TableCell>
+                <TableCell align="left" className="table__head">
+                  Height
+                </TableCell>
+                <TableCell align="left" className="table__head">
+                  Date of birth
+                </TableCell>
+                <TableCell align="left" className="table__head">
+                  Change role
+                </TableCell>
+                <TableCell align="left" className="table__head">
+                  Delete user
                 </TableCell>
               </TableRow>
-            ) : (
-              (rowsPerPage > 0
-                ? allUsers!.slice(
-                    page * rowsPerPage,
-                    page * rowsPerPage + rowsPerPage
-                  )
-                : allUsers!
-              ).map((user) => <DashboardItem key={user._id} user={user} />)
-            )}
-            {emptyRows > 0 && (
-              <TableRow style={{ height: 66.9 * emptyRows }}>
-                <TableCell colSpan={6} />
-              </TableRow>
-            )}
-          </TableBody>
+            </TableHead>
+            <TableBody>
+              {isLoading ? (
+                <TableRow>
+                  <TableCell
+                    colSpan={8}
+                    sx={{
+                      padding: "7.8rem",
+                    }}
+                    align="center"
+                  >
+                    <LoadingSpinner />
+                  </TableCell>
+                </TableRow>
+              ) : (
+                (rowsPerPage > 0
+                  ? allUsers!.slice(
+                      page * rowsPerPage,
+                      page * rowsPerPage + rowsPerPage
+                    )
+                  : allUsers!
+                ).map((user: User) => (
+                  <DashboardItem key={user._id} user={user} />
+                ))
+              )}
+              {!isLoading && emptyRows > 0 && (
+                <TableRow style={{ height: 66.9 * emptyRows }}>
+                  <TableCell colSpan={6} />
+                </TableRow>
+              )}
+            </TableBody>
 
-          <TableFooter className="table__footer">
-            <TableRow>
-              <TablePagination
-                rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
-                colSpan={8}
-                count={allUsers!.length}
-                rowsPerPage={rowsPerPage}
-                page={page}
-                SelectProps={{
-                  inputProps: {
-                    "aria-label": "rows per page",
-                  },
-                  native: true,
-                }}
-                onPageChange={(_, page) => {
-                  setPage(page);
-                }}
-                onRowsPerPageChange={handleChangeRowsPerPage}
-                ActionsComponent={PaginationActions}
-              />
-            </TableRow>
-          </TableFooter>
-        </Table>
+            <TableFooter className="table__footer">
+              <TableRow>
+                <TablePagination
+                  rowsPerPageOptions={[5, 10]}
+                  colSpan={8}
+                  count={allUsers!.length}
+                  rowsPerPage={rowsPerPage}
+                  page={page}
+                  SelectProps={{
+                    inputProps: {
+                      "aria-label": "rows per page",
+                    },
+                    native: true,
+                  }}
+                  onPageChange={(_, page) => {
+                    setPage(page);
+                  }}
+                  onRowsPerPageChange={handleChangeRowsPerPage}
+                  ActionsComponent={PaginationActions}
+                />
+              </TableRow>
+            </TableFooter>
+          </Table>
+        )}
       </TableContainer>
+
+      {!isLoading && allUsers!.length === 0 && (
+        <p className="no__content full__width">No users found!</p>
+      )}
     </div>
   );
 };

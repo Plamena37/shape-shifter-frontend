@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { closeSnackbar, enqueueSnackbar } from "notistack";
 import {
   Dialog,
   DialogActions,
@@ -7,13 +6,11 @@ import {
   DialogContentText,
   DialogTitle,
   FormControl,
-  IconButton,
   InputLabel,
   MenuItem,
   Select,
   SelectChangeEvent,
 } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
 import { User } from "../../utils/interfaces";
 import { ROLE } from "../../utils/enums";
 import { useAppDispatch } from "../../app/store";
@@ -43,28 +40,10 @@ const ChangeRole = ({ open, user, toggleDialog }: ChangeRoleProps) => {
     event.preventDefault();
 
     if (user._id) {
-      try {
-        await dispatch(updateRole({ userId: user._id, userRole })).unwrap();
-        dispatch(getAllUsers());
+      await dispatch(updateRole({ userId: user._id, userRole })).unwrap();
+      dispatch(getAllUsers());
 
-        enqueueSnackbar("Success!", {
-          preventDuplicate: true,
-          variant: "success",
-        });
-
-        toggleDialog();
-      } catch (error: Error | any) {
-        enqueueSnackbar(`${error.message}!`, {
-          preventDuplicate: true,
-          variant: "error",
-          autoHideDuration: 10000,
-          action: (key) => (
-            <IconButton color="inherit" onClick={() => closeSnackbar(key)}>
-              <CloseIcon />
-            </IconButton>
-          ),
-        });
-      }
+      toggleDialog();
     }
   };
 

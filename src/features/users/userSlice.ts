@@ -20,6 +20,7 @@ type errMessage = {
 
 const initialState: UsersInitialState = {
   error: null,
+  errorType: null,
   loadingType: null,
   successType: null,
   user: null,
@@ -125,23 +126,25 @@ const userSlice = createSlice({
     clearSuccessType: (state) => {
       state.successType = null;
     },
+    clearErrorType: (state) => {
+      state.errorType = null;
+    },
   },
   extraReducers(builder) {
     builder
       .addCase(getUserById.pending, (state) => {
         state.loadingType = USERS_GET_ONE;
-        state.successType = null;
         state.error = null;
       })
       .addCase(getUserById.fulfilled, (state, action) => {
         state.loadingType = null;
-        state.successType = USERS_GET_ONE;
         state.user = action.payload;
       })
       .addCase(getUserById.rejected, (state, action) => {
         state.user = null;
         state.loadingType = null;
         state.error = action.payload ?? "An error occured!";
+        state.errorType = USERS_GET_ONE;
       })
       .addCase(updateUserById.pending, (state) => {
         state.loadingType = USERS_UPDATE;
@@ -156,21 +159,21 @@ const userSlice = createSlice({
       .addCase(updateUserById.rejected, (state, action) => {
         state.loadingType = null;
         state.error = action.payload ?? "An error occured!";
+        state.errorType = USERS_UPDATE;
       })
       .addCase(getAllUsers.pending, (state) => {
         state.loadingType = USERS_GET_ALL;
-        state.successType = null;
         state.error = null;
       })
       .addCase(getAllUsers.fulfilled, (state, action) => {
         state.loadingType = null;
-        state.successType = USERS_GET_ALL;
         state.users = action.payload;
       })
       .addCase(getAllUsers.rejected, (state, action) => {
         state.loadingType = null;
         state.users = [];
         state.error = action.payload ?? "An error occured!";
+        state.errorType = USERS_GET_ALL;
       })
       .addCase(deleteUser.pending, (state) => {
         state.loadingType = USERS_DELETE;
@@ -183,6 +186,7 @@ const userSlice = createSlice({
       .addCase(deleteUser.rejected, (state, action) => {
         state.loadingType = null;
         state.error = action.payload ?? "An error occured!";
+        state.errorType = USERS_DELETE;
       })
       .addCase(updateRole.pending, (state) => {
         state.loadingType = USERS_UPDATE_ROLE;
@@ -195,9 +199,11 @@ const userSlice = createSlice({
       .addCase(updateRole.rejected, (state, action) => {
         state.loadingType = null;
         state.error = action.payload ?? "An error occured!";
+        state.errorType = USERS_UPDATE_ROLE;
       });
   },
 });
 
-export const { clearSuccessType, clearError } = userSlice.actions;
+export const { clearSuccessType, clearError, clearErrorType } =
+  userSlice.actions;
 export default userSlice.reducer;

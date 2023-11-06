@@ -28,6 +28,7 @@ const Profile = () => {
             alignItems: "center",
             display: "flex",
             height: "100vh",
+            width: "30vw",
             justifyContent: "center",
           }}
         >
@@ -36,22 +37,22 @@ const Profile = () => {
       ) : (
         <>
           <div className="profile--message">
-            <h2>Hello {user!.name}</h2>
+            <h2>Hello {user?.name}</h2>
           </div>
 
           <section className="profile__info">
-            <ProfileExcerpt title="Name" data={user!.name} />
-            <ProfileExcerpt title="Email" data={user!.email} />
-            <ProfileExcerpt title="Role" data={user!.role} />
-            <ProfileExcerpt title="Gender" data={user!.gender} />
+            <ProfileExcerpt title="Name" data={user?.name} />
+            <ProfileExcerpt title="Email" data={user?.email} />
+            <ProfileExcerpt title="Role" data={user?.role} />
+            <ProfileExcerpt title="Gender" data={user?.gender} />
             <ProfileExcerpt
               title="Date of birth"
               data={
-                user!.dateOfBirth &&
-                format(new Date(user!.dateOfBirth), "yyyy-MM-dd")
+                user?.dateOfBirth &&
+                format(new Date(user?.dateOfBirth), "yyyy-MM-dd")
               }
             />
-            <ProfileExcerpt title="Height (cm)" data={user!.height} />
+            <ProfileExcerpt title="Height (cm)" data={user?.height} />
           </section>
           <Button
             btnVariant="outlined"

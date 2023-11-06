@@ -25,6 +25,7 @@ export type ProfileInitialState = InitialState & {
 export type UsersInitialState = InitialState & {
   users: User[] | null;
   user: User | null;
+  errorType: string | null;
 };
 
 export type MeasurementsInitialState = InitialState & {

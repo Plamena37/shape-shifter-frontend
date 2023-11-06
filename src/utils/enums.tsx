@@ -86,9 +86,9 @@ export enum WorkoutsSliceActionTypePrefix {
 
 export enum SnackbarSuccessMessages {
   USERS_CREATE = "User was created",
-  USERS_EDIT = "Profile was updated",
+  USERS_UPDATE = "Profile was updated",
   USERS_DELETE = "User was deleted",
-  USERS_UPDATE_ROLE = "Role was updated",
+  USERS_UPDATE_ROLE = "Role was changed",
 
   MEASUREMENTS_CREATE = "Measurement was created",
   MEASUREMENTS_EDIT = "Measurement was updated",
@@ -101,10 +101,10 @@ export enum SnackbarSuccessMessages {
 
 export enum SnackbarErrorMessages {
   USERS_CREATE = "User couldn't be created",
-  USERS_EDIT = "Profile couldn't be updated",
+  USERS_UPDATE = "Profile couldn't be updated",
   USERS_DELETE = "User couldn't be deleted",
-  USERS__GET_ALL = "Users couldn't be displayed",
-  USERS__GET_ONE = "User couldn't be displayed",
+  USERS_GET_ALL = "Users couldn't be displayed",
+  USERS_GET_ONE = "User couldn't be displayed",
   USERS_UPDATE_ROLE = "Role couldn't be changed",
 
   MEASUREMENTS_GET_ALL = "Measurements couldn't be displayed",

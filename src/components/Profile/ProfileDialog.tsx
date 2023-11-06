@@ -6,14 +6,11 @@ import {
   DialogContent,
   DialogTitle,
   FormControl,
-  IconButton,
   InputLabel,
   MenuItem,
   Select,
   SelectChangeEvent,
 } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
-import { closeSnackbar, enqueueSnackbar } from "notistack";
 import { format } from "date-fns";
 import {
   pushErrorsInArray,
@@ -79,29 +76,11 @@ const ProfileDialog = ({ currUser, isOpen, handleClose }: DialogProps) => {
     event.preventDefault();
 
     if (currUser._id) {
-      try {
-        await dispatch(
-          updateUserById({ userId: currUser._id, userData: user })
-        ).unwrap();
+      await dispatch(
+        updateUserById({ userId: currUser._id, userData: user })
+      ).unwrap();
 
-        enqueueSnackbar("Success!", {
-          preventDuplicate: true,
-          variant: "success",
-        });
-
-        handleClose();
-      } catch (error: Error | any) {
-        enqueueSnackbar(`${error.message}!`, {
-          preventDuplicate: true,
-          variant: "error",
-          autoHideDuration: 10000,
-          action: (key) => (
-            <IconButton color="inherit" onClick={() => closeSnackbar(key)}>
-              <CloseIcon />
-            </IconButton>
-          ),
-        });
-      }
+      handleClose();
     }
   };
 
