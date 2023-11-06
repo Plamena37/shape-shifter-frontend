@@ -19,6 +19,7 @@ import {
   selectMeasurements,
   selectMeasurementsIsLoading,
 } from "../../features/measurements/measurementsSelectors";
+import { calcEmptyRows } from "../../utils/functions";
 import "./MeasurementsTable.scss";
 
 const measurementCellData: {
@@ -47,10 +48,7 @@ const MeasurementsTable = () => {
     dispatch(getAllMeasurements());
   }, []);
 
-  const emptyRows =
-    page > 0
-      ? Math.max(0, (1 + page) * rowsPerPage - allMeasurements!.length)
-      : 0;
+  const emptyRows = calcEmptyRows(page, rowsPerPage, allMeasurements!.length);
 
   const handleChangeRowsPerPage = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -106,21 +104,6 @@ const MeasurementsTable = () => {
                   <TableCell colSpan={6} />
                 </TableRow>
               )}
-              {!isLoading && allMeasurements!.length === 0 && (
-                <TableRow>
-                  <TableCell
-                    colSpan={9}
-                    sx={{
-                      padding: "7.8rem",
-                    }}
-                    align="center"
-                  >
-                    <p className="no__content full__width">
-                      No measurements found!
-                    </p>
-                  </TableCell>
-                </TableRow>
-              )}
             </TableBody>
 
             <TableFooter className="table__footer">
@@ -147,6 +130,9 @@ const MeasurementsTable = () => {
             </TableFooter>
           </Table>
         </TableContainer>
+      )}
+      {!isLoading && allMeasurements!.length === 0 && (
+        <p className="no__content full__width">No measurements found!</p>
       )}
     </div>
   );

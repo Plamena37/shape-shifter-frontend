@@ -36,3 +36,9 @@ export const fiveYearsBeforeToday = () =>
 
 export const formatDate = (date: Date | undefined) =>
   format(new Date(date!), "yyyy-MM-dd");
+
+export const calcEmptyRows = (
+  page: number,
+  rowsPerPage: number,
+  entity: number
+) => (page > 0 ? Math.max(0, (1 + page) * rowsPerPage - entity) : 0);

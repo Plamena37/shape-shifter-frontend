@@ -66,6 +66,14 @@ export enum ExerciseTypesSliceActionTypePrefix {
   EXERCISE_TYPES_FILTER = "exerciseTypes/filterExerciseTypes",
 }
 
+export enum ExercisesSliceActionTypePrefix {
+  EXERCISES_CREATE = "exercises/createExercise",
+  EXERCISES_GET_ALL = "exercises/getAllExercises",
+  EXERCISES_GET_ONE = "exercises/getExerciseById",
+  EXERCISES_UPDATE = "exercises/updateExerciseById",
+  EXERCISES_DELETE = "exercises/deleteExercise",
+}
+
 export enum WorkoutsSliceActionTypePrefix {
   WORKOUTS_CREATE = "workouts/createWorkout",
   WORKOUTS_GET_ALL = "workouts/getAllWorkouts",

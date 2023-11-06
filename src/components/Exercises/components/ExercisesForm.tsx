@@ -16,7 +16,7 @@ import {
   createExercise,
   getExerciseById,
   updateExerciseById,
-} from "../../../features/exerciseSlice";
+} from "../../../features/exercises/exercisesSlice";
 import { getAllExerciseTypes } from "../../../features/exerciseTypes/exerciseTypesSlice";
 import { Exercise } from "../../../utils/interfaces";
 import { pushErrorsInArray, validations } from "../../../utils/auth.validation";

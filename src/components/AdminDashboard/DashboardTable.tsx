@@ -19,6 +19,7 @@ import {
 } from "../../features/users/usersSelectors";
 import { DashboardItem, LoadingSpinner } from "..";
 import PaginationActions from "../shared/PaginationActions";
+import { calcEmptyRows } from "../../utils/functions";
 import "./Dashboard.scss";
 
 const DashboardTable = () => {
@@ -37,8 +38,7 @@ const DashboardTable = () => {
     dispatch(getAllUsers()).unwrap();
   }, []);
 
-  const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - allUsers!.length) : 0;
+  const emptyRows = calcEmptyRows(page, rowsPerPage, allUsers!.length);
 
   const handleChangeRowsPerPage = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>

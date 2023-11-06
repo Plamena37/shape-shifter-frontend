@@ -8,7 +8,7 @@ import { useAppDispatch } from "../../../app/store";
 import {
   deleteExercise,
   getExerciseById,
-} from "../../../features/exerciseSlice";
+} from "../../../features/exercises/exercisesSlice";
 import { getExerciseTypeById } from "../../../features/exerciseTypes/exerciseTypesSlice";
 import {
   getAllWorkouts,

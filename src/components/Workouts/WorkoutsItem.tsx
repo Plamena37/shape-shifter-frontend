@@ -15,7 +15,7 @@ import {
   createExercise,
   deleteExercise,
   getExerciseById,
-} from "../../features/exerciseSlice";
+} from "../../features/exercises/exercisesSlice";
 import {
   createWorkout,
   deleteWorkout,

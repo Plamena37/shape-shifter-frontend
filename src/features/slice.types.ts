@@ -1,5 +1,11 @@
 import type { SerializedError } from "@reduxjs/toolkit";
-import { ExerciseType, Measurement, User, Workout } from "../utils/interfaces";
+import {
+  Exercise,
+  ExerciseType,
+  Measurement,
+  User,
+  Workout,
+} from "../utils/interfaces";
 
 export type InitialState = {
   error: SerializedError | null;
@@ -30,6 +36,11 @@ export type ExerciseTypesInitialState = InitialState & {
   exerciseTypes: ExerciseType[] | null;
   exerciseType: ExerciseType | null;
   filteredExerciseTypes: ExerciseType[];
+};
+
+export type ExercisesInitialState = InitialState & {
+  exercises: Exercise[] | null;
+  exercise: Exercise | null;
 };
 
 export type WorkoutsInitialState = InitialState & {

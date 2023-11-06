@@ -36,7 +36,6 @@ export const createMeasurement = createAsyncThunk(
       );
       return response.data;
     } catch (error: unknown) {
-      console.log(error);
       if (isAxiosError<errMessage>(error)) {
         throw new Error(error.response?.data.message);
       } else {
@@ -126,7 +125,14 @@ export const deleteMeasurement = createAsyncThunk(
 const measurementSlice = createSlice({
   name: "measurements",
   initialState,
-  reducers: {},
+  reducers: {
+    clearError: (state) => {
+      state.error = null;
+    },
+    clearSuccessType: (state) => {
+      state.successType = null;
+    },
+  },
   extraReducers(builder) {
     builder
       .addCase(createMeasurement.pending, (state) => {
@@ -141,7 +147,6 @@ const measurementSlice = createSlice({
       .addCase(createMeasurement.rejected, (state, action) => {
         state.loadingType = null;
         state.error = action.payload ?? "An error occured!";
-        console.log(action);
       })
       .addCase(getAllMeasurements.pending, (state) => {
         state.loadingType = MEASUREMENTS_GET_ALL;
@@ -204,4 +209,5 @@ const measurementSlice = createSlice({
   },
 });
 
+export const { clearSuccessType, clearError } = measurementSlice.actions;
 export default measurementSlice.reducer;

@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import {
   Paper,
   Table,
@@ -12,10 +11,16 @@ import {
   TableRow,
 } from "@mui/material";
 import { v4 as uuid } from "uuid";
-import { RootState, useAppDispatch } from "../../app/store";
+import { useAppDispatch, useAppSelector } from "../../app/store";
 import ExercisesItem from "./ExercisesItem";
-import { getAllExercises } from "../../features/exerciseSlice";
-import { PaginationActions } from "..";
+import { getAllExercises } from "../../features/exercises/exercisesSlice";
+import { LoadingSpinner, PaginationActions } from "..";
+import {
+  selectExercises,
+  selectExercisesIsLoading,
+} from "../../features/exercises/exercisesSelectors";
+import { calcEmptyRows } from "../../utils/functions";
+import { Exercise } from "../../utils/interfaces";
 import "./ExercisesTable.scss";
 
 const exerciseCellData: {
@@ -33,20 +38,17 @@ const exerciseCellData: {
 
 const ExercisesTable = () => {
   const dispatch = useAppDispatch();
+  const allExercises = useAppSelector(selectExercises);
+  const isLoading = useAppSelector(selectExercisesIsLoading);
 
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
-
-  const allExercises = useSelector(
-    (state: RootState) => state.exercise.exercises
-  );
 
   useEffect(() => {
     dispatch(getAllExercises());
   }, []);
 
-  const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - allExercises.length) : 0;
+  const emptyRows = calcEmptyRows(page, rowsPerPage, allExercises!.length);
 
   const handleChangeRowsPerPage = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -57,7 +59,7 @@ const ExercisesTable = () => {
 
   return (
     <div className="exercises__container">
-      {allExercises.length > 0 && (
+      {allExercises!.length > 0 && (
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
@@ -70,13 +72,31 @@ const ExercisesTable = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {allExercises
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((exercise) => (
+              {isLoading ? (
+                <TableRow>
+                  <TableCell
+                    colSpan={6}
+                    sx={{
+                      padding: "5.5rem",
+                    }}
+                    align="center"
+                  >
+                    <LoadingSpinner />
+                  </TableCell>
+                </TableRow>
+              ) : (
+                (rowsPerPage > 0
+                  ? allExercises!.slice(
+                      page * rowsPerPage,
+                      page * rowsPerPage + rowsPerPage
+                    )
+                  : allExercises!
+                ).map((exercise: Exercise) => (
                   <ExercisesItem key={exercise._id} exercise={exercise} />
-                ))}
+                ))
+              )}
 
-              {emptyRows > 0 && (
+              {!isLoading && emptyRows > 0 && (
                 <TableRow style={{ height: 52.5 * emptyRows }}>
                   <TableCell colSpan={6} />
                 </TableRow>
@@ -88,7 +108,7 @@ const ExercisesTable = () => {
                 <TablePagination
                   rowsPerPageOptions={[5]}
                   colSpan={8}
-                  count={allExercises.length}
+                  count={allExercises!.length}
                   rowsPerPage={rowsPerPage}
                   page={page}
                   SelectProps={{
@@ -108,8 +128,8 @@ const ExercisesTable = () => {
           </Table>
         </TableContainer>
       )}
-      {allExercises.length === 0 && (
-        <p className="no__content">No exercises found!</p>
+      {!isLoading && allExercises!.length === 0 && (
+        <p className="no__content full__width">No exercises found!</p>
       )}
     </div>
   );
