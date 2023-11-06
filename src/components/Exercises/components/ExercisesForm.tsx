@@ -1,5 +1,4 @@
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import {
   Box,
   DialogActions,
@@ -12,7 +11,7 @@ import {
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { closeSnackbar, enqueueSnackbar } from "notistack";
-import { RootState, useAppDispatch } from "../../../app/store";
+import { useAppDispatch, useAppSelector } from "../../../app/store";
 import {
   createExercise,
   getExerciseById,
@@ -23,6 +22,7 @@ import { Exercise } from "../../../utils/interfaces";
 import { pushErrorsInArray, validations } from "../../../utils/auth.validation";
 import { Button, TextField } from "../../shared";
 import { Dialog } from "../..";
+import { selectExerciseTypes } from "../../../features/exerciseTypes/exerciseTypesSelectors";
 import "../ExercisesTable.scss";
 
 type FormProps = {
@@ -47,6 +47,7 @@ const ExercisesForm = ({
   setExerciseTypeId,
 }: FormProps) => {
   const dispatch = useAppDispatch();
+  const allExerciseTypes = useAppSelector(selectExerciseTypes);
 
   const [createExerciseData, setCreateExerciseData] = useState<Exercise>({
     exerciseType: "",
@@ -82,10 +83,6 @@ const ExercisesForm = ({
 
     getExercise();
   }, []);
-
-  const allExerciseTypes = useSelector(
-    (state: RootState) => state.exerciseType.exerciseTypes
-  );
 
   const exercise =
     actionType === "create" ? createExerciseData : editExerciseData;

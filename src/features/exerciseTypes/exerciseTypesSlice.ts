@@ -226,8 +226,20 @@ const exerciseTypeSlice = createSlice({
         state.loadingType = null;
         state.error = action.payload ?? "An error occured!";
       })
+      .addCase(filterExerciseTypes.pending, (state) => {
+        state.loadingType = EXERCISE_TYPES_FILTER;
+        state.successType = null;
+        state.error = null;
+      })
       .addCase(filterExerciseTypes.fulfilled, (state, action) => {
+        state.loadingType = null;
+        state.successType = EXERCISE_TYPES_FILTER;
         state.filteredExerciseTypes = action.payload;
+      })
+      .addCase(filterExerciseTypes.rejected, (state, action) => {
+        state.loadingType = null;
+        state.error = action.payload ?? "An error occured!";
+        state.filteredExerciseTypes = [];
       });
   },
 });

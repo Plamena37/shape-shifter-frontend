@@ -10,7 +10,7 @@ import userReducer from "../features/users/userSlice";
 import measurementReducer from "../features/measurementSlice";
 import exerciseTypeReducer from "../features/exerciseTypes/exerciseTypesSlice";
 import exerciseReducer from "../features/exerciseSlice";
-import workoutReducer from "../features/workoutSlice";
+import workoutReducer from "../features/workouts/workoutSlice";
 
 export const store = configureStore({
   reducer: {

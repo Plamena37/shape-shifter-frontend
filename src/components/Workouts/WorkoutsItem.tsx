@@ -16,7 +16,11 @@ import {
   deleteExercise,
   getExerciseById,
 } from "../../features/exerciseSlice";
-import { createWorkout, deleteWorkout } from "../../features/workoutSlice";
+import {
+  createWorkout,
+  deleteWorkout,
+  getAllWorkouts,
+} from "../../features/workouts/workoutSlice";
 import { ExerciseType, Workout } from "../../utils/interfaces";
 import { WorkoutsEditForm } from "..";
 import { Button } from "../shared";
@@ -111,8 +115,9 @@ const WorkoutsItem = ({ workout, isFilteredData }: WorkoutItemProps) => {
           btnStyle="btn__snackbar"
           size="small"
           btnVariant="text"
-          onClick={() => {
-            dispatch(deleteWorkout(workout._id!));
+          onClick={async () => {
+            await dispatch(deleteWorkout(workout._id!));
+            dispatch(getAllWorkouts());
 
             workout.exercises.map((exerciseId) =>
               dispatch(deleteExercise(exerciseId))
@@ -153,7 +158,6 @@ const WorkoutsItem = ({ workout, isFilteredData }: WorkoutItemProps) => {
       <Accordion
         sx={{
           backgroundColor: "#f5f5f5",
-          width: "90%",
           height: "100%",
           boxShadow: "none",
         }}

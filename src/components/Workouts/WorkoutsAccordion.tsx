@@ -1,13 +1,21 @@
 import { useEffect, useRef, useState } from "react";
-import { useSelector } from "react-redux";
-import { AccordionDetails, TablePagination } from "@mui/material";
-import { RootState, useAppDispatch } from "../../app/store";
-import { getAllWorkouts, searchWorkouts } from "../../features/workoutSlice";
+import { AccordionDetails, Box, TablePagination } from "@mui/material";
+import { useAppDispatch, useAppSelector } from "../../app/store";
+import {
+  getAllWorkouts,
+  searchWorkouts,
+} from "../../features/workouts/workoutSlice";
 import WorkoutsItem from "./WorkoutsItem";
-import { Button, PaginationActions, TextField } from "..";
+import { Button, LoadingSpinner, PaginationActions, TextField } from "..";
+import {
+  selectWorkouts,
+  selectWorkoutsIsLoading,
+} from "../../features/workouts/workoutsSelectors";
 
 const WorkoutsAccordion = () => {
   const dispatch = useAppDispatch();
+  const allWorkouts = useAppSelector(selectWorkouts);
+  const isLoading = useAppSelector(selectWorkoutsIsLoading);
 
   const [filteredWorkouts, setFilteredWorkouts] = useState([]);
 
@@ -19,8 +27,6 @@ const WorkoutsAccordion = () => {
   useEffect(() => {
     dispatch(getAllWorkouts());
   }, []);
-
-  const allWorkouts = useSelector((state: RootState) => state.workout.workouts);
 
   const filterWorkoutDateRef = useRef<HTMLInputElement | null>(null);
   const filterExerciseTypeNameRef = useRef<HTMLInputElement | null>(null);
@@ -38,7 +44,7 @@ const WorkoutsAccordion = () => {
       ? Math.max(
           0,
           (1 + page) * rowsPerPage -
-            (filterCheck ? filteredWorkouts.length : allWorkouts.length)
+            (filterCheck ? filteredWorkouts.length : allWorkouts!.length)
         )
       : 0;
 
@@ -46,7 +52,7 @@ const WorkoutsAccordion = () => {
     emptyRows = Math.max(
       0,
       (1 + page) * rowsPerPage -
-        (filterCheck ? filteredWorkouts.length : allWorkouts.length)
+        (filterCheck ? filteredWorkouts.length : allWorkouts!.length)
     );
   }
 
@@ -55,7 +61,7 @@ const WorkoutsAccordion = () => {
         page * rowsPerPage,
         page * rowsPerPage + rowsPerPage
       )
-    : allWorkouts.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
+    : allWorkouts!.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
 
   const handleChangeRowsPerPage = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -160,20 +166,36 @@ const WorkoutsAccordion = () => {
         </div>
       </form>
 
-      {displayedWorkouts.length > 0 &&
+      {isLoading ? (
+        <Box
+          sx={{
+            alignItems: "center",
+            display: "flex",
+            justifyContent: "center",
+            backgroundColor: "#f5f5f5",
+            padding: "7rem",
+          }}
+        >
+          <LoadingSpinner />
+        </Box>
+      ) : displayedWorkouts.length > 0 ? (
         displayedWorkouts.map((workout) => (
           <WorkoutsItem
             key={workout._id}
             workout={workout}
             isFilteredData={isFilteredData}
           />
-        ))}
+        ))
+      ) : (
+        displayedWorkouts.length === 0 && (
+          <p className="no__content full__width">No workouts found!</p>
+        )
+      )}
 
-      {displayedWorkouts.length > 0 && emptyRows > 0 && (
+      {!isLoading && displayedWorkouts.length > 0 && emptyRows > 0 && (
         <AccordionDetails
           sx={{
             backgroundColor: "#f5f5f5",
-            width: "90%",
             paddingInlineStart: "0",
             paddingInlineEnd: "0",
           }}
@@ -181,20 +203,15 @@ const WorkoutsAccordion = () => {
         ></AccordionDetails>
       )}
 
-      {displayedWorkouts.length === 0 && (
-        <p className="no__content">No workouts found!</p>
-      )}
-
       <TablePagination
         sx={{
-          width: "90%",
           paddingInlineStart: "0",
           paddingInlineEnd: "0",
           backgroundColor: "#f5f5f5",
         }}
         rowsPerPageOptions={[5]}
         component="div"
-        count={filterCheck ? filteredWorkouts.length : allWorkouts.length}
+        count={filterCheck ? filteredWorkouts.length : allWorkouts!.length}
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={(_, page) => {

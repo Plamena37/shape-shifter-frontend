@@ -25,8 +25,12 @@ const ExerciseTypesAccordion = () => {
   const dispatch = useAppDispatch();
   const allExerciseTypes = useAppSelector(selectExerciseTypes);
   const filteredExerciseTypes = useAppSelector(selectFilteredExerciseType);
-  const isLoading = useAppSelector(selectExerciseTypesIsLoading);
-  const { EXERCISE_TYPES_GET_ALL } = ExerciseTypesSliceActionTypePrefix;
+  const isExerciseTypeLoading = useAppSelector(selectExerciseTypesIsLoading);
+  const { EXERCISE_TYPES_GET_ALL, EXERCISE_TYPES_FILTER } =
+    ExerciseTypesSliceActionTypePrefix;
+  const isLoading =
+    isExerciseTypeLoading === EXERCISE_TYPES_GET_ALL ||
+    isExerciseTypeLoading === EXERCISE_TYPES_FILTER;
 
   const filterNameRef = useRef<HTMLInputElement | null>(null);
   const filterMuscleRef = useRef<HTMLInputElement | null>(null);
@@ -141,7 +145,7 @@ const ExerciseTypesAccordion = () => {
         </div>
       </form>
 
-      {isLoading === EXERCISE_TYPES_GET_ALL ? (
+      {isLoading ? (
         <Box
           sx={{
             alignItems: "center",

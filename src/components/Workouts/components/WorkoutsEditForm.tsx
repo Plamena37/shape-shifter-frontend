@@ -13,7 +13,7 @@ import { getExerciseTypeById } from "../../../features/exerciseTypes/exerciseTyp
 import {
   getAllWorkouts,
   updateWorkoutById,
-} from "../../../features/workoutSlice";
+} from "../../../features/workouts/workoutSlice";
 import { Workout } from "../../../utils/interfaces";
 import { Button, Dialog, ExercisesForm, TextField, WorkoutsForm } from "../..";
 import "../WorkoutsAccordion.scss";

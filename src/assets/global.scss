@@ -75,6 +75,10 @@ body {
   background-color: $color-grey-light-2;
   height: 43vh;
   margin-bottom: 0;
+
+  &.full__width {
+    width: 100%;
+  }
 }
 
 .action__btn {
@@ -85,7 +89,7 @@ body {
 .filter__btn {
   font-size: 0.9rem !important;
   padding: 0.4rem 1.2rem !important;
-  border: 2px solid white !important;
+  border: 2px solid $color-white !important;
   background-color: transparent !important;
   color: $color-white !important;
   transition: all 0.3s !important;

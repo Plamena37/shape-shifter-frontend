@@ -10,7 +10,7 @@ import {
   createWorkout,
   getAllWorkouts,
   updateWorkoutById,
-} from "../../../features/workoutSlice";
+} from "../../../features/workouts/workoutSlice";
 import { getExerciseTypeById } from "../../../features/exerciseTypes/exerciseTypesSlice";
 import { getExerciseById } from "../../../features/exerciseSlice";
 import { Workout } from "../../../utils/interfaces";
