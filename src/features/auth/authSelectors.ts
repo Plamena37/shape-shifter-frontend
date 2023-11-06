@@ -8,8 +8,11 @@ export const selectIsUserLoggedIn = (state: RootState) =>
 export const selectAuthHasError = (state: RootState) =>
   authSelector(state).error;
 
+export const selectAuthErrorType = (state: RootState) =>
+  authSelector(state).errorType;
+
 export const selectAuthIsLoading = (state: RootState) =>
   authSelector(state).loadingType;
 
-export const selectAuthIsSuccess = (state: RootState) =>
+export const selectAuthSuccessType = (state: RootState) =>
   authSelector(state).successType;

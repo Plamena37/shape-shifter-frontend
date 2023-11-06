@@ -15,6 +15,7 @@ export type InitialState = {
 
 export type AuthInitialState = InitialState & {
   isLoggedIn: boolean;
+  errorType: string | null;
 };
 
 export type ProfileInitialState = InitialState & {

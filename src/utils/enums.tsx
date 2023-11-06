@@ -100,12 +100,14 @@ export enum SnackbarSuccessMessages {
 }
 
 export enum SnackbarErrorMessages {
+  USERS_LOGIN = "Authentication failed",
   USERS_CREATE = "User couldn't be created",
   USERS_UPDATE = "Profile couldn't be updated",
   USERS_DELETE = "User couldn't be deleted",
   USERS_GET_ALL = "Users couldn't be displayed",
   USERS_GET_ONE = "User couldn't be displayed",
   USERS_UPDATE_ROLE = "Role couldn't be changed",
+  USERS_ALREADY_EXISTS = "User already exists",
 
   MEASUREMENTS_GET_ALL = "Measurements couldn't be displayed",
   MEASUREMENTS_GET_ONE = "Measurement details couldn't be displayed",

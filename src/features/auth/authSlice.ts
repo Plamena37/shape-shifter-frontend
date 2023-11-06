@@ -14,6 +14,7 @@ type errMessage = {
 
 const initialState: AuthInitialState = {
   error: null,
+  errorType: null,
   loadingType: null,
   successType: null,
   isLoggedIn: Boolean(localStorage.getItem("token")),
@@ -69,6 +70,9 @@ const authSlice = createSlice({
     clearError: (state) => {
       state.error = null;
     },
+    clearErrorType: (state) => {
+      state.errorType = null;
+    },
   },
   extraReducers(builder) {
     builder
@@ -76,25 +80,42 @@ const authSlice = createSlice({
         state.isLoggedIn = false;
         state.loadingType = USERS_LOGIN;
         state.error = null;
-        state.successType = null;
       })
       .addCase(login.fulfilled, (state, action) => {
         const token = action.payload.token;
         localStorage.setItem("token", token);
         state.isLoggedIn = true;
         state.loadingType = null;
-        state.successType = USERS_LOGIN;
       })
       .addCase(login.rejected, (state, action) => {
         state.loadingType = null;
         state.successType = null;
         state.isLoggedIn = false;
         state.error = action.payload ?? action?.error;
+        state.errorType = USERS_LOGIN;
+      })
+      .addCase(signup.pending, (state) => {
+        state.loadingType = USERS_CREATE;
+        state.error = null;
+      })
+      .addCase(signup.fulfilled, (state) => {
+        state.successType = USERS_CREATE;
+        state.loadingType = null;
+      })
+      .addCase(signup.rejected, (state, action) => {
+        state.loadingType = null;
+        state.errorType = USERS_CREATE;
+        state.error = action.payload ?? action?.error;
       });
   },
 });
 
-export const { logout, checkIsLoggedIn, clearSuccessType, clearError } =
-  authSlice.actions;
+export const {
+  logout,
+  checkIsLoggedIn,
+  clearSuccessType,
+  clearError,
+  clearErrorType,
+} = authSlice.actions;
 
 export default authSlice.reducer;
