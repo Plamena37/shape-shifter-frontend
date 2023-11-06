@@ -55,11 +55,6 @@ const Login = () => {
     try {
       await dispatch(login(formData)).unwrap();
 
-      enqueueSnackbar("Success!", {
-        preventDuplicate: true,
-        variant: "success",
-      });
-
       navigate(ROUTES.INDEX);
     } catch (error: Error | any) {
       enqueueSnackbar(`${error.message}`, {
