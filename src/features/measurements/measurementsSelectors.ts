@@ -11,8 +11,11 @@ export const selectMeasurement = (state: RootState) =>
 export const selectMeasurementsIsLoading = (state: RootState) =>
   measurementsSelector(state).loadingType;
 
-export const selectMeasurementsHasSuccess = (state: RootState) =>
+export const selectMeasurementsSuccessType = (state: RootState) =>
   measurementsSelector(state).successType;
+
+export const selectMeasurementsErrorType = (state: RootState) =>
+  measurementsSelector(state).errorType;
 
 export const selectMeasurementsError = (state: RootState) =>
   measurementsSelector(state).error;

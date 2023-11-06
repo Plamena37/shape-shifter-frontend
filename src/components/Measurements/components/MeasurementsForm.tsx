@@ -148,11 +148,6 @@ const MeasurementsForm = ({
         ).unwrap();
       }
 
-      enqueueSnackbar("Success!", {
-        preventDuplicate: true,
-        variant: "success",
-      });
-
       toggleDialog();
       dispatch(getAllMeasurements());
     } catch (error: Error | any) {

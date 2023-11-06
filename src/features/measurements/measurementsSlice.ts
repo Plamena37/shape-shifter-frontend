@@ -20,6 +20,7 @@ type errMessage = {
 
 const initialState: MeasurementsInitialState = {
   error: null,
+  errorType: null,
   loadingType: null,
   successType: null,
   measurements: [],
@@ -132,6 +133,9 @@ const measurementSlice = createSlice({
     clearSuccessType: (state) => {
       state.successType = null;
     },
+    clearErrorType: (state) => {
+      state.errorType = null;
+    },
   },
   extraReducers(builder) {
     builder
@@ -147,21 +151,21 @@ const measurementSlice = createSlice({
       .addCase(createMeasurement.rejected, (state, action) => {
         state.loadingType = null;
         state.error = action.payload ?? "An error occured!";
+        state.errorType = MEASUREMENTS_CREATE;
       })
       .addCase(getAllMeasurements.pending, (state) => {
         state.loadingType = MEASUREMENTS_GET_ALL;
-        state.successType = null;
         state.error = null;
       })
       .addCase(getAllMeasurements.fulfilled, (state, action) => {
         state.loadingType = null;
-        state.successType = MEASUREMENTS_GET_ALL;
         state.measurements = action.payload;
       })
       .addCase(getAllMeasurements.rejected, (state, action) => {
         state.loadingType = null;
         state.measurements = [];
         state.error = action.payload ?? "An error occured!";
+        state.errorType = MEASUREMENTS_GET_ALL;
       })
       .addCase(getMeasurementById.pending, (state) => {
         state.loadingType = MEASUREMENTS_GET_ONE;
@@ -177,6 +181,7 @@ const measurementSlice = createSlice({
         state.measurement = null;
         state.loadingType = null;
         state.error = action.payload ?? "An error occured!";
+        state.errorType = MEASUREMENTS_GET_ONE;
       })
       .addCase(updateMeasurementById.pending, (state) => {
         state.loadingType = MEASUREMENTS_UPDATE;
@@ -192,6 +197,7 @@ const measurementSlice = createSlice({
         state.loadingType = null;
         state.error = action.payload ?? "An error occured!";
         state.measurement = null;
+        state.errorType = MEASUREMENTS_UPDATE;
       })
       .addCase(deleteMeasurement.pending, (state) => {
         state.loadingType = MEASUREMENTS_DELETE;
@@ -205,9 +211,11 @@ const measurementSlice = createSlice({
       .addCase(deleteMeasurement.rejected, (state, action) => {
         state.loadingType = null;
         state.error = action.payload ?? "An error occured!";
+        state.errorType = MEASUREMENTS_DELETE;
       });
   },
 });
 
-export const { clearSuccessType, clearError } = measurementSlice.actions;
+export const { clearSuccessType, clearError, clearErrorType } =
+  measurementSlice.actions;
 export default measurementSlice.reducer;

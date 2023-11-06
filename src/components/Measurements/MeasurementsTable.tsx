@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import {
+  IconButton,
   Paper,
   Table,
   TableBody,
@@ -10,17 +11,66 @@ import {
   TablePagination,
   TableRow,
 } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
 import { v4 as uuid } from "uuid";
 import { useAppDispatch, useAppSelector } from "../../app/store";
-import { getAllMeasurements } from "../../features/measurements/measurementsSlice";
+import {
+  clearErrorType,
+  clearSuccessType,
+  getAllMeasurements,
+} from "../../features/measurements/measurementsSlice";
 import MeasurementsItem from "./MeasurementsItem";
 import { LoadingSpinner, PaginationActions } from "..";
 import {
   selectMeasurements,
+  selectMeasurementsSuccessType,
   selectMeasurementsIsLoading,
+  selectMeasurementsErrorType,
 } from "../../features/measurements/measurementsSelectors";
 import { calcEmptyRows } from "../../utils/functions";
+import {
+  MeasurementsSliceActionTypePrefix,
+  SnackbarErrorMessages,
+  SnackbarSuccessMessages,
+} from "../../utils/enums";
+import { closeSnackbar, enqueueSnackbar } from "notistack";
 import "./MeasurementsTable.scss";
+
+const {
+  MEASUREMENTS_GET_ALL,
+  MEASUREMENTS_GET_ONE,
+  MEASUREMENTS_CREATE,
+  MEASUREMENTS_UPDATE,
+  MEASUREMENTS_DELETE,
+} = MeasurementsSliceActionTypePrefix;
+
+const getSuccessMessage = (successType: string) => {
+  switch (successType) {
+    case MEASUREMENTS_CREATE:
+      return SnackbarSuccessMessages.MEASUREMENTS_CREATE;
+    case MEASUREMENTS_UPDATE:
+      return SnackbarSuccessMessages.MEASUREMENTS_EDIT;
+    case MEASUREMENTS_DELETE:
+      return SnackbarSuccessMessages.MEASUREMENTS_DELETE;
+  }
+};
+
+const getErrorMessage = (errorType: string) => {
+  switch (errorType) {
+    case MEASUREMENTS_GET_ALL:
+      return SnackbarErrorMessages.MEASUREMENTS_GET_ALL;
+    case MEASUREMENTS_GET_ONE:
+      return SnackbarErrorMessages.MEASUREMENTS_GET_ONE;
+    case MEASUREMENTS_CREATE:
+      return SnackbarErrorMessages.MEASUREMENTS_CREATE;
+    case MEASUREMENTS_UPDATE:
+      return SnackbarErrorMessages.MEASUREMENTS_UPDATE;
+    case MEASUREMENTS_DELETE:
+      return SnackbarErrorMessages.MEASUREMENTS_DELETE;
+    default:
+      return "Error";
+  }
+};
 
 const measurementCellData: {
   title: string;
@@ -40,6 +90,8 @@ const MeasurementsTable = () => {
   const dispatch = useAppDispatch();
   const allMeasurements = useAppSelector(selectMeasurements);
   const isLoading = useAppSelector(selectMeasurementsIsLoading);
+  const errorType = useAppSelector(selectMeasurementsErrorType);
+  const successType = useAppSelector(selectMeasurementsSuccessType);
 
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
@@ -47,6 +99,32 @@ const MeasurementsTable = () => {
   useEffect(() => {
     dispatch(getAllMeasurements());
   }, []);
+
+  useEffect(() => {
+    if (successType) {
+      enqueueSnackbar(getSuccessMessage(successType), {
+        preventDuplicate: true,
+        variant: "success",
+      });
+      dispatch(clearSuccessType());
+    }
+  }, [successType]);
+
+  useEffect(() => {
+    if (errorType) {
+      enqueueSnackbar(getErrorMessage(errorType), {
+        preventDuplicate: true,
+        variant: "error",
+        autoHideDuration: 3000,
+        action: (key) => (
+          <IconButton color="inherit" onClick={() => closeSnackbar(key)}>
+            <CloseIcon />
+          </IconButton>
+        ),
+      });
+      dispatch(clearErrorType());
+    }
+  }, [errorType]);
 
   const emptyRows = calcEmptyRows(page, rowsPerPage, allMeasurements!.length);
 

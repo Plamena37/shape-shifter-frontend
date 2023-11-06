@@ -30,6 +30,7 @@ export type UsersInitialState = InitialState & {
 export type MeasurementsInitialState = InitialState & {
   measurements: Measurement[] | null;
   measurement: Measurement | null;
+  errorType: string | null;
 };
 
 export type ExerciseTypesInitialState = InitialState & {
