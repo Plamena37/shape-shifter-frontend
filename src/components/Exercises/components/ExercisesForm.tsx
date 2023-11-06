@@ -158,23 +158,20 @@ const ExercisesForm = ({
         ).unwrap();
       }
 
-      enqueueSnackbar("Success!", {
-        preventDuplicate: true,
-        variant: "success",
-      });
-
       toggleDialog();
     } catch (error: Error | any) {
-      enqueueSnackbar(`${error.message}`, {
-        preventDuplicate: true,
-        variant: "error",
-        autoHideDuration: 10000,
-        action: (key) => (
-          <IconButton color="inherit" onClick={() => closeSnackbar(key)}>
-            <CloseIcon />
-          </IconButton>
-        ),
-      });
+      if (!error.message.includes("Cast to Number")) {
+        enqueueSnackbar(`${error.message}`, {
+          preventDuplicate: true,
+          variant: "error",
+          autoHideDuration: 3000,
+          action: (key) => (
+            <IconButton color="inherit" onClick={() => closeSnackbar(key)}>
+              <CloseIcon />
+            </IconButton>
+          ),
+        });
+      }
     }
   };
 

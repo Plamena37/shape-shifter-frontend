@@ -43,6 +43,7 @@ export type ExerciseTypesInitialState = InitialState & {
 export type ExercisesInitialState = InitialState & {
   exercises: Exercise[] | null;
   exercise: Exercise | null;
+  errorType: string | null;
 };
 
 export type WorkoutsInitialState = InitialState & {

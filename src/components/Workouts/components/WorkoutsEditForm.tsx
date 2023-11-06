@@ -4,8 +4,9 @@ import CloseIcon from "@mui/icons-material/Close";
 import { SnackbarKey, closeSnackbar, enqueueSnackbar } from "notistack";
 import { v4 as uuid } from "uuid";
 import { format } from "date-fns";
-import { useAppDispatch } from "../../../app/store";
+import { useAppDispatch, useAppSelector } from "../../../app/store";
 import {
+  clearErrorType,
   deleteExercise,
   getExerciseById,
 } from "../../../features/exercises/exercisesSlice";
@@ -16,7 +17,25 @@ import {
 } from "../../../features/workouts/workoutSlice";
 import { Workout } from "../../../utils/interfaces";
 import { Button, Dialog, ExercisesForm, TextField, WorkoutsForm } from "../..";
+import {
+  ExercisesSliceActionTypePrefix,
+  SnackbarErrorMessages,
+} from "../../../utils/enums";
+import { selectExercisesErrorType } from "../../../features/exercises/exercisesSelectors";
 import "../WorkoutsAccordion.scss";
+
+const { EXERCISES_UPDATE, EXERCISES_DELETE } = ExercisesSliceActionTypePrefix;
+
+const getErrorMessage = (errorType: string) => {
+  switch (errorType) {
+    case EXERCISES_UPDATE:
+      return SnackbarErrorMessages.EXERCISES_UPDATE;
+    case EXERCISES_DELETE:
+      return SnackbarErrorMessages.EXERCISES_DELETE;
+    default:
+      "Error";
+  }
+};
 
 type FormProps = {
   open: boolean;
@@ -37,6 +56,7 @@ const WorkoutsEditForm = ({
   workout,
 }: FormProps) => {
   const dispatch = useAppDispatch();
+  const errorType = useAppSelector(selectExercisesErrorType);
 
   const [editWorkout, setEditWorkout] = useState({
     ...workout,
@@ -53,6 +73,22 @@ const WorkoutsEditForm = ({
   const [exerciseId, setExerciseId] = useState("");
 
   const today = format(new Date(), "yyyy-MM-dd");
+
+  useEffect(() => {
+    if (errorType) {
+      enqueueSnackbar(getErrorMessage(errorType), {
+        preventDuplicate: true,
+        variant: "error",
+        autoHideDuration: 3000,
+        action: (key) => (
+          <IconButton color="inherit" onClick={() => closeSnackbar(key)}>
+            <CloseIcon />
+          </IconButton>
+        ),
+      });
+      dispatch(clearErrorType());
+    }
+  }, [errorType]);
 
   useEffect(() => {
     const fetchExerciseTypes = async () => {

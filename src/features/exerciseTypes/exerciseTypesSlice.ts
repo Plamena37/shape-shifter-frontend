@@ -192,12 +192,10 @@ const exerciseTypeSlice = createSlice({
       })
       .addCase(getExerciseTypeById.pending, (state) => {
         state.loadingType = EXERCISE_TYPES_GET_ONE;
-        state.successType = null;
         state.error = null;
       })
       .addCase(getExerciseTypeById.fulfilled, (state, action) => {
         state.loadingType = null;
-        state.successType = EXERCISE_TYPES_GET_ONE;
         state.exerciseType = action.payload;
       })
       .addCase(getExerciseTypeById.rejected, (state, action) => {

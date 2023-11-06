@@ -119,4 +119,9 @@ export enum SnackbarErrorMessages {
   EXERCISE_TYPES_UPDATE = "Type couldn't be updated",
   EXERCISE_TYPES_DELETE = "Type couldn't be deleted",
   EXERCISE_TYPES_FILTER = "Types couldn't be filtered",
+
+  EXERCISES_GET_ALL = "Exercises couldn't be displayed",
+  EXERCISES_GET_ONE = "Exercise couldn't be displayed",
+  EXERCISES_UPDATE = "Exercise couldn't be updated",
+  EXERCISES_DELETE = "Exercise couldn't be deleted",
 }

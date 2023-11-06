@@ -20,6 +20,7 @@ type errMessage = {
 
 const initialState: ExercisesInitialState = {
   error: null,
+  errorType: null,
   loadingType: null,
   successType: null,
   exercises: [],
@@ -127,17 +128,18 @@ const exerciseSlice = createSlice({
     clearSuccessType: (state) => {
       state.successType = null;
     },
+    clearErrorType: (state) => {
+      state.errorType = null;
+    },
   },
   extraReducers(builder) {
     builder
       .addCase(createExercise.pending, (state) => {
         state.loadingType = EXERCISES_CREATE;
-        state.successType = null;
         state.error = null;
       })
       .addCase(createExercise.fulfilled, (state) => {
         state.loadingType = null;
-        state.successType = EXERCISES_CREATE;
       })
       .addCase(createExercise.rejected, (state, action) => {
         state.loadingType = null;
@@ -145,33 +147,31 @@ const exerciseSlice = createSlice({
       })
       .addCase(getAllExercises.pending, (state) => {
         state.loadingType = EXERCISES_GET_ALL;
-        state.successType = null;
         state.error = null;
       })
       .addCase(getAllExercises.fulfilled, (state, action) => {
         state.loadingType = null;
-        state.successType = EXERCISES_GET_ALL;
         state.exercises = action.payload;
       })
       .addCase(getAllExercises.rejected, (state, action) => {
         state.loadingType = null;
         state.exercises = [];
         state.error = action.payload ?? "An error occured!";
+        state.errorType = EXERCISES_GET_ALL;
       })
       .addCase(getExerciseById.pending, (state) => {
         state.loadingType = EXERCISES_GET_ONE;
-        state.successType = null;
         state.error = null;
       })
       .addCase(getExerciseById.fulfilled, (state, action) => {
         state.loadingType = null;
-        state.successType = EXERCISES_GET_ONE;
         state.exercise = action.payload;
       })
       .addCase(getExerciseById.rejected, (state, action) => {
         state.exercise = null;
         state.loadingType = null;
         state.error = action.payload ?? "An error occured!";
+        state.errorType = EXERCISES_GET_ONE;
       })
       .addCase(updateExerciseById.pending, (state) => {
         state.loadingType = EXERCISES_UPDATE;
@@ -185,6 +185,7 @@ const exerciseSlice = createSlice({
       .addCase(updateExerciseById.rejected, (state, action) => {
         state.loadingType = null;
         state.error = action.payload ?? "An error occured!";
+        state.errorType = EXERCISES_UPDATE;
       })
       .addCase(deleteExercise.pending, (state) => {
         state.loadingType = EXERCISES_DELETE;
@@ -198,9 +199,11 @@ const exerciseSlice = createSlice({
       .addCase(deleteExercise.rejected, (state, action) => {
         state.loadingType = null;
         state.error = action.payload ?? "An error occured!";
+        state.errorType = EXERCISES_DELETE;
       });
   },
 });
 
-export const { clearSuccessType, clearError } = exerciseSlice.actions;
+export const { clearSuccessType, clearError, clearErrorType } =
+  exerciseSlice.actions;
 export default exerciseSlice.reducer;
