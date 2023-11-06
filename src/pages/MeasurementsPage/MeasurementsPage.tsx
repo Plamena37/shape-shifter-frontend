@@ -1,21 +1,75 @@
 import { useEffect, useState } from "react";
+import { IconButton } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
+import { closeSnackbar, enqueueSnackbar } from "notistack";
+import { format } from "date-fns";
 import {
   Button,
   MeasurementsForm,
   MeasurementsTable,
   TextField,
 } from "../../components";
-import { format } from "date-fns";
 import { useAppDispatch, useAppSelector } from "../../app/store";
-import { getAllMeasurements } from "../../features/measurements/measurementsSlice";
+import {
+  clearErrorType,
+  clearSuccessType,
+  getAllMeasurements,
+} from "../../features/measurements/measurementsSlice";
+import {
+  selectMeasurements,
+  selectMeasurementsErrorType,
+  selectMeasurementsSuccessType,
+} from "../../features/measurements/measurementsSelectors";
 import MeasurementsChart from "../../components/Measurements/components/MeasurementsChart";
 import "../../components/Measurements/MeasurementsTable.scss";
-import { selectMeasurements } from "../../features/measurements/measurementsSelectors";
+import {
+  MeasurementsSliceActionTypePrefix,
+  SnackbarErrorMessages,
+  SnackbarSuccessMessages,
+} from "../../utils/enums";
 import "../../assets/global.scss";
+
+const {
+  MEASUREMENTS_GET_ALL,
+  MEASUREMENTS_GET_ONE,
+  MEASUREMENTS_CREATE,
+  MEASUREMENTS_UPDATE,
+  MEASUREMENTS_DELETE,
+} = MeasurementsSliceActionTypePrefix;
+
+const getSuccessMessage = (successType: string) => {
+  switch (successType) {
+    case MEASUREMENTS_CREATE:
+      return SnackbarSuccessMessages.MEASUREMENTS_CREATE;
+    case MEASUREMENTS_UPDATE:
+      return SnackbarSuccessMessages.MEASUREMENTS_EDIT;
+    case MEASUREMENTS_DELETE:
+      return SnackbarSuccessMessages.MEASUREMENTS_DELETE;
+  }
+};
+
+const getErrorMessage = (errorType: string) => {
+  switch (errorType) {
+    case MEASUREMENTS_GET_ALL:
+      return SnackbarErrorMessages.MEASUREMENTS_GET_ALL;
+    case MEASUREMENTS_GET_ONE:
+      return SnackbarErrorMessages.MEASUREMENTS_GET_ONE;
+    case MEASUREMENTS_CREATE:
+      return SnackbarErrorMessages.MEASUREMENTS_CREATE;
+    case MEASUREMENTS_UPDATE:
+      return SnackbarErrorMessages.MEASUREMENTS_UPDATE;
+    case MEASUREMENTS_DELETE:
+      return SnackbarErrorMessages.MEASUREMENTS_DELETE;
+    default:
+      return "Error";
+  }
+};
 
 const MeasurementsPage = () => {
   const dispatch = useAppDispatch();
   const measurements = useAppSelector(selectMeasurements);
+  const errorType = useAppSelector(selectMeasurementsErrorType);
+  const successType = useAppSelector(selectMeasurementsSuccessType);
 
   const [open, setOpen] = useState(false);
   const [date, setDate] = useState({
@@ -28,6 +82,32 @@ const MeasurementsPage = () => {
   useEffect(() => {
     dispatch(getAllMeasurements());
   }, []);
+
+  useEffect(() => {
+    if (successType) {
+      enqueueSnackbar(getSuccessMessage(successType), {
+        preventDuplicate: true,
+        variant: "success",
+      });
+      dispatch(clearSuccessType());
+    }
+  }, [successType]);
+
+  useEffect(() => {
+    if (errorType) {
+      enqueueSnackbar(getErrorMessage(errorType), {
+        preventDuplicate: true,
+        variant: "error",
+        autoHideDuration: 3000,
+        action: (key) => (
+          <IconButton color="inherit" onClick={() => closeSnackbar(key)}>
+            <CloseIcon />
+          </IconButton>
+        ),
+      });
+      dispatch(clearErrorType());
+    }
+  }, [errorType]);
 
   useEffect(() => {
     measurements!.length > 0 &&

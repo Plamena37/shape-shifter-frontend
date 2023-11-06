@@ -160,11 +160,6 @@ const ExerciseTypesForm = ({
         ).unwrap();
       }
 
-      enqueueSnackbar("Success!", {
-        preventDuplicate: true,
-        variant: "success",
-      });
-
       toggleDialog();
       dispatch(getAllExerciseTypes());
     } catch (error: Error | any) {
@@ -196,7 +191,7 @@ const ExerciseTypesForm = ({
         />
 
         <FormControl fullWidth>
-          <InputLabel id="muscleGroupsLabel">Muscle groups</InputLabel>
+          <InputLabel id="muscleGroupsLabel">Muscle</InputLabel>
           <Select
             labelId="muscleGroupsLabel"
             id="muscleGroups"

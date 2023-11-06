@@ -37,6 +37,7 @@ export type ExerciseTypesInitialState = InitialState & {
   exerciseTypes: ExerciseType[] | null;
   exerciseType: ExerciseType | null;
   filteredExerciseTypes: ExerciseType[];
+  errorType: string | null;
 };
 
 export type ExercisesInitialState = InitialState & {
