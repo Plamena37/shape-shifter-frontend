@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "../../assets/img/logo.png";
 import { ROUTES } from "../../utils/enums";
 import { useAppDispatch, useAppSelector } from "../../app/store";
@@ -33,33 +33,75 @@ const Navigation = () => {
   return (
     <div className="nav">
       <div className="nav__logo">
-        <Link to={ROUTES.INDEX}>
+        <NavLink
+          className={({ isActive }) => (isActive ? "activeLink" : "")}
+          to={ROUTES.INDEX}
+        >
           <img src={logo} alt="Logo" className="nav__logo__img" />
-        </Link>
+        </NavLink>
       </div>
       <ul className="nav__list">
         <li className="nav__list__link">
-          <Link to={ROUTES.INDEX}>Home</Link>
+          <NavLink
+            to={ROUTES.INDEX}
+            className={({ isActive, isPending }) =>
+              isPending ? "pending" : isActive ? "activeLink" : ""
+            }
+          >
+            Home
+          </NavLink>
         </li>
         {isUserAdmin && (
           <li className="nav__list__link">
-            <Link to={ROUTES.DASHBOARD}>Dashboard</Link>
+            <NavLink
+              to={ROUTES.DASHBOARD}
+              className={({ isActive, isPending }) =>
+                isPending ? "pending" : isActive ? "activeLink" : ""
+              }
+            >
+              Dashboard
+            </NavLink>
           </li>
         )}
         <li className="nav__list__link">
-          <Link to={ROUTES.MEASUREMENTS}>Measurements</Link>
+          <NavLink
+            to={ROUTES.MEASUREMENTS}
+            className={({ isActive }) => (isActive ? "activeLink" : "")}
+          >
+            Measurements
+          </NavLink>
         </li>
         <li className="nav__list__link">
-          <Link to={ROUTES.EXERCISE_TYPES}>Exercise types</Link>
+          <NavLink
+            to={ROUTES.EXERCISE_TYPES}
+            className={({ isActive }) => (isActive ? "activeLink" : "")}
+          >
+            Exercise types
+          </NavLink>
         </li>
         <li className="nav__list__link">
-          <Link to={ROUTES.EXERCISES}>Exercises</Link>
+          <NavLink
+            to={ROUTES.EXERCISES}
+            className={({ isActive }) => (isActive ? "activeLink" : "")}
+          >
+            Exercises
+          </NavLink>
         </li>
         <li className="nav__list__link">
-          <Link to={ROUTES.WORKOUTS}>Workouts</Link>
+          <NavLink
+            to={ROUTES.WORKOUTS}
+            className={({ isActive }) => (isActive ? "activeLink" : "")}
+          >
+            Workouts
+          </NavLink>
         </li>
         <li className="nav__list__link">
-          <Link to={ROUTES.PROFILE}>Profile</Link>
+          <NavLink
+            to={ROUTES.PROFILE}
+            className={({ isActive }) => (isActive ? "activeLink" : "")}
+          >
+            Profile
+          </NavLink>
         </li>
         <li className="nav__list__link">{authLink}</li>
       </ul>

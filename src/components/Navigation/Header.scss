@@ -38,6 +38,19 @@
           transform: translateY(-0.1rem) scale(1.01);
         }
       }
+
+      .activeLink {
+        &:link,
+        &:visited {
+          color: $color-primary-dark-2;
+          border-bottom: inset 1px currentColor;
+        }
+        &:hover,
+        &:active {
+          color: $color-primary-dark-2;
+          border-bottom: inset 1px currentColor;
+        }
+      }
     }
   }
 }
