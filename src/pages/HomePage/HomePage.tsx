@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../utils/enums";
-import measurementsImg from "../../assets/img/measurements.png";
-import exerciseTypesImg from "../../assets/img/exerciseType.png";
-import exercisesImg from "../../assets/img/exercise.png";
-import chartImg from "../../assets/img/chart.png";
-import workoutImg from "../../assets/img/workout.png";
+import measurementsImg from "../../assets/img/homeImages/measurement.jpg";
+import exerciseTypesImg from "../../assets/img/homeImages/exerciseType.jpg";
+import exercisesImg from "../../assets/img/homeImages/exercise.jpg";
+import chartImg from "../../assets/img/homeImages/chart.jpg";
+import workoutImg from "../../assets/img/homeImages/workout.jpg";
 import "./HomePage.scss";
 
 const HomePage = () => {

@@ -1,0 +1,29 @@
+@import "../../assets/global.scss";
+
+.footer {
+  background-color: var(--color-white);
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5rem;
+  box-shadow: 1px 2px 20px 1px #5d5d5d;
+
+  div a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    &:link,
+    &:visited {
+      text-decoration: none;
+      color: $color-grey-dark-3;
+      transition: all 0.3s;
+    }
+
+    &:hover,
+    &:active {
+      color: $color-primary;
+    }
+  }
+}
