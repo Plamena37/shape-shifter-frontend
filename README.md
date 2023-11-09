@@ -44,6 +44,7 @@ Front-end: React + Vite, React Router, Typescript, Redux Toolkit, SCSS, React-ch
 
 
 #### 🔗 Here are some previews 📸:
+![Login](https://i.imgur.com/PwrDcBh.png)
 
 ![Home](https://i.imgur.com/LYehi1u.png)
 
