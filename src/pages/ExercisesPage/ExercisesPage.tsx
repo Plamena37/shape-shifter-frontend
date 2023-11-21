@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Box, IconButton } from "@mui/material";
+import { IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { closeSnackbar, enqueueSnackbar } from "notistack";
 import { ExercisesTable } from "../../components";
