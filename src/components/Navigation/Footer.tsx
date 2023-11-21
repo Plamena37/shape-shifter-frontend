@@ -5,7 +5,7 @@ import "./Footer.scss";
 
 const Footer = () => {
   return (
-    <section className="footer">
+    <div className="footer">
       <div>
         <Link
           href="https://www.linkedin.com/in/plamena-ivanova-3b6782239/"
@@ -38,7 +38,7 @@ const Footer = () => {
           Project Server
         </Link>
       </div>
-    </section>
+    </div>
   );
 };
 

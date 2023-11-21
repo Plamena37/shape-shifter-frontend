@@ -36,12 +36,12 @@ const ExercisesPage = () => {
   }, [errorType]);
 
   return (
-    <Box className="exerciseContainer">
+    <div className="exerciseContainer">
       <nav className="navBox">
         <h2>Exercises</h2>
       </nav>
       <ExercisesTable />
-    </Box>
+    </div>
   );
 };
 

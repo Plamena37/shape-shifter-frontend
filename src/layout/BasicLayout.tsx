@@ -20,13 +20,13 @@ const BasicLayout = () => {
   }, [isLoggedIn]);
 
   return (
-    <>
+    <div className="base">
       {isLoggedIn && <Header />}
       <div className="basic__layout">
         <Outlet />
       </div>
       {isLoggedIn && <Footer />}
-    </>
+    </div>
   );
 };
 
