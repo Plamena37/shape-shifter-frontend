@@ -29,7 +29,7 @@ export const themeOptions: ThemeOptions = {
   breakpoints: {
     values: {
       mobile: 0,
-      tablet: 570,
+      tablet: 700,
       laptop: 770,
       desktop: 1024,
       largeScreen: 1200,
