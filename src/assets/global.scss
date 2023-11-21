@@ -34,6 +34,13 @@ body {
   box-sizing: border-box;
 }
 
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+}
+
 .basic__layout {
   background: linear-gradient(
       to bottom,

@@ -12,11 +12,7 @@ const NotSupportedScreenSizePage = () => {
         sx={{
           fontSize: {
             tablet: "1.2rem",
-            mobile: "1rem",
-          },
-          paddingInline: {
-            tablet: "0.8rem",
-            mobile: "1rem",
+            mobile: "1.1rem",
           },
         }}
         className="heading"
