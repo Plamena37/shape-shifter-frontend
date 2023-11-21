@@ -73,7 +73,6 @@ const ExerciseTypeItem = ({ exerciseType }: ExerciseTypeItemProps) => {
       <Accordion
         sx={{
           backgroundColor: "#f5f5f5",
-          height: "100%",
           boxShadow: "none",
         }}
       >

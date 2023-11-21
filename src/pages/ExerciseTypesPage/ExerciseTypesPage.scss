@@ -1,0 +1,28 @@
+.exerciseTypeContainer {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  height: 100vh;
+
+  @media screen and (max-width: 1250px) {
+    grid-template-columns: 0.7fr 1.3fr;
+    gap: 1.5rem;
+  }
+
+  @media screen and (max-width: 1060px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1.5rem;
+
+    .navBox {
+      width: 100%;
+      font-size: 1.1rem;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+}

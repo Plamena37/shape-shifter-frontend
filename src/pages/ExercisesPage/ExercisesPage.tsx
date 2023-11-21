@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { IconButton } from "@mui/material";
+import { Box, IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { closeSnackbar, enqueueSnackbar } from "notistack";
 import { ExercisesTable } from "../../components";
@@ -11,6 +11,7 @@ import {
   SnackbarErrorMessages,
 } from "../../utils/enums";
 import "../../assets/global.scss";
+import "./ExercisePage.scss";
 
 const { EXERCISES_GET_ALL } = ExercisesSliceActionTypePrefix;
 
@@ -35,12 +36,12 @@ const ExercisesPage = () => {
   }, [errorType]);
 
   return (
-    <section className="wrapper overlay">
-      <nav className="wrapper__nav">
+    <Box className="exerciseContainer">
+      <nav className="navBox">
         <h2>Exercises</h2>
       </nav>
       <ExercisesTable />
-    </section>
+    </Box>
   );
 };
 

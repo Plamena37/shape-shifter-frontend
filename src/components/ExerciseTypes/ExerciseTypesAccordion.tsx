@@ -13,13 +13,13 @@ import {
   PaginationActions,
   TextField,
 } from "..";
-import "./ExerciseTypesAccordion.scss";
 import {
   selectExerciseTypes,
   selectExerciseTypesIsLoading,
   selectFilteredExerciseType,
 } from "../../features/exerciseTypes/exerciseTypesSelectors";
 import { ExerciseTypesSliceActionTypePrefix } from "../../utils/enums";
+import "./ExerciseTypesAccordion.scss";
 
 const ExerciseTypesAccordion = () => {
   const dispatch = useAppDispatch();
@@ -112,7 +112,7 @@ const ExerciseTypesAccordion = () => {
   };
 
   return (
-    <div>
+    <div className="exerciseTypeAccordion">
       <form onSubmit={handleSubmit} className="filter form">
         <div className="filter__wrapper">
           <TextField

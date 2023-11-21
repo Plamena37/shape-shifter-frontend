@@ -1,10 +1,22 @@
 @import "../../assets/global.scss";
 
-.filter {
-  margin-bottom: 1rem;
+.exerciseTypeAccordion {
+  width: 85%;
+  height: auto;
 
-  &__wrapper {
-    display: flex;
-    gap: 1.5rem;
+  .filter {
+    margin-bottom: 1rem;
+    width: 100%;
+
+    &__wrapper {
+      display: flex;
+      gap: 1.5rem;
+    }
+  }
+
+  @media screen and (max-width: 1060px) {
+    .filter {
+      align-items: center;
+    }
   }
 }

@@ -1,9 +1,17 @@
 @import "../../assets/global.scss";
 
 .exercises__container {
-  width: 50%;
+  width: 80%;
 
   & .no__content {
     width: 90%;
+  }
+
+  @media screen and (max-width: 1450px) {
+    width: 90%;
+  }
+
+  @media screen and (max-width: 790px) {
+    width: 95%;
   }
 }

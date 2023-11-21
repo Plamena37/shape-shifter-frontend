@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { IconButton } from "@mui/material";
+import { Box, IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { closeSnackbar, enqueueSnackbar } from "notistack";
 import {
@@ -23,6 +23,7 @@ import {
   SnackbarSuccessMessages,
 } from "../../utils/enums";
 import "../../assets/global.scss";
+import "./ExerciseTypesPage.scss";
 
 const {
   EXERCISE_TYPES_GET_ALL,
@@ -103,8 +104,8 @@ const ExerciseTypesPage = () => {
 
   return (
     <>
-      <section className="wrapper overlay">
-        <nav className="wrapper__nav">
+      <Box className="exerciseTypeContainer">
+        <nav className="navBox">
           <h2>Exercise types</h2>
           {isUserAdmin && (
             <Button
@@ -117,7 +118,7 @@ const ExerciseTypesPage = () => {
           )}
         </nav>
         <ExerciseTypesAccordion />
-      </section>
+      </Box>
 
       {open && (
         <ExerciseTypesForm
