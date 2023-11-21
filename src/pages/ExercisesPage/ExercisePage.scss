@@ -6,7 +6,7 @@
   align-items: center;
   justify-content: center;
   gap: 3rem;
-  height: 100vh;
+  height: 100%;
   padding: 2rem;
 
   @media screen and (max-width: 1450px) {
@@ -20,7 +20,7 @@
     align-items: center;
     justify-content: center;
     gap: 1rem;
-    padding: 0.5rem;
+    padding: 3rem 0.5rem 3rem;
 
     .navBox {
       font-size: 1.1rem;
