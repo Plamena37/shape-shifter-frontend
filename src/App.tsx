@@ -1,5 +1,11 @@
 import { lazy, useEffect } from "react";
-import { Navigate, Route, Routes, useLocation } from "react-router-dom";
+import {
+  Navigate,
+  Route,
+  Routes,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 import { ThemeProvider } from "@emotion/react";
 import { SnackbarProvider } from "notistack";
 import {
@@ -11,6 +17,7 @@ import {
   ExercisesPage,
   WorkoutsPage,
   HomePage,
+  NotSupportedScreenSizePage,
 } from "./pages";
 
 import { ROUTES } from "./utils/enums";
@@ -24,12 +31,16 @@ import {
   LoggedOutProtection,
 } from "./wrappers/wrappers";
 import { SuspenseLayout } from "./components";
+import { useMediaQuery } from "@mui/material";
 
 const Signup = lazy(() => import("./components/Auth/Signup"));
 const Login = lazy(() => import("./components/Auth/Login"));
 
 const App = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("tablet"));
 
   useEffect(() => {
     let pageTitle = (
@@ -42,7 +53,19 @@ const App = () => {
 
     document.title =
       pageTitle.length > 0 ? `ShapeShifter | ${pageTitle}` : "ShapeShifter";
-  }, [location.pathname]);
+
+    if (
+      isSmallScreen &&
+      location.pathname !== ROUTES.NOT_SUPPORTED_SCREEN_SIZE
+    ) {
+      navigate(ROUTES.NOT_SUPPORTED_SCREEN_SIZE);
+    } else if (
+      !isSmallScreen &&
+      location.pathname === ROUTES.NOT_SUPPORTED_SCREEN_SIZE
+    ) {
+      navigate(-1);
+    }
+  }, [location.pathname, isSmallScreen, navigate]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -95,6 +118,11 @@ const App = () => {
               />
             </Route>
           </Route>
+
+          <Route
+            path={ROUTES.NOT_SUPPORTED_SCREEN_SIZE}
+            element={<NotSupportedScreenSizePage />}
+          />
         </Routes>
       </SnackbarProvider>
     </ThemeProvider>

@@ -10,7 +10,31 @@ export const StyledMaterialDesignContent = styled(MaterialDesignContent)(
   })
 );
 
+declare module "@mui/material/styles" {
+  interface BreakpointOverrides {
+    xs: false;
+    sm: false;
+    md: false;
+    lg: false;
+    xl: false;
+    mobile: true;
+    tablet: true;
+    laptop: true;
+    desktop: true;
+    largeScreen: true;
+  }
+}
+
 export const themeOptions: ThemeOptions = {
+  breakpoints: {
+    values: {
+      mobile: 0,
+      tablet: 570,
+      laptop: 770,
+      desktop: 1024,
+      largeScreen: 1200,
+    },
+  },
   palette: {
     primary: {
       main: "#32a184",

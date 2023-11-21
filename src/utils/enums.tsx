@@ -8,6 +8,7 @@ export enum ROUTES {
   EXERCISES = "/exercises",
   WORKOUTS = "/workouts",
   PROFILE = "/profile",
+  NOT_SUPPORTED_SCREEN_SIZE = "/not-supported",
   NOT_FOUND = "/*",
 }
 
