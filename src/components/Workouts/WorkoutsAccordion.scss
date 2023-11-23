@@ -45,6 +45,10 @@
 
   .form {
     width: 85%;
+
+    .filter__textfields:first-child {
+      min-width: 20%;
+    }
   }
 
   .no__content {
