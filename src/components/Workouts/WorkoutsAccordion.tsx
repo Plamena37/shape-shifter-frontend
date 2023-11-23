@@ -120,7 +120,7 @@ const WorkoutsAccordion = () => {
   };
 
   return (
-    <div className="workouts__container">
+    <div className="workoutsAccordion">
       <form onSubmit={handleSubmit} className="filter form">
         <div className="filter__wrapper">
           <TextField

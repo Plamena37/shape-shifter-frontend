@@ -1,5 +1,8 @@
 import { useState } from "react";
+import { Box } from "@mui/material";
 import { Button, WorkoutsForm, WorkoutsAccordion } from "../../components";
+import "../../assets/global.scss";
+import "./WorkoutsPage.scss";
 
 const WorkoutsPage = () => {
   const [open, setOpen] = useState(false);
@@ -10,8 +13,8 @@ const WorkoutsPage = () => {
 
   return (
     <>
-      <section className="wrapper overlay">
-        <nav className="wrapper__nav">
+      <Box className="workoutsContainer">
+        <nav className="navBox">
           <h2>Workouts</h2>
 
           <Button
@@ -23,7 +26,7 @@ const WorkoutsPage = () => {
           </Button>
         </nav>
         <WorkoutsAccordion />
-      </section>
+      </Box>
 
       {open && (
         <WorkoutsForm
