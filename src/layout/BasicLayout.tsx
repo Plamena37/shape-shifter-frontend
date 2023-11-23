@@ -1,14 +1,16 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
+import { Outlet, useLocation } from "react-router-dom";
 import { getCurrentUserIdAndEmail } from "../utils/functions";
 import { useAppDispatch, useAppSelector } from "../app/store";
 import { selectIsUserLoggedIn } from "../features/auth/authSelectors";
 import { getCurrentUser } from "../features/profile/profileSlice";
 import Header from "../components/Navigation/Header";
 import Footer from "../components/Navigation/Footer";
-import { Outlet } from "react-router-dom";
 
 const BasicLayout = () => {
   const dispatch = useAppDispatch();
+  const location = useLocation();
+  const [style, setStyle] = useState("");
   const isLoggedIn = useAppSelector(selectIsUserLoggedIn);
 
   useEffect(() => {
@@ -19,8 +21,16 @@ const BasicLayout = () => {
     }
   }, [isLoggedIn]);
 
+  useEffect(() => {
+    if (location.pathname.includes("measurements")) {
+      setStyle("baseSpecial");
+    } else {
+      setStyle("");
+    }
+  }, [location.pathname]);
+
   return (
-    <div className="base">
+    <div className={`base ${style}`}>
       {isLoggedIn && <Header />}
       <div className="basic__layout">
         <Outlet />
