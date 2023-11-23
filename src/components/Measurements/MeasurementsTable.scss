@@ -35,27 +35,7 @@
   }
 }
 
-.overlay__measurements {
-  display: grid !important;
-  grid-template-columns: 0.4fr 1fr;
-  padding: 7rem 3rem 6rem;
-  column-gap: 3rem !important;
-  row-gap: 9rem !important;
-  position: relative;
-  z-index: 0;
-
-  &__chart {
-    grid-column: 1/-1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 4rem;
-  }
-}
-
 .chart {
-  grid-column: 1/-1;
-  width: 52%;
   max-width: 818px;
   padding: 2rem;
   background-color: $color-white;
@@ -71,4 +51,10 @@
 
 .no__content.measurements {
   background-color: $color-white;
+}
+
+.measurements__container {
+  .no__content {
+    width: 90%;
+  }
 }

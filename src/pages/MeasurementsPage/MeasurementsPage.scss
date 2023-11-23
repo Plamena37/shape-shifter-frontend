@@ -1,0 +1,65 @@
+.measurementsBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  padding: 5rem 3rem;
+
+  .measurementsContainer {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    height: 100%;
+
+    .chart {
+      width: 100%;
+
+      @media screen and (max-width: 920px) {
+        width: 92%;
+      }
+
+      @media screen and (max-width: 830px) {
+        width: 90%;
+      }
+    }
+
+    @media screen and (max-width: 1450px) {
+      grid-template-columns: 0.5fr 1.5fr;
+
+      .navBox {
+        font-size: 1.1rem;
+      }
+    }
+
+    @media screen and (max-width: 1290px) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+
+      &.chartContainer {
+        flex-direction: column-reverse;
+      }
+
+      .navBox {
+        width: 100%;
+        font-size: 1.1rem;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+    }
+  }
+
+  .chartContainer {
+    grid-template-columns: 2fr 1fr;
+  }
+
+  @media screen and (max-width: 1450px) {
+    padding: 3rem 1rem;
+    gap: 4rem;
+  }
+}

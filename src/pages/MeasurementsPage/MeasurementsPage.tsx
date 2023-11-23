@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { IconButton } from "@mui/material";
+import { Box, IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { closeSnackbar, enqueueSnackbar } from "notistack";
 import { format } from "date-fns";
@@ -28,6 +28,7 @@ import {
   SnackbarSuccessMessages,
 } from "../../utils/enums";
 import "../../assets/global.scss";
+import "./MeasurementsPage.scss";
 
 const {
   MEASUREMENTS_GET_ALL,
@@ -145,20 +146,22 @@ const MeasurementsPage = () => {
 
   return (
     <>
-      <section className="wrapper  overlay__measurements">
-        <nav className="wrapper__nav measurements">
-          <h2>My measurements</h2>
-          <Button
-            btnStyle="action__btn"
-            onClick={toggleDialog}
-            btnVariant="outlined"
-          >
-            New measurement
-          </Button>
-        </nav>
-        <MeasurementsTable />
+      <Box className="measurementsBox">
+        <div className="measurementsContainer">
+          <nav className="navBox">
+            <h2>My measurements</h2>
+            <Button
+              btnStyle="action__btn"
+              onClick={toggleDialog}
+              btnVariant="outlined"
+            >
+              New measurement
+            </Button>
+          </nav>
+          <MeasurementsTable />
+        </div>
 
-        <section className="overlay__measurements__chart">
+        <div className="measurementsContainer chartContainer">
           <div className="chart">
             <form onSubmit={handleSubmit} className="chart__form">
               <TextField
@@ -194,11 +197,11 @@ const MeasurementsPage = () => {
               endDate={date.endDate as string}
             />
           </div>
-          <nav className="wrapper__nav measurements">
+          <nav className="navBox chartNav">
             <h2>Track your measurements</h2>
           </nav>
-        </section>
-      </section>
+        </div>
+      </Box>
 
       {open && (
         <MeasurementsForm
