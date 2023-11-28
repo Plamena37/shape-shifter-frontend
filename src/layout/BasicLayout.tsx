@@ -27,12 +27,21 @@ const BasicLayout = () => {
     } else {
       setStyle("");
     }
+
+    if (
+      location.pathname.includes("login") ||
+      location.pathname.includes("signup")
+    ) {
+      setStyle("basicLayout");
+    } else {
+      setStyle("");
+    }
   }, [location.pathname]);
 
   return (
     <div className={`base ${style}`}>
       {isLoggedIn && <Header />}
-      <div className="basic__layout">
+      <div className="basicLayout">
         <Outlet />
       </div>
       {isLoggedIn && <Footer />}

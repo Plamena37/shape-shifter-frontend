@@ -82,14 +82,14 @@ const AuthPage = ({ component: Component }: Props) => {
   }, [errorType]);
 
   return (
-    <section className="overlay">
+    <div className="overlay">
       <div className="overlay__section">
         <div className="overlay__image__wrapper">
           <img className="overlay__img" alt="Hot air baloon" src={authImage} />
         </div>
         <Component />
       </div>
-    </section>
+    </div>
   );
 };
 
