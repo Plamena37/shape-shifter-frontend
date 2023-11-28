@@ -26,4 +26,9 @@
       color: $color-primary;
     }
   }
+
+  @media screen and (max-width: 950px) {
+    font-size: 0.9rem;
+    gap: 2rem;
+  }
 }
