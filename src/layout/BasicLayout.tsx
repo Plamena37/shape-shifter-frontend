@@ -27,15 +27,6 @@ const BasicLayout = () => {
     } else {
       setStyle("");
     }
-
-    if (
-      location.pathname.includes("login") ||
-      location.pathname.includes("signup")
-    ) {
-      setStyle("basicLayout");
-    } else {
-      setStyle("");
-    }
   }, [location.pathname]);
 
   return (
