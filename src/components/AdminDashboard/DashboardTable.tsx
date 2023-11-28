@@ -71,7 +71,7 @@ const DashboardTable = () => {
                   Height
                 </TableCell>
                 <TableCell align="left" className="table__head">
-                  Date of birth
+                  DOB
                 </TableCell>
                 <TableCell align="left" className="table__head">
                   Change role

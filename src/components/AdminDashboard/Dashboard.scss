@@ -7,8 +7,12 @@
   justify-content: center;
   width: 100%;
 
-  & h4 {
+  h4 {
     margin: 0 0 1rem 0;
+
+    @media screen and (max-width: 1050px) {
+      font-size: 0.85rem;
+    }
   }
 }
 
@@ -18,14 +22,38 @@
 
 .dashboard {
   font-size: 0.8rem !important;
-}
 
-.change--role,
-.delete--user {
-  width: 70% !important;
+  @media screen and (max-width: 1050px) {
+    font-size: 0.7rem !important;
+  }
 }
 
 .delete--user,
 .btn--delete {
   color: $color-danger !important;
+}
+
+.css-1ygcj2i-MuiTableCell-root {
+  @media screen and (max-width: 1050px) {
+    font-size: 0.75rem !important;
+    padding: 0.7rem !important;
+  }
+  @media screen and (max-width: 890px) {
+    padding-inline: 0.5rem !important;
+  }
+  @media screen and (max-width: 730px) {
+    padding-inline: 0.3rem !important;
+  }
+}
+.css-1ex1afd-MuiTableCell-root {
+  @media screen and (max-width: 1050px) {
+    font-size: 0.75rem !important;
+    padding-inline: 0.7rem !important;
+  }
+  @media screen and (max-width: 890px) {
+    padding-inline: 0.5rem !important;
+  }
+  @media screen and (max-width: 730px) {
+    padding-inline: 0.3rem !important;
+  }
 }

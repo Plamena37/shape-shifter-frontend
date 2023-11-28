@@ -81,7 +81,7 @@ const DashboardItem = ({ user }: DashboardItemProps) => {
             btnVariant="outlined"
             onClick={toggleDialog}
           >
-            Change role
+            Role
           </Button>
         </TableCell>
         <TableCell align="left">
@@ -90,7 +90,7 @@ const DashboardItem = ({ user }: DashboardItemProps) => {
             btnVariant="text"
             onClick={handleDeleteUser}
           >
-            Delete user
+            Delete
           </Button>
         </TableCell>
       </TableRow>

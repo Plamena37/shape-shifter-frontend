@@ -1,8 +1,20 @@
 @import "../../assets/global.scss";
 
 .dashboard__layout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 4.5rem 6rem;
-  height: calc(100vh - 13rem);
+
+  @media screen and (max-width: 1200px) {
+    padding: 3rem 4rem;
+  }
+  @media screen and (max-width: 1000px) {
+    padding: 3rem 2rem;
+  }
+  @media screen and (max-width: 790px) {
+    padding: 3rem 1rem;
+  }
 }
 
 .common {
