@@ -53,4 +53,28 @@
       }
     }
   }
+
+  @media screen and (max-width: 1000px) {
+    padding: 0.25rem 0.8rem;
+    font-size: 0.9rem;
+
+    &__list {
+      gap: 0.5rem;
+    }
+    &__logo {
+      width: 8rem;
+    }
+  }
+
+  @media screen and (max-width: 830px) {
+    padding: 0.25rem 0.4rem;
+    font-size: 0.8rem;
+
+    &__list {
+      gap: 0.3rem;
+    }
+    &__logo {
+      width: 7rem;
+    }
+  }
 }
