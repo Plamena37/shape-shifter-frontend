@@ -169,6 +169,14 @@ body,
   height: unset !important;
 }
 
+.authBaseSpecial {
+  height: 100% !important;
+
+  @media screen and (max-height: 550px) {
+    height: unset !important;
+  }
+}
+
 .displayFlexCenter {
   display: flex;
   align-items: center;

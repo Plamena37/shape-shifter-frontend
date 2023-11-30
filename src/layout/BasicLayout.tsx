@@ -31,7 +31,7 @@ const BasicLayout = () => {
     ) {
       setStyle("baseSpecial");
     } else if (isAuthPage) {
-      setStyle("basicLayout");
+      setStyle("basicLayout authBaseSpecial");
     } else {
       setStyle("");
     }
