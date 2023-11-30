@@ -40,7 +40,7 @@ Front-end: React + Vite, React Router, Typescript, Redux Toolkit, SCSS, React-ch
   - *users* can edit their account's data 
   - *admins* can also edit their role 
 
-- currently working on making it ✨*responsive*✨
+- responsive for all screens except mobile
 
 
 #### 🔗 Here are some previews 📸:
