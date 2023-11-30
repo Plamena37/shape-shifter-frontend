@@ -9,7 +9,7 @@ import "./HomePage.scss";
 
 const HomePage = () => {
   return (
-    <section className="home__layout">
+    <div className="home__layout">
       <div className="home common box">
         <figure className="home__shape">
           <img src={measurementsImg} alt="Measurement image" />
@@ -64,7 +64,7 @@ const HomePage = () => {
           </figcaption>
         </figure>
       </div>
-    </section>
+    </div>
   );
 };
 

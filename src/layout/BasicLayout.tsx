@@ -22,7 +22,10 @@ const BasicLayout = () => {
   }, [isLoggedIn]);
 
   useEffect(() => {
-    if (location.pathname.includes("measurements")) {
+    if (
+      location.pathname.includes("measurements") ||
+      location.pathname === "/"
+    ) {
       setStyle("baseSpecial");
     } else {
       setStyle("");
