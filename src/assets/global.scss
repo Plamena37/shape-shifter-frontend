@@ -168,3 +168,9 @@ body,
 .baseSpecial {
   height: unset !important;
 }
+
+.displayFlexCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -13,6 +13,9 @@ const BasicLayout = () => {
   const [style, setStyle] = useState("");
   const isLoggedIn = useAppSelector(selectIsUserLoggedIn);
 
+  const isAuthPage =
+    location.pathname.includes("login") || location.pathname.includes("signup");
+
   useEffect(() => {
     if (isLoggedIn) {
       const userInfo = getCurrentUserIdAndEmail();
@@ -27,6 +30,8 @@ const BasicLayout = () => {
       location.pathname === "/"
     ) {
       setStyle("baseSpecial");
+    } else if (isAuthPage) {
+      setStyle("basicLayout");
     } else {
       setStyle("");
     }
@@ -35,7 +40,7 @@ const BasicLayout = () => {
   return (
     <div className={`base ${style}`}>
       {isLoggedIn && <Header />}
-      <div className="basicLayout">
+      <div className={`basicLayout ${isAuthPage ? "displayFlexCenter" : ""}`}>
         <Outlet />
       </div>
       {isLoggedIn && <Footer />}
