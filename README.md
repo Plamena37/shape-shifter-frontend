@@ -42,6 +42,12 @@ Front-end: React + Vite, React Router, Typescript, Redux Toolkit, SCSS, React-ch
 
 - responsive for all screens except mobile
 
+### How to run the code:
+```bash
+npm install
+npm run dev
+```
+
 
 #### 🔗 Here are some previews 📸:
 ![Login](https://i.imgur.com/PwrDcBh.png)
